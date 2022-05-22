@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>92657762008-vd3jv211klcjkfja79ijbkl8o5ij3vt3.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.92657762008-vd3jv211klcjkfja79ijbkl8o5ij3vt3</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>92657762008-3q5hhmgdp65eoue0f9ogm7sel6ocsk6q.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA5gPSimk-vsHSAar8XVbhWWmHk8m2Nkb0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>92657762008</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.blueMedicalClinic</string>
+	<key>PROJECT_ID</key>
+	<string>blue-medical-clinic</string>
+	<key>STORAGE_BUCKET</key>
+	<string>blue-medical-clinic.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:92657762008:ios:9f508d902e98bdba3fe1ad</string>
+</dict>
+</plist>

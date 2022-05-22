@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "92657762008",
+    "project_id": "blue-medical-clinic",
+    "storage_bucket": "blue-medical-clinic.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:92657762008:android:0bb29203604aa3d33fe1ad",
+        "android_client_info": {
+          "package_name": "com.flutter.blue_medical_clinic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "92657762008-3q5hhmgdp65eoue0f9ogm7sel6ocsk6q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.flutter.blue_medical_clinic",
+            "certificate_hash": "0f47d41f93fd22a5ea9be872d92ac5a0cb32eb1e"
+          }
+        },
+        {
+          "client_id": "92657762008-lfq942ofbr1b5lfh6cq7l7b231u94nsq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB93H2l1DioqU71t07gpC0e9V4vN5ibXOU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "92657762008-lfq942ofbr1b5lfh6cq7l7b231u94nsq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
