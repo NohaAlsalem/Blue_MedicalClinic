@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:blue_medical_clinic/modules/doctor_screens/doctor_login_screen/cubit/states.dart';
-import 'package:blue_medical_clinic/modules/patient_screens/login_screen/cubit/states.dart';
+import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/login_screen/cubit/states.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,20 +19,17 @@ class LoginPatientCubit extends Cubit<PatientLoginStates> {
     emit(PatientLoginChangePasswordVisibility());
   }
 
-  void patientLogin(
-  {
+  void patientLogin({
     @required String? email,
     @required String? password,
-}
-      )
-  {
+  }) {
     emit(PatientLoginLoadingState());
-    FirebaseAuth.instance.signInWithEmailAndPassword(email: email!, password: password!).then((value)
-    {
+    FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: email!, password: password!)
+        .then((value) {
       print('Login Success , patient email  is : ${value.user!.email}');
       emit(PatientLoginSuccessState());
-    }).catchError((error)
-    {
+    }).catchError((error) {
       print('Login Failed , error is : ${error.toString()}');
       emit(PatientLoginErrorState(error.toString()));
     });

@@ -1,12 +1,13 @@
-import 'package:blue_medical_clinic/modules/doctor_screens/doctor_login_screen/cubit/cubit.dart';
-import 'package:blue_medical_clinic/modules/doctor_screens/doctor_login_screen/cubit/states.dart';
-import 'package:blue_medical_clinic/modules/patient_screens/home_screen/home_screen.dart';
-import 'package:blue_medical_clinic/modules/patient_screens/login_screen/input_files/header.dart';
+import 'package:blue_medical_clinic/modules/user.type.screens/doctor_screens/doctor_login_screen/cubit/cubit.dart';
+import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/home_screen/home_screen.dart';
+import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/login_screen/input_files/header.dart';
 import 'package:blue_medical_clinic/shared/components/components.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+
+import 'cubit/states.dart';
 
 class DoctorLoginScreen extends StatelessWidget {
   DoctorLoginScreen({Key? key}) : super(key: key);

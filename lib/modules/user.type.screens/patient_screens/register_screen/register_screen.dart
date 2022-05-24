@@ -1,6 +1,7 @@
-import 'package:blue_medical_clinic/modules/patient_screens/home_screen/home_screen.dart';
-import 'package:blue_medical_clinic/modules/patient_screens/register_screen/cubit/cubit.dart';
-import 'package:blue_medical_clinic/modules/patient_screens/register_screen/cubit/states.dart';
+
+import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/home_screen/home_screen.dart';
+import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/register_screen/cubit/cubit.dart';
+import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/register_screen/cubit/states.dart';
 import 'package:blue_medical_clinic/shared/components/components.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
@@ -206,7 +207,8 @@ class PatientRegisterScreen extends StatelessWidget {
                               ),
                             );
                           },
-                        )),
+                        )
+                    ),
                   ],
                 ),
               ),
