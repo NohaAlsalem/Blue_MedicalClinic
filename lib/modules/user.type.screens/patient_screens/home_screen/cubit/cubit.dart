@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:blue_medical_clinic/modules/patient_screens/home_screen/cubit/states.dart';
+import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/home_screen/cubit/states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PatientHomeCubit extends Cubit<PatientHomeStates>{

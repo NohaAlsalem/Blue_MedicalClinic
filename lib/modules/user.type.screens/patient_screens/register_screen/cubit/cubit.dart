@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:blue_medical_clinic/models/patient_models/patient.register.model/patient.user.model.dart';
-import 'package:blue_medical_clinic/modules/patient_screens/register_screen/cubit/states.dart';
+import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/register_screen/cubit/states.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +26,6 @@ class RegisterPatientCubit extends Cubit<PatientRegisterStates> {
         showConfirmPassword ? Icons.visibility : Icons.visibility_off;
     emit(PatientRegisterChangePasswordVisibility());
   }
-
   void createPatient(
       {
      @required String? userId,
@@ -58,7 +57,7 @@ class RegisterPatientCubit extends Cubit<PatientRegisterStates> {
     @required String? email,
     @required String? phone,
     @required String? password,
-  }) {
+  })  {
     emit(PatientRegisterLoadingState());
     FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email!, password: password!)
@@ -73,7 +72,7 @@ class RegisterPatientCubit extends Cubit<PatientRegisterStates> {
           phone: value.user!.phoneNumber);
       //emit(PatientRegisterSuccessState());
     }).catchError((error) {
-      print('Error in register user : ${error.toString()}');
+      print('Error in register patient : ${error.toString()}');
       emit(PatientRegisterErrorState(error.toString()));
     });
   }

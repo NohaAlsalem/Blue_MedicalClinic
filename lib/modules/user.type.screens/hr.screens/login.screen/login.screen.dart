@@ -1,16 +1,16 @@
-import 'package:blue_medical_clinic/modules/patient_screens/home_screen/home_screen.dart';
-import 'package:blue_medical_clinic/modules/patient_screens/login_screen/cubit/cubit.dart';
-import 'package:blue_medical_clinic/modules/patient_screens/login_screen/cubit/states.dart';
-import 'package:blue_medical_clinic/modules/patient_screens/login_screen/input_files/header.dart';
-import 'package:blue_medical_clinic/modules/patient_screens/register_screen/register_screen.dart';
+import 'package:blue_medical_clinic/modules/user.type.screens/doctor_screens/doctor_login_screen/cubit/cubit.dart';
+import 'package:blue_medical_clinic/modules/user.type.screens/hr.screens/login.screen/cubit/cubit.dart';
+import 'package:blue_medical_clinic/modules/user.type.screens/hr.screens/login.screen/cubit/states.dart';
+import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/home_screen/home_screen.dart';
+import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/login_screen/input_files/header.dart';
 import 'package:blue_medical_clinic/shared/components/components.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-class PatientLoginScreen extends StatelessWidget {
-  PatientLoginScreen({Key? key}) : super(key: key);
+class DoctorLoginScreen extends StatelessWidget {
+  DoctorLoginScreen({Key? key}) : super(key: key);
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
@@ -18,15 +18,11 @@ class PatientLoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => LoginPatientCubit(),
-      child: BlocConsumer<LoginPatientCubit, PatientLoginStates>(
-        listener: (BuildContext context, state) {
-          if (state is PatientLoginSuccessState) {
-            navigateAndFinish(const PatientHomeScreen(), context);
-          }
-        },
+      create: (BuildContext context) => LoginDoctorCubit(),
+      child: BlocConsumer<HrLoginCubit, HrLoginStates>(
+        listener: (BuildContext context, state) {},
         builder: (BuildContext context, Object? state) {
-          var cubit = LoginPatientCubit.get(context);
+          var cubit = HrLoginCubit.get(context);
           return Scaffold(
             body: Container(
               width: double.infinity,
@@ -73,13 +69,12 @@ class PatientLoginScreen extends StatelessWidget {
                                         child: defaultTextFormField(
                                           isPassword: false,
                                           keyBoardType:
-                                              TextInputType.emailAddress,
+                                          TextInputType.emailAddress,
                                           validate: (value) {
                                             if (value!.isEmpty) {
                                               return 'Empty Field , please enter your email';
-                                            } else if (!value.contains('@')) {
-                                              return 'Invalid Email , please Enter a valid email';
-                                            } else if (!value.contains('.')) {
+                                            } else if (!value
+                                                .contains('@gmail.com')) {
                                               return 'Invalid Email , please Enter a valid email';
                                             } else {
                                               return null;
@@ -88,8 +83,8 @@ class PatientLoginScreen extends StatelessWidget {
                                           controller: emailController,
                                           prefixIcon: Icons.alternate_email,
                                           textInputAction: TextInputAction.next,
-                                          label: 'Patient E-mail',
-                                          hint: 'PatientMail@bluemedical.cl',
+                                          label: 'Doctor E-mail',
+                                          hint: 'HrMail@gmail.com',
                                         ),
                                       ),
                                       const SizedBox(height: 20),
@@ -103,7 +98,7 @@ class PatientLoginScreen extends StatelessWidget {
                                         child: defaultTextFormField(
                                           isPassword: cubit.showPassword,
                                           keyBoardType:
-                                              TextInputType.visiblePassword,
+                                          TextInputType.visiblePassword,
                                           validate: (value) {
                                             if (value!.isEmpty) {
                                               return 'Empty Field , please enter your password';
@@ -122,7 +117,7 @@ class PatientLoginScreen extends StatelessWidget {
                                             cubit.changePasswordVisibility();
                                           },
                                           textInputAction: TextInputAction.done,
-                                          label: 'Patient Password',
+                                          label: 'Hr Password',
                                           hint: '********',
                                         ),
                                       ),
@@ -139,15 +134,13 @@ class PatientLoginScreen extends StatelessWidget {
                                             function: () {
                                               if (formKey.currentState!
                                                   .validate()) {
-                                                cubit.patientLogin(
-                                                    email: emailController.text,
-                                                    password: passwordController
-                                                        .text);
-                                                //  navigateAndFinish(const PatientHomeScreen(), context);
+                                                navigateAndFinish(
+                                                    const PatientHomeScreen(),
+                                                    context);
                                               }
                                             }),
                                     condition:
-                                        state is! PatientLoginLoadingState,
+                                    state is! HrLoginLoadingStates,
                                     fallback: (BuildContext context) =>
                                         SpinKitWave(
                                           itemBuilder: (BuildContext context,
@@ -163,20 +156,6 @@ class PatientLoginScreen extends StatelessWidget {
                                         )),
                                 const SizedBox(
                                   height: 20,
-                                ),
-                                Row(
-                                  children: [
-                                    const Text('Don\'t have an Account ? '),
-                                    const SizedBox(width: 10),
-                                    defaultTextButton(
-                                      function: () {
-                                        navigateTo(
-                                            PatientRegisterScreen(), context);
-                                      },
-                                      buttonText: 'Register Now',
-                                      fontSize: 20,
-                                    )
-                                  ],
                                 ),
                               ],
                             ),

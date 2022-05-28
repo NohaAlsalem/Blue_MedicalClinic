@@ -1,5 +1,5 @@
-import 'package:blue_medical_clinic/modules/patient_screens/doctors.list/doctor.list.screen.dart';
-import 'package:blue_medical_clinic/modules/patient_screens/home_screen/cubit/cubit.dart';
+import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/doctors.list/doctor.list.screen.dart';
+import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/home_screen/cubit/cubit.dart';
 import 'package:blue_medical_clinic/shared/components/components.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

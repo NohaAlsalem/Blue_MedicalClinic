@@ -13,5 +13,5 @@ class DoctorLoginChangePasswordVisibility extends DoctorLoginStates{}
 class DoctorLoginAuthSuccessState             extends DoctorLoginStates{}
 class DoctorLoginAuthErrorState               extends DoctorLoginStates {
   String? error;
-  DoctorLoginAuthErrorState({this.error});
+  DoctorLoginAuthErrorState(this.error);
 }
