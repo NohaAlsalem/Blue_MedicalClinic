@@ -1,5 +1,6 @@
 import 'package:blue_medical_clinic/modules/reports/paitent_reports.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../models/list_reports/list_report.dart';
 //import 'package:flutter_sms/flutter_sms.dart';
@@ -68,7 +69,7 @@ class my_reports extends StatelessWidget {
                     borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40),bottomRight: Radius.circular(40)),
 
                   ),
-                  child:Lottie.asset('asset/lottie/clinical.json') ,
+                  child:Lottie.asset('assets/lottie/clinical.json') ,
                   //child: Image(image:AssetImage('asset/images/TOP.jpg'),fit:BoxFit.cover,)
                  ),
               ),
