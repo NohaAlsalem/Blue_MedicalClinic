@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
           decoration:  const BoxDecoration(
             gradient: LinearGradient(begin: Alignment.topCenter ,
                 colors: [
-                  Color(0xff93f0fc),
+                  Color(0xAA1a76b5),
                   Color(0xAAf3e5f5),
                 ]),
           ),
@@ -51,10 +51,17 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
               const SizedBox(height : 10),
               const Text('Blue Medical Clinic',
-              style: TextStyle(
-                color :Color(0xFF0876D4),
-                fontSize: 23,
-                fontWeight: FontWeight.bold,
+                  style: TextStyle(
+                    color :Color(0xFF0876D4),
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    shadows: [
+                      Shadow(
+                        blurRadius: 4.0,
+                        color: Colors.white,
+                        offset: Offset(3.0, 3.0),
+                      ),
+                    ],
               )),
               const SizedBox(height: 20,),
               SpinKitWave(
@@ -63,7 +70,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   return DecoratedBox(
                     decoration: BoxDecoration(
                       color: index.isEven
-                          ? const Color(0xff93f0fc)
+                          ? const Color(0xFF0876D4)
                           : const Color(0xAAf3e5f5),
                     ),
                   );
