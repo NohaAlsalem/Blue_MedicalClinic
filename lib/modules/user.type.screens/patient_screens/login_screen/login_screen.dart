@@ -2,7 +2,6 @@
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/home_screen/home_screen.dart';
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/login_screen/cubit/cubit.dart';
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/login_screen/cubit/states.dart';
-import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/login_screen/input_files/header.dart';
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/register_screen/register_screen.dart';
 import 'package:blue_medical_clinic/shared/components/components.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
@@ -23,7 +22,7 @@ class PatientLoginScreen extends StatelessWidget {
       child: BlocConsumer<LoginPatientCubit, PatientLoginStates>(
         listener: (BuildContext context, state) {
           if (state is PatientLoginSuccessState) {
-            navigateAndFinish(const PatientHomeScreen(), context);
+            navigateAndFinish( PatientHomeScreen(), context);
           }
         },
         builder: (BuildContext context, Object? state) {
@@ -33,16 +32,17 @@ class PatientLoginScreen extends StatelessWidget {
               width: double.infinity,
               decoration: const BoxDecoration(
                 gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-                  Color(0xff93f0fc),
+                  Color(0xAA1a76b5),
                   Color(0xAAf3e5f5),
+                  Color(0xff93f0fc),
                 ]),
               ),
               child: Form(
                 key: formKey,
                 child: Column(
                   children: <Widget>[
-                    const SizedBox(height: 50),
-                    const Header(),
+                    const SizedBox(height: 90),
+                   // const Header(),
                     Expanded(
                       child: Container(
                         decoration: const BoxDecoration(
@@ -131,7 +131,7 @@ class PatientLoginScreen extends StatelessWidget {
                                   ),
                                 ),
                                 const SizedBox(
-                                  height: 40,
+                                  height: 90,
                                 ),
                                 ConditionalBuilder(
                                     builder: (BuildContext context) =>
@@ -163,7 +163,7 @@ class PatientLoginScreen extends StatelessWidget {
                                           },
                                         )),
                                 const SizedBox(
-                                  height: 20,
+                                  height: 90,
                                 ),
                                 Row(
                                   children: [
@@ -175,7 +175,7 @@ class PatientLoginScreen extends StatelessWidget {
                                             PatientRegisterScreen(), context);
                                       },
                                       buttonText: 'Register Now',
-                                      fontSize: 20,
+                                      fontSize: 17,
                                     )
                                   ],
                                 ),
