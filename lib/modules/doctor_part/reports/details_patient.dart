@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-
-import '../../models/list_reports/list_report.dart';
+import '../../../models/list_reports/list_report.dart';
 import 'contain_report.dart';
 
 class details_patient extends StatelessWidget {

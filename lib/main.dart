@@ -6,7 +6,9 @@ import 'package:blue_medical_clinic/shared/cubit/states.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'modules/doctor_part/reports/details_patient.dart';
+import 'modules/doctor_part/reports/reports.dart';
+import 'modules/doctor_part/reports/write_report/write_report.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -29,10 +31,17 @@ class MyApp extends StatelessWidget
             child: BlocConsumer<AppCubit, AppStates>(
               listener: (BuildContext context, state) {  },
               builder: (BuildContext context, Object? state) {
-                return  const MaterialApp(
+
+                return  MaterialApp(
                 debugShowCheckedModeBanner: false,
                 home:  SplashScreen(),
-              ); },
+                  routes: {
+                    'writeReport': (context) => writeReport(),
+                    'dp': (context) => details_patient(),
+                    'report':(context)=>my_reports(),
+                  },
+              );
+                },
             ),
           ),
         );

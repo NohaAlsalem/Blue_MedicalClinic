@@ -1,31 +1,12 @@
-import 'package:blue_medical_clinic/modules/reports/paitent_reports.dart';
+import 'package:blue_medical_clinic/modules/doctor_part/reports/paitent_reports.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-
-import '../../models/list_reports/list_report.dart';
-//import 'package:flutter_sms/flutter_sms.dart';
-
+import '../../../models/list_reports/list_report.dart';
 class my_reports extends StatelessWidget {
-
-  // String message = "This is a test message!";
-  // List<String> recipents = ["0951701234"];
-  // void _sendSMS(String message, List<String> recipents) async {
-  //   String _result = await sendSMS(message: message, recipients: recipents)
-  //       .catchError((onError) {
-  //     print(onError);
-  //   });
-  //   print(_result);
-  // }
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: TextButton(child: Text('sms',style: TextStyle(color: Colors.white),),onPressed: (){
-      //     _sendSMS(message,recipents);
-      //   },),
-      // ),
        body: Container(
 
           decoration:BoxDecoration(
@@ -39,12 +20,6 @@ class my_reports extends StatelessWidget {
                     Color(0xAA93f0fc),
                     Color(0xAAd1c4e9),
                     Color(0xAAf3e5f5),
-                    // Color(0xAA9696C8),
-                    // Color(0xAAEBE6EC),
-                    // Color(0xAAf3e5f5),
-                    // Color(0xAAf3e5f5),
-                    // Color(0xAAEBE6EC),
-                    // Color(0xAA9696C8),
                   ],
              ),
           ),
