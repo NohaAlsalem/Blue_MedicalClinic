@@ -23,7 +23,7 @@ class PatientRegisterScreen extends StatelessWidget {
       child: BlocConsumer<RegisterPatientCubit, PatientRegisterStates>(
         listener: (BuildContext context, state) {
           if(state is CreatePatientSuccessState){
-            navigateAndFinish(const PatientHomeScreen(), context);
+            navigateAndFinish( PatientHomeScreen(), context);
           }
         },
         builder: (BuildContext context, Object? state) {
@@ -35,13 +35,10 @@ class PatientRegisterScreen extends StatelessWidget {
             backgroundColor: Colors.grey[50],
             flexibleSpace: Container(
               decoration:  const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(50),
-                  bottomRight: Radius.circular(50),
-                ),
                 gradient: LinearGradient(colors: [
-                  Color(0xFF93f0fc),
-                  Color(0xFFf3e5f5),
+                  Color(0xAA1a76b5),
+                  Color(0xAA1a76b5),
+                  Color(0xAAf3e5f5),
                 ])
               ),
             ),
@@ -180,7 +177,7 @@ class PatientRegisterScreen extends StatelessWidget {
                         hint: '********',
                       ),
                     ),
-                    const SizedBox(height: 40,),
+                    const SizedBox(height: 20,),
                     ConditionalBuilder(
                         condition: state is! PatientRegisterLoadingState,
                         builder: (context) => defaultMaterialButton(

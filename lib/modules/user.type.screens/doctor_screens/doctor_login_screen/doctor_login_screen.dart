@@ -1,6 +1,5 @@
 import 'package:blue_medical_clinic/modules/user.type.screens/doctor_screens/doctor_login_screen/cubit/cubit.dart';
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/home_screen/home_screen.dart';
-import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/login_screen/input_files/header.dart';
 import 'package:blue_medical_clinic/shared/components/components.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
@@ -28,16 +27,17 @@ class DoctorLoginScreen extends StatelessWidget {
               width: double.infinity,
               decoration: const BoxDecoration(
                 gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-                  Color(0xff93f0fc),
+                  Color(0xAA1a76b5),
                   Color(0xAAf3e5f5),
+                  Color(0xff93f0fc),
                 ]),
               ),
               child: Form(
                 key: formKey,
                 child: Column(
                   children: <Widget>[
-                    const SizedBox(height: 50),
-                    const Header(),
+                    const SizedBox(height: 90),
+                   // const Header(),
                     Expanded(
                       child: Container(
                         decoration: const BoxDecoration(
@@ -125,7 +125,7 @@ class DoctorLoginScreen extends StatelessWidget {
                                   ),
                                 ),
                                 const SizedBox(
-                                  height: 40,
+                                  height: 120,
                                 ),
                                 ConditionalBuilder(
                                     builder: (BuildContext context) =>
@@ -135,7 +135,7 @@ class DoctorLoginScreen extends StatelessWidget {
                                               if (formKey.currentState!
                                                   .validate()) {
                                                 navigateAndFinish(
-                                                    const PatientHomeScreen(),
+                                                     PatientHomeScreen(),
                                                     context);
                                               }
                                             }),

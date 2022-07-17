@@ -15,18 +15,15 @@ class _PageViewScreenState extends State<PageViewScreen> {
   [
     PageViewModel(
         'Welcome in Blue Medical Clinic',
-        'title1',
-        'assets/pageView2.jpg',
+        'assets/pageView1.png',
         ),
     PageViewModel(
-        'title2',
-        'description2',
-        'assets/pageView1.jpg',
+        'Find your Doctor &\nBook an Appointment',
+        'assets/pageView2.png',
         ),
     PageViewModel(
-      'title3',
-      'description3',
-      'assets/pageView3.jpg',
+      'Get your Best Services From US',
+      'assets/pageView3.png',
       ),
   ];
   var pageViewController = PageController();
@@ -34,12 +31,21 @@ class _PageViewScreenState extends State<PageViewScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar :AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0.0,
-      ),
-    body : Padding(
+    body : Container(
       padding: const EdgeInsets.all(8.0),
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+              Color(0xAA1a76b5),
+              Color(0xAAf3e5f5),
+              Color(0xAAf3e5f5),
+              Color(0xAAf3e5f5),
+              Color(0xAAf3e5f5),
+              Color(0xAA1a76b5),
+            ]),
+      ),
       child: Column(
         children: [
           Expanded(
@@ -93,14 +99,19 @@ Widget buildPageView(context , PageViewModel pageView) => Column(
     const SizedBox(height : 40),
     Text(
       '${pageView.title}',
-      style: Theme.of(context).textTheme.headline4,
-      textAlign: TextAlign.left,
-    ),
-    const SizedBox(height : 20),
-    Text(
-      '${pageView.description}',
-      style: Theme.of(context).textTheme.headline6,
-      textAlign: TextAlign.left,
+       style: TextStyle(
+         fontSize: 30,
+         fontWeight: FontWeight.w700,
+         color:   Colors.indigo,
+         shadows: [
+           Shadow(
+             blurRadius: 4.0,
+             color: Colors.white,
+             offset: Offset(3.0, 3.0),
+           ),
+         ],
+       ),
+        textAlign: TextAlign.center,
     ),
   ],
 );
