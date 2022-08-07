@@ -2,6 +2,7 @@ import 'dart:core';
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/doctors.list/booking.dart';
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/doctors.list/cubit/cubit.dart';
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/doctors.list/cubit/state.dart';
+import 'package:blue_medical_clinic/shared/components/components.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ class NeurologicalSection extends StatelessWidget {
   List doctor =[];
   CollectionReference docRef = FirebaseFirestore.instance.collection('Section').doc('Doctors').collection('Neurological');
 
+  // CollectionReference docRefNeurological = FirebaseFirestore.instance.collection('Section').doc().collection('Neurological');
 
   NeurologicalSection({Key? key}) : super(key: key);
   @override
@@ -66,12 +68,21 @@ class NeurologicalSection extends StatelessWidget {
                           Container(
                             height: 180.0,
                             decoration: BoxDecoration(
+                              // gradient: const LinearGradient(
+                              //   begin: Alignment.topRight,
+                              //   end: Alignment.bottomLeft,
+                              //   colors: [
+                              //     Colors.indigo,
+                              //     Color(0xAA1a76b5),
+                              //     Color(0xFF9696C8),
+                              //   ],
+                              // ),
                               borderRadius: BorderRadius.vertical(
                                 bottom: Radius.elliptical(
                                     MediaQuery.of(context).size.width, 100.0 ),
                               ),
                               image: const DecorationImage(
-                                image: AssetImage('assets/booking.jpg'),
+                                image: AssetImage('assets/images/booking.jpg'),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -89,6 +100,8 @@ class NeurologicalSection extends StatelessWidget {
                             child: Text('Department Doctor', style: TextStyle(
                               fontSize: 23.0,
                               color:  Color(0xFF0876D4),
+                              // color:  Color(0xFF326fa5),
+                              // Color(0xFF01203b),
                               fontWeight: FontWeight.w800,
                               fontFamily: 'Allison',
                             ),
@@ -220,7 +233,7 @@ class NeurologicalSection extends StatelessWidget {
                                                                                   decoration: const BoxDecoration(
                                                                                     image: DecorationImage(
                                                                                       fit: BoxFit.cover,
-                                                                                      image: AssetImage('assets/background.jpg'),
+                                                                                      image: AssetImage('assets/images/background.jpg'),
                                                                                     ),
                                                                                     borderRadius: BorderRadius.only(
                                                                                       bottomLeft: Radius.circular(60),
@@ -385,6 +398,7 @@ class NeurologicalSection extends StatelessWidget {
                                                                                                 onPressed: (){
                                                                                                   day('Monday');
                                                                                                   doctorN(snapshot.data.docs[i].data()['Name']);
+                                                                                                  datePickerMonday(context);
                                                                                                   Navigator.of(context).pushNamed('booking',);
                                                                                                 },
                                                                                                 child: const Center(
@@ -449,6 +463,7 @@ class NeurologicalSection extends StatelessWidget {
                                                                                                 onPressed: () {
                                                                                                   day('Tuesday');
                                                                                                   doctorN(snapshot.data.docs[i].data()['Name']);
+                                                                                                  datePickerTuesday(context);
                                                                                                   Navigator.of(context).pushNamed('booking',);
                                                                                                 },
                                                                                                 child: const Center(
@@ -513,7 +528,8 @@ class NeurologicalSection extends StatelessWidget {
                                                                                                 onPressed: () {
                                                                                                   day('Wednesday');
                                                                                                   doctorN(snapshot.data.docs[i].data()['Name']);
-                                                                                                   Navigator.of(context).pushNamed('booking',);
+                                                                                                  datePickerWednesday(context);
+                                                                                                  Navigator.of(context).pushNamed('booking',);
                                                                                                 },
                                                                                                 child: const Center(
                                                                                                     child: Text(

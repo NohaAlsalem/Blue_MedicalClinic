@@ -2,6 +2,7 @@ import 'dart:core';
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/doctors.list/booking.dart';
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/doctors.list/cubit/cubit.dart';
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/doctors.list/cubit/state.dart';
+import 'package:blue_medical_clinic/shared/components/components.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,11 @@ class DentalSection extends StatelessWidget {
 
   List doctor =[];
   CollectionReference docRefDental  = FirebaseFirestore.instance.collection('Section').doc('Doctors').collection('dental');
+
+
+  DateTime _dateTime = DateTime.now();
+
+
 
   DentalSection({Key? key}) : super(key: key);
   @override
@@ -70,7 +76,7 @@ class DentalSection extends StatelessWidget {
                                     MediaQuery.of(context).size.width, 100.0 ),
                               ),
                               image: const DecorationImage(
-                                image: AssetImage('assets/booking.jpg'),
+                                image: AssetImage('assets/images/booking.jpg'),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -88,6 +94,8 @@ class DentalSection extends StatelessWidget {
                             child: Text('Department Doctor', style: TextStyle(
                               fontSize: 23.0,
                               color:  Color(0xFF0876D4),
+                              // color:  Color(0xFF326fa5),
+                              // Color(0xFF01203b),
                               fontWeight: FontWeight.w800,
                               fontFamily: 'Allison',
                             ),
@@ -197,6 +205,7 @@ class DentalSection extends StatelessWidget {
                                                                                         Color(0xFF9696C8),
                                                                                       ],
                                                                                     ),
+                                                                                    // color: Color(0xFF326fa5),
                                                                                     borderRadius: BorderRadius.only(
                                                                                       bottomLeft: Radius.circular(60),
                                                                                       bottomRight: Radius.circular(50),
@@ -218,7 +227,7 @@ class DentalSection extends StatelessWidget {
                                                                                   decoration: const BoxDecoration(
                                                                                     image: DecorationImage(
                                                                                       fit: BoxFit.cover,
-                                                                                      image: AssetImage('assets/background.jpg'),
+                                                                                      image: AssetImage('assets/images/background.jpg'),
                                                                                     ),
                                                                                     borderRadius: BorderRadius.only(
                                                                                       bottomLeft: Radius.circular(60),
@@ -270,7 +279,9 @@ class DentalSection extends StatelessWidget {
                                                                                     '${snapshot.data.docs[i].data()['specialty']}',
                                                                                     style: const TextStyle(
                                                                                       fontSize: 15.0,
+                                                                                      // color: Colors.indigo,
                                                                                       color: Color(0xAA420168),
+                                                                                      //color: Color(0xFF01203b),
                                                                                       fontWeight: FontWeight.w800,
                                                                                       fontFamily: 'Monospace',
                                                                                       //  fontFamily: 'Allison',
@@ -374,6 +385,9 @@ class DentalSection extends StatelessWidget {
                                                                                                   begin: Alignment.topRight,
                                                                                                   end: Alignment.topLeft,
                                                                                                   colors: [
+                                                                                                    // Color(0xAA9696C8),
+                                                                                                    // Color(0xAAEBE6EC),
+                                                                                                    // Color(0xAAf3e5f5),
                                                                                                     Color(0xAAf3e5f5),
                                                                                                     Color(0xAAEBE6EC),
                                                                                                     Color(0xAA9696C8),
@@ -384,7 +398,8 @@ class DentalSection extends StatelessWidget {
                                                                                                 onPressed: (){
                                                                                                   day('Monday');
                                                                                                   doctorN(snapshot.data.docs[i].data()['Name']);
-                                                                                                   Navigator.of(context).pushNamed('booking',);
+                                                                                                  datePickerMonday(context);
+                                                                                                  Navigator.of(context).pushNamed('booking',);
                                                                                                 },
                                                                                                 child: const Center(
                                                                                                     child: Text(
@@ -448,6 +463,7 @@ class DentalSection extends StatelessWidget {
                                                                                                 onPressed: () {
                                                                                                   day('Tuesday');
                                                                                                   doctorN(snapshot.data.docs[i].data()['Name']);
+                                                                                                  datePickerTuesday(context);
                                                                                                   Navigator.of(context).pushNamed('booking',);
                                                                                                 },
                                                                                                 child: const Center(
@@ -512,6 +528,7 @@ class DentalSection extends StatelessWidget {
                                                                                                 onPressed: () {
                                                                                                   day('Wednesday');
                                                                                                   doctorN(snapshot.data.docs[i].data()['Name']);
+                                                                                                  datePickerWednesday(context);
                                                                                                   Navigator.of(context).pushNamed('booking',);
                                                                                                 },
                                                                                                 child: const Center(

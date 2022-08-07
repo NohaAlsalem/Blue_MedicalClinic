@@ -2,11 +2,13 @@ import 'dart:core';
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/doctors.list/booking.dart';
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/doctors.list/cubit/cubit.dart';
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/doctors.list/cubit/state.dart';
+import 'package:blue_medical_clinic/shared/components/components.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timeline_tile/timeline_tile.dart';
+
 
 
 class HeartSection extends StatelessWidget {
@@ -70,7 +72,7 @@ class HeartSection extends StatelessWidget {
                                     MediaQuery.of(context).size.width, 100.0 ),
                               ),
                               image: const DecorationImage(
-                                image: AssetImage('assets/booking.jpg'),
+                                image: AssetImage('assets/images/booking.jpg'),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -197,6 +199,7 @@ class HeartSection extends StatelessWidget {
                                                                                         Color(0xFF9696C8),
                                                                                       ],
                                                                                     ),
+                                                                                    // color: Color(0xFF326fa5),
                                                                                     borderRadius: BorderRadius.only(
                                                                                       bottomLeft: Radius.circular(60),
                                                                                       bottomRight: Radius.circular(50),
@@ -218,7 +221,7 @@ class HeartSection extends StatelessWidget {
                                                                                   decoration: const BoxDecoration(
                                                                                     image: DecorationImage(
                                                                                       fit: BoxFit.cover,
-                                                                                      image: AssetImage('assets/background.jpg'),
+                                                                                      image: AssetImage('assets/images/background.jpg'),
                                                                                     ),
                                                                                     borderRadius: BorderRadius.only(
                                                                                       bottomLeft: Radius.circular(60),
@@ -273,6 +276,7 @@ class HeartSection extends StatelessWidget {
                                                                                       color: Color(0xAA420168),
                                                                                       fontWeight: FontWeight.w800,
                                                                                       fontFamily: 'Monospace',
+                                                                                      //  fontFamily: 'Allison',
                                                                                     ),
                                                                                   ),
                                                                                 ),
@@ -383,7 +387,8 @@ class HeartSection extends StatelessWidget {
                                                                                                 onPressed: (){
                                                                                                   day('Monday');
                                                                                                   doctorN(snapshot.data.docs[i].data()['Name']);
-                                                                                                   Navigator.of(context).pushNamed('booking',);
+                                                                                                  datePickerMonday(context);
+                                                                                                  Navigator.of(context).pushNamed('booking',);
                                                                                                 },
                                                                                                 child: const Center(
                                                                                                     child: Text(
@@ -447,6 +452,7 @@ class HeartSection extends StatelessWidget {
                                                                                                 onPressed: () {
                                                                                                   day('Tuesday');
                                                                                                   doctorN(snapshot.data.docs[i].data()['Name']);
+                                                                                                  datePickerTuesday(context);
                                                                                                   Navigator.of(context).pushNamed('booking',);
                                                                                                 },
                                                                                                 child: const Center(
@@ -511,6 +517,7 @@ class HeartSection extends StatelessWidget {
                                                                                                 onPressed: () {
                                                                                                   day('Wednesday');
                                                                                                   doctorN(snapshot.data.docs[i].data()['Name']);
+                                                                                                  datePickerWednesday(context);
                                                                                                   Navigator.of(context).pushNamed('booking',);
                                                                                                 },
                                                                                                 child: const Center(
