@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 
-import '../../models/list_reports/list_report.dart';
 
 
 void navigateTo(widget , context) =>Navigator.push(context, MaterialPageRoute(builder: (context)=> widget));
@@ -39,8 +38,7 @@ Widget defaultTextFormField(
     hintText: '$hint',
     hintStyle: const TextStyle(color : Colors.grey),
     labelText: label,
-    // here change color prefix
-    prefixIcon: Icon(prefixIcon,color:  Color(0xFF326fa5),),
+    prefixIcon: Icon(prefixIcon),
     suffixIcon: IconButton( onPressed : suffixIconFun, icon: Icon(suffixIcon),),
   ),
   onChanged: onChanged,
@@ -105,3 +103,92 @@ Widget defaultTextButton(
         ),),
     );
 
+
+DateTime ?theDate;
+
+
+datePickerMonday(BuildContext context){
+  showDatePicker( context: context,
+    initialDate:DateTime.utc(2022,8,8),
+    firstDate:DateTime.now(),
+    lastDate: DateTime.utc(2024,1,1),
+    selectableDayPredicate: (date) {
+      if (date.weekday==DateTime.sunday ||
+          date.weekday== DateTime.friday||
+          date.weekday==DateTime.saturday ||
+          date.weekday==DateTime.thursday||
+          date.weekday==DateTime.wednesday||
+          date.weekday==DateTime.tuesday
+      )
+        //Disable weekend days to select from the calendar
+          {
+        return false;
+      }
+      return true;
+    },
+  ).then((value){
+    theDate=value;
+    if(value==null){return;}
+  });
+  print(theDate);
+  //
+}
+
+
+datePickerWednesday(BuildContext context){
+  showDatePicker( context: context,
+    initialDate:DateTime.utc(2022,8,10),
+    firstDate:DateTime.now(),
+    lastDate: DateTime.utc(2024,1,1),
+    selectableDayPredicate: (date) {
+      if (date.weekday==DateTime.sunday ||
+          date.weekday== DateTime.friday||
+          date.weekday==DateTime.saturday ||
+          date.weekday==DateTime.monday||
+          date.weekday==DateTime.thursday||
+          date.weekday==DateTime.tuesday
+      )
+        //Disable weekend days to select from the calendar
+          {
+        return false;
+      }
+      //if (date.weekday==DateTime.monday || date.weekday == DateTime.tuesday||date.weekday==DateTime.wednesday ){}
+      // return true;
+      return true;
+    },
+  ).then((value){
+    theDate=value;
+    if(value==null){return;}
+  });
+  print(theDate);
+}
+
+
+
+datePickerTuesday(BuildContext context){
+  showDatePicker( context: context,
+    initialDate:DateTime.utc(2022,8,9),
+    firstDate:DateTime.now(),
+    lastDate: DateTime.utc(2024,1,1),
+    selectableDayPredicate: (date) {
+      if (date.weekday==DateTime.sunday ||
+          date.weekday== DateTime.friday||
+          date.weekday==DateTime.saturday ||
+          date.weekday==DateTime.monday||
+          date.weekday==DateTime.wednesday||
+          date.weekday==DateTime.thursday
+      )
+        //Disable weekend days to select from the calendar
+          {
+        return false;
+      }
+      //if (date.weekday==DateTime.monday || date.weekday == DateTime.tuesday||date.weekday==DateTime.wednesday ){}
+      // return true;
+      return true;
+    },
+  ).then((value){
+    theDate=value;
+    if(value==null){return;}
+  });
+  print(theDate);
+}
