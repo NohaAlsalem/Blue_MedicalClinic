@@ -1,7 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:bloc/bloc.dart';
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/doctors.list/cubit/state.dart';
-import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/doctors.list/cubit/userModel.dart';
+import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/doctors.list/cubit/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +10,9 @@ class CounterCubit extends Cubit<TimeStates> {
   CounterCubit() : super(InitialTimeState());
 
   static CounterCubit get(context) => BlocProvider.of(context);
+
+ // var selectedValueGender;
+  var selectedValueGender = 'Male';
 
 
 
@@ -31,7 +34,7 @@ class CounterCubit extends Cubit<TimeStates> {
 
     }
     if (start.hour == end.hour) {
-      AwesomeDialog(
+       AwesomeDialog(
           context: context,
           body: Column(
             children: [
@@ -42,27 +45,32 @@ class CounterCubit extends Cubit<TimeStates> {
               TextButton(
                 child: const Text('Done'),
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.pushReplacementNamed(context, 'home');
                 },
               ),
             ],
           )
       ).show()
-          .catchError((error) {
+       .catchError((error) {
         emit(ErrorTimeState(error.toString()));
       });
     }
   }
-  Future<void> addData(  nameInput, ageInput, idInput, phoneInput,daySelected,doctorSelected, context) async {
+
+
+
+  Future<void> addData(  nameInput, ageInput, phoneInput,theDate, selectedValueGender ,diseasesInput, daySelected,doctorSelected, context) async {
     {
 
       if (daySelected.toString() == 'Monday') {
-        UserModel model = UserModel(
+      UserModel model = UserModel(
           name: nameInput,
           age: ageInput,
-          id: idInput,
           phone: phoneInput,
-          hour: CounterCubit
+          gender:selectedValueGender,
+         disease:diseasesInput,
+        date: theDate,
+        hour: CounterCubit
               .get(context)
               .start
               .hour,
@@ -71,41 +79,46 @@ class CounterCubit extends Cubit<TimeStates> {
               .start
               .minute,
           doctorSelected:doctorSelected,
-        );
-        FirebaseFirestore.instance.collection('appointment').doc('Monday').collection('Reservations').doc().set(model.toMap(context))
-            .then((value) {
-          emit(SuccessState());
-          AwesomeDialog(
-              context: context,
-              dialogType: DialogType.SUCCES,
-              body: Column(
-                children: [
-                  const Text('Booking confirmed', style: TextStyle(
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.bold,
-                    // color: Color(0xFF01203b),
-                  ),),
-                  TextButton(
-                    child: const Text('Done'),
-                    onPressed: () {
-                      Navigator.pushReplacementNamed(context, 'cache');
-                    },
-                  ),
-                ],
-              )
-          )
-              .show();
-        }).catchError((error){
-          emit(FailedState(error.toString()));
+      );
+      FirebaseFirestore.instance.collection('appointment').doc('Monday').collection('Reservations').doc().set(model.toMap(context))
+          .then((value) {
+            emit(SuccessState());
+            AwesomeDialog(
+                context: context,
+                dialogType: DialogType.SUCCES,
+                body: Column(
+                  children: [
+                    const Text('Booking confirmed', style: TextStyle(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.bold,
+                      // color: Color(0xFF01203b),
+                    ),),
+                    TextButton(
+                      child: const Text('Done'),
+                      onPressed: () {
+                        emit(StartTimeHourState(start.hour));
+                        emit(StartTimeMinuteState(start.minute));
+                        emit(EndTimeHourState(end.hour));
+                        emit(EndTimeMinuteState(end.minute));
+                        Navigator.pushReplacementNamed(context, 'home');
+                      },
+                    ),
+                  ],
+                )
+            ).show();
+      }).catchError((error){
+        emit(FailedState(error.toString()));
 
-        });
-      }
+      });
+    }
       if (daySelected.toString() == 'Tuesday') {
         UserModel model = UserModel(
           name: nameInput,
           age: ageInput,
-          id: idInput,
           phone: phoneInput,
+          gender:selectedValueGender,
+          disease:diseasesInput,
+          date: theDate,
           hour: CounterCubit
               .get(context)
               .start
@@ -132,7 +145,11 @@ class CounterCubit extends Cubit<TimeStates> {
                   TextButton(
                     child: const Text('Done'),
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, 'cache');
+                      emit(StartTimeHourState(start.hour));
+                      emit(StartTimeMinuteState(start.minute));
+                      emit(EndTimeHourState(end.hour));
+                      emit(EndTimeMinuteState(end.minute));
+                      Navigator.pushReplacementNamed(context, 'home');
                     },
                   ),
                 ],
@@ -146,8 +163,10 @@ class CounterCubit extends Cubit<TimeStates> {
         UserModel model = UserModel(
           name: nameInput,
           age: ageInput,
-          id: idInput,
           phone: phoneInput,
+          gender:selectedValueGender,
+          disease:diseasesInput,
+          date: theDate,
           hour: CounterCubit
               .get(context)
               .start
@@ -174,7 +193,11 @@ class CounterCubit extends Cubit<TimeStates> {
                   TextButton(
                     child: const Text('Done'),
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, 'cache');
+                      emit(StartTimeHourState(start.hour));
+                      emit(StartTimeMinuteState(start.minute));
+                      emit(EndTimeHourState(end.hour));
+                      emit(EndTimeMinuteState(end.minute));
+                      Navigator.pushReplacementNamed(context, 'home');
                     },
                   ),
                 ],
@@ -187,6 +210,25 @@ class CounterCubit extends Cubit<TimeStates> {
       }
     }
   }
+
+  // CollectionReference collectionRef = FirebaseFirestore.instance.collection('Section').doc('Doctors').collection('Neurological');
+  //  List doctors=[];
+  //
+  //  getDocs() async {
+  //  var res =  await collectionRef.get();
+  //     res.docs.forEach((element){
+  //        doctors.add(element.data());
+  //        emit(FetchDataState());
+  //         });
+  //      // print(doctors);
+  // }
+
+  // gastroenterology(docRefGastroenterology)
+  // {
+  //   int x;
+  //   emit(PatientHomeGastroenterology(docRefGastroenterology));
+  // }
+
 }
 class Time {
   var hour;

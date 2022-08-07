@@ -12,7 +12,7 @@ class CounterXTimeState extends TimeStates{
 
 class StartTimeHourState extends TimeStates{
 
-  dynamic startH;
+dynamic startH;
 
   StartTimeHourState(this.startH);
 }
@@ -101,4 +101,21 @@ class PatientHomeGastroenterology extends TimeStates
   PatientHomeGastroenterology(this.saction);
 
 }
+
+
+// class DoctorNameState extends TimeStates{
+//   String name;
+//
+//   DoctorNameState(this.name);
+// }
+
+
+// class DayState extends TimeStates{
+//
+//   String day;
+//   DayState(this.day);
+// }
+
+
+
 
