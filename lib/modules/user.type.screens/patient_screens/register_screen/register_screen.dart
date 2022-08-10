@@ -1,5 +1,4 @@
-
-import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/home_screen/home_screen.dart';
+import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/home_screen/home_screen/home_screen.dart';
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/register_screen/cubit/cubit.dart';
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/register_screen/cubit/states.dart';
 import 'package:blue_medical_clinic/shared/components/components.dart';
@@ -194,8 +193,7 @@ class PatientRegisterScreen extends StatelessWidget {
                               }
                             }),
                         fallback: (context) => SpinKitWave(
-                          itemBuilder: (BuildContext context,
-                              int index) {
+                          itemBuilder: (BuildContext context, int index) {
                             return DecoratedBox(
                               decoration: BoxDecoration(
                                 color: index.isEven

@@ -1,40 +1,30 @@
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/doctors.list/cubit/cubit.dart';
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/doctors.list/cubit/state.dart';
-import 'package:blue_medical_clinic/shared/components/components.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 class Booking extends StatelessWidget {
+
+
   Booking({Key? key}) : super(key: key);
-  var formKey = GlobalKey<FormState>();
-  String message='No entry';
+  var formkey = GlobalKey<FormState>();
 
 
-  TextEditingController nameInput     = TextEditingController();
-  TextEditingController ageInput      = TextEditingController();
-  TextEditingController idInput       = TextEditingController();
-  TextEditingController phoneInput    = TextEditingController();
-  TextEditingController diseasesInput = TextEditingController();
-
-
-
-  List<DropdownMenuItem<String>> get dropdownItemsGender{
-    List<DropdownMenuItem<String>> menuItems = const [
-      DropdownMenuItem(child: Text("Male"),value: "Male"),
-      DropdownMenuItem(child: Text("Female"),value: "Female"),
-    ];
-    return menuItems;
-  }
+  TextEditingController nameInput  = TextEditingController();
+  TextEditingController ageInput   = TextEditingController();
+  TextEditingController idInput    = TextEditingController();
+  TextEditingController phoneInput = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<CounterCubit>(
-      create: (BuildContext context) => CounterCubit()..appointment(context)..start..end,
+      create: (BuildContext context) => CounterCubit(),
       child: BlocConsumer<CounterCubit ,TimeStates >(
           listener: (context , state)
           {
+
           },
           builder : (context , state)
           {
@@ -83,7 +73,7 @@ class Booking extends StatelessWidget {
                                     bottom: Radius.elliptical(
                                         MediaQuery.of(context).size.width, 100.0)),
                                 image: const DecorationImage(
-                                  image:  AssetImage('assets/images/booking.jpg'),
+                                  image:  AssetImage('assets/booking.jpg'),
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -100,6 +90,7 @@ class Booking extends StatelessWidget {
                               child: Text('Patient Information' , style: TextStyle(
                                 fontSize: 23.0,
                                 color:  Color(0xFF0876D4),
+                                // color: Color(0xFF01203b),
                                 fontWeight: FontWeight.w800,
                                 fontFamily: 'Allison',
                               ),
@@ -129,26 +120,14 @@ class Booking extends StatelessWidget {
                                     ),
                                   ),
                                   child: Form(
-                                    key: formKey,
+                                    key: formkey,
                                     child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children : [
-                                          Row(
-                                            children: const  [
-                                              Text('*', style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14.0,
-                                                color: Colors.red,
-                                              ),),
-                                              SizedBox(
-                                                width: 10,
-                                              ),
-                                              Text('Name', style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14.0,
-                                              ),),
-                                            ],
-                                          ),
+                                          const Text('Name', style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14.0,
+                                          ),),
                                           Row(
                                             children: [
                                               Expanded(
@@ -166,24 +145,12 @@ class Booking extends StatelessWidget {
                                             ],
                                           ),
                                           const SizedBox(
-                                            height: 27,
+                                            height: 25.0,
                                           ),
-                                          Row(
-                                            children: const  [
-                                              Text('*' , style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14.0,
-                                                color: Colors.red,
-                                              ),),
-                                              SizedBox(
-                                                width: 10,
-                                              ),
-                                              Text('Age' , style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14.0,
-                                              ),),
-                                            ],
-                                          ),
+                                          const Text('Age' , style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14.0,
+                                          ),),
                                           Row(
                                             children: [
                                               Expanded(
@@ -192,121 +159,63 @@ class Booking extends StatelessWidget {
                                                   keyboardType: TextInputType.number,
                                                   validator:(value) {
                                                     if(value!.isEmpty) {
-                                                      return 'Age must not be empty ';
+                                                      return 'age must not be empty ';
+                                                    }else if(!value.contains("[a-zA-Z]")){
+                                                      return 'phone must not have characters';
                                                     }
-                                                    if (value.contains("[a-zA-Z]+") != false) {
-                                                      return 'Age must not have a letters';
-                                                    }
-                                                    else {
-                                                      return null;
-                                                    }
+                                                    return null;
                                                   },
                                                 ),
                                               ),
                                             ],
                                           ),
                                           const SizedBox(
-                                            height: 27,
+                                            height: 25.0,
                                           ),
-                                          Row(
-                                            children: const[
-                                              Text('*' , style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14.0,
-                                                color: Colors.red,
-                                              ),),
-                                              SizedBox(
-                                                width: 10,
-                                              ),
-
-                                              Text('Phone Number' , style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14.0,
-                                              ),),
-                                            ],
-                                          ),
+                                          const Text('National ID' , style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14.0,
+                                          ),),
                                           Row(
                                             children: [
                                               Expanded(
                                                 child: TextFormField(
-                                                    controller: phoneInput ,
-                                                    keyboardType: TextInputType.number,
-                                                    decoration: const InputDecoration(
-                                                    ),
-                                                    validator:(value) {
-                                                      if (value!.isEmpty) {
-                                                        return 'phone must not be empty ';
-                                                      }
-                                                      if (value.length != 10) {
-                                                        return 'Mobile Number must be of 10 digit';
-                                                      }
-                                                      if (value.contains("[a-zA-Z]+") != false) {
-                                                        return 'Mobile Number must not have a letters';
-                                                      }
-                                                      if (!value.startsWith('09')) {
-                                                        return 'Input with 09';
-                                                      }
-                                                      else {
-                                                        return null;
-                                                      }
+                                                  controller: idInput ,
+                                                  keyboardType: TextInputType.number,
+                                                  validator:(value) {
+                                                    if(value!.isEmpty) {
+                                                      return 'ID must not be empty ';
+                                                    }else if(!value.contains("[a-zA-Z]")){
+                                                      return 'phone must not have characters';
                                                     }
+                                                    return null;
+                                                  },
                                                 ),
                                               ),
                                             ],
                                           ),
                                           const SizedBox(
-                                            height: 27,
+                                            height: 25.0,
                                           ),
-                                          Row(
-                                            children: const[
-                                              Text('*' , style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14.0,
-                                                color: Colors.red,
-                                              ),),
-                                              SizedBox(
-                                                width: 10,
-                                              ),
-                                              Text('Gender' , style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14.0,
-                                              ),),
-                                            ],
-                                          ),
-                                          DropdownButtonFormField(
-                                              dropdownColor: Colors.white,
-                                              value: CounterCubit.get(context).selectedValueGender,
-                                              onChanged: (String? newValue) {
-                                                CounterCubit.get(context).selectedValueGender='$newValue';
-                                              },
-                                              items: dropdownItemsGender
-                                          ),
-                                          const SizedBox(
-                                            height: 27,
-                                          ),
-                                          Row(
-                                            children: const[
-                                              Text('Did you have any chronic diseases ?' , style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14.0,
-                                              ),),
-                                            ],
-                                          ),
+                                          const Text('Phone Number' , style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14.0,
+                                          ),),
                                           Row(
                                             children: [
                                               Expanded(
                                                 child: TextFormField(
-                                                  controller: diseasesInput ,
+                                                  controller: phoneInput ,
+                                                  keyboardType: TextInputType.number,
+                                                  decoration: const InputDecoration(
+                                                  ),
                                                   validator:(value) {
-                                                    // if (value!.contains("[0-9]") == false) {
-                                                    //   return 'Write a letters / the number not accept';
-                                                    // }
                                                     if(value!.isEmpty) {
-                                                      return 'This Field must not empty, if you Don\'t have say it';
+                                                      return 'phone must not be empty ';
+                                                    }else if(!value.contains("[a-zA-Z]")){
+                                                      return 'phone must not have characters';
                                                     }
-                                                    else {
-                                                      return null;
-                                                    }
+                                                    return null;
                                                   },
                                                 ),
                                               ),
@@ -335,18 +244,17 @@ class Booking extends StatelessWidget {
                           ),
                           child: TextButton(
                             onPressed: () {
-                              if (formKey.currentState!.validate()) {
+                              print(daySelected.toString());
+                              if (formkey.currentState!.validate()) {
                                 CounterCubit.get(context).appointment(context);
-                                CounterCubit.get(context).addData(
-                                    nameInput.text,
-                                    ageInput.text,
-                                    phoneInput.text,
-                                    theDate.toString(),
-                                    CounterCubit.get(context).selectedValueGender,
-                                    diseasesInput.text,
-                                    daySelected.toString(),
-                                    doctorSelected.toString(),
-                                    context);
+                                // CounterCubit.get(context).addData(
+                                //     nameInput.text,
+                                //     ageInput.text,
+                                //     idInput.text,
+                                //     phoneInput.text,
+                                //     daySelected.toString(),
+                                //     doctorSelected.toString(),
+                                //     context);
                               }
                             },
                             child: const Text(

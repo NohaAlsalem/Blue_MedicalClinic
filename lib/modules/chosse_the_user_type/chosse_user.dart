@@ -3,14 +3,8 @@ import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/lo
 import 'package:blue_medical_clinic/shared/components/components.dart';
 import 'package:flutter/material.dart';
 
-class ChosseUser extends StatefulWidget {
-  const ChosseUser({Key? key}) : super(key: key);
+class ChosseUser extends StatelessWidget {
 
-  @override
-  State<ChosseUser> createState() => _ChosseUserState();
-}
-
-class _ChosseUserState extends State<ChosseUser> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

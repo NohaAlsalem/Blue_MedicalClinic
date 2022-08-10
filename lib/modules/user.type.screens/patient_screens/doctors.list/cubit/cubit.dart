@@ -31,7 +31,6 @@ class CounterCubit extends Cubit<TimeStates> {
       emit(StartTimeMinuteState(start.minute));
       emit(EndTimeHourState(end.hour));
       emit(EndTimeMinuteState(end.minute));
-
     }
     if (start.hour == end.hour) {
        AwesomeDialog(

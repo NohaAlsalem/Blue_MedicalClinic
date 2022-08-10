@@ -1,13 +1,15 @@
-
-import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/home_screen/home_screen.dart';
+import 'package:blue_medical_clinic/layout/home_layout.dart';
+import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/home_screen/home_screen/home_screen.dart';
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/login_screen/cubit/cubit.dart';
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/login_screen/cubit/states.dart';
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/register_screen/register_screen.dart';
 import 'package:blue_medical_clinic/shared/components/components.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PatientLoginScreen extends StatelessWidget {
   PatientLoginScreen({Key? key}) : super(key: key);
@@ -27,6 +29,7 @@ class PatientLoginScreen extends StatelessWidget {
         },
         builder: (BuildContext context, Object? state) {
           var cubit = LoginPatientCubit.get(context);
+          print('FCM TOKEN  : ${cubit.fcmToken}');
           return Scaffold(
             body: Container(
               width: double.infinity,
@@ -137,16 +140,19 @@ class PatientLoginScreen extends StatelessWidget {
                                     builder: (BuildContext context) =>
                                         defaultMaterialButton(
                                             buttonText: 'LOGIN',
-                                            function: () {
-                                              if (formKey.currentState!
-                                                  .validate()) {
+                                            function: () async{
+                                              if (formKey.currentState!.validate()) {
                                                 cubit.patientLogin(
                                                     email: emailController.text,
-                                                    password: passwordController
-                                                        .text);
-                                                //  navigateAndFinish(const PatientHomeScreen(), context);
+                                                    password: passwordController.text ,
+                                                    fcmToken: cubit.fcmToken,
+                                                );
+                                                  SharedPreferences pref=await SharedPreferences.getInstance();
+                                                  pref.setString('token','${cubit.fcmToken}');
+                                                }
+                                                  //navigateAndFinish(home_layout(), context);
                                               }
-                                            }),
+                                            ),
                                     condition:
                                         state is! PatientLoginLoadingState,
                                     fallback: (BuildContext context) =>
@@ -167,6 +173,7 @@ class PatientLoginScreen extends StatelessWidget {
                                 ),
                                 Row(
                                   children: [
+
                                     const Text('Don\'t have an Account ? '),
                                     const SizedBox(width: 10),
                                     defaultTextButton(

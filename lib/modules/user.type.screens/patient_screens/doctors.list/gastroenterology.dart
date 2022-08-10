@@ -2,7 +2,6 @@ import 'dart:core';
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/doctors.list/booking.dart';
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/doctors.list/cubit/cubit.dart';
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/doctors.list/cubit/state.dart';
-import 'package:blue_medical_clinic/shared/components/components.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -71,10 +70,10 @@ class GastroenterologySection extends StatelessWidget {
                                 bottom: Radius.elliptical(
                                     MediaQuery.of(context).size.width, 100.0 ),
                               ),
-                              image: const DecorationImage(
-                                image: AssetImage('assets/images/booking.jpg'),
-                                fit: BoxFit.cover,
-                              ),
+                              // image: const DecorationImage(
+                              //   image: AssetImage('assets/booking.jpg'),
+                              //   fit: BoxFit.cover,
+                              // ),
                             ),
                           ),
                         ],
@@ -90,8 +89,6 @@ class GastroenterologySection extends StatelessWidget {
                             child: Text('Department Doctor', style: TextStyle(
                               fontSize: 23.0,
                               color:  Color(0xFF0876D4),
-                              // color:  Color(0xFF326fa5),
-                              // Color(0xFF01203b),
                               fontWeight: FontWeight.w800,
                               fontFamily: 'Allison',
                             ),
@@ -223,7 +220,7 @@ class GastroenterologySection extends StatelessWidget {
                                                                                   decoration: const BoxDecoration(
                                                                                     image: DecorationImage(
                                                                                       fit: BoxFit.cover,
-                                                                                      image: AssetImage('assets/images/background.jpg'),
+                                                                                      image: AssetImage('assets/background.jpg'),
                                                                                     ),
                                                                                     borderRadius: BorderRadius.only(
                                                                                       bottomLeft: Radius.circular(60),
@@ -381,9 +378,6 @@ class GastroenterologySection extends StatelessWidget {
                                                                                                   begin: Alignment.topRight,
                                                                                                   end: Alignment.topLeft,
                                                                                                   colors: [
-                                                                                                    // Color(0xAA9696C8),
-                                                                                                    // Color(0xAAEBE6EC),
-                                                                                                    // Color(0xAAf3e5f5),
                                                                                                     Color(0xAAf3e5f5),
                                                                                                     Color(0xAAEBE6EC),
                                                                                                     Color(0xAA9696C8),
@@ -394,7 +388,6 @@ class GastroenterologySection extends StatelessWidget {
                                                                                                 onPressed: (){
                                                                                                   day('Monday');
                                                                                                   doctorN(snapshot.data.docs[i].data()['Name']);
-                                                                                                  datePickerMonday(context);
                                                                                                   Navigator.of(context).pushNamed('booking',);
                                                                                                 },
                                                                                                 child: const Center(
@@ -459,7 +452,6 @@ class GastroenterologySection extends StatelessWidget {
                                                                                                 onPressed: () {
                                                                                                   day('Tuesday');
                                                                                                   doctorN(snapshot.data.docs[i].data()['Name']);
-                                                                                                  datePickerTuesday(context);
                                                                                                   Navigator.of(context).pushNamed('booking',);
                                                                                                 },
                                                                                                 child: const Center(
@@ -524,7 +516,6 @@ class GastroenterologySection extends StatelessWidget {
                                                                                                 onPressed: () {
                                                                                                   day('Wednesday');
                                                                                                   doctorN(snapshot.data.docs[i].data()['Name']);
-                                                                                                  datePickerWednesday(context);
                                                                                                   Navigator.of(context).pushNamed('booking',);
                                                                                                 },
                                                                                                 child: const Center(

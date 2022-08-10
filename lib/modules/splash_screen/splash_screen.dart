@@ -1,5 +1,8 @@
 import 'package:blue_medical_clinic/modules/chosse_the_user_type/chosse_user.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:blue_medical_clinic/layout/home_layout.dart';
+import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/home_screen/home_screen/home_screen.dart';
+import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/login_screen/cubit/cubit.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 class SplashScreen extends StatefulWidget {
@@ -14,10 +17,26 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState(){
     super.initState();
     _navigateToHome();
+    LoginPatientCubit.get(context).getslectedpref();
   }
+   //String? signed;
+  // Widget? _widget;
+  // String token = access_token;
+  // if(
+  // token != null
+  // ){
+  //   // navigate to home
+  // }else{
+  // navigate to choose user
+  // }
+
   _navigateToHome()async{
     await Future.delayed(const Duration(seconds: 5) , (){});
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ChosseUser()));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ConditionalBuilder(
+        condition: LoginPatientCubit.get(context).fcmToken ==null,
+        builder:(context){return ChosseUser();},
+        fallback: (context){return home_layout();},
+        )));
   }
   @override
   Widget build(BuildContext context) {
