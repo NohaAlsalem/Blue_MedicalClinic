@@ -17,6 +17,7 @@ class PatientLoginScreen extends StatelessWidget {
   final passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -145,12 +146,13 @@ class PatientLoginScreen extends StatelessWidget {
                                                 cubit.patientLogin(
                                                     email: emailController.text,
                                                     password: passwordController.text ,
-                                                    fcmToken: cubit.fcmToken,
+                                                    // here eror without '${  }'
+                                                    FcmToken: '${cubit.fcmToken}',
                                                 );
                                                   SharedPreferences pref=await SharedPreferences.getInstance();
-                                                  pref.setString('token','${cubit.fcmToken}');
+                                                  pref.setString('token','${cubit.sfcmToken}');
                                                 }
-                                                  //navigateAndFinish(home_layout(), context);
+                                                  navigateAndFinish(home_layout(), context);
                                               }
                                             ),
                                     condition:

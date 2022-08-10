@@ -1,4 +1,5 @@
 import 'package:blue_medical_clinic/modules/doctor_part/reports/write_report/cubit/cubit.dart';
+import 'package:blue_medical_clinic/modules/doctor_part/reports/write_report/cubit/satats.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
@@ -32,63 +33,63 @@ class PatientRecord extends StatelessWidget{
   }
 
   List data = [];
-  PatientRecord(data){
+  PatientRecord(dataa){
     this.data=dataa;
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => PatientReport()..reports,
-      child: BlocConsumer<PatientReport, StatestoReport>(
-          listener: (context, state) {},
-          builder:  (context, state) {
-            return Scaffold(
-              body: Center(
+        create: (BuildContext context) => PatientReport()..reports,
+        child: BlocConsumer<PatientReport, StatestoReport>(
+            listener: (context, state) {},
+            builder:  (context, state) {
+              return Scaffold(
+                body: Center(
                     child: Container(
-                    width: double.infinity,
-                    decoration: const BoxDecoration(
-                    gradient: LinearGradient(begin: Alignment.topCenter,
-                    colors: [
-                    Color(0xAA1a76b5),
-                    Color(0xAAf3e5f5),
-                   ]),
-                  ),
-                      child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          flex:1,
-                          child: Container(
-                            width:double.infinity,
-                            decoration:const BoxDecoration(
-                              color: Color(0xFF326fa5),
-                              borderRadius:BorderRadius.only(bottomLeft:Radius.circular(40.0),bottomRight:Radius.circular(40.0)),
-                            ),
-                            clipBehavior:Clip.antiAliasWithSaveLayer,
-                            child:Card(
-                              shadowColor:const Color(0xAA420168),
-                              elevation: 20,
-                              clipBehavior: Clip.antiAliasWithSaveLayer,
-                              color:const Color(0xAA93f0fc),
-                              shape:const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40),bottomRight: Radius.circular(40)),
+                        width: double.infinity,
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(begin: Alignment.topCenter,
+                              colors: [
+                                Color(0xAA1a76b5),
+                                Color(0xAAf3e5f5),
+                              ]),
+                        ),
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                flex:1,
+                                child: Container(
+                                  width:double.infinity,
+                                  decoration:const BoxDecoration(
+                                    color: Color(0xFF326fa5),
+                                    borderRadius:BorderRadius.only(bottomLeft:Radius.circular(40.0),bottomRight:Radius.circular(40.0)),
+                                  ),
+                                  clipBehavior:Clip.antiAliasWithSaveLayer,
+                                  child:Card(
+                                    shadowColor:const Color(0xAA420168),
+                                    elevation: 20,
+                                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                                    color:const Color(0xAA93f0fc),
+                                    shape:const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40),bottomRight: Radius.circular(40)),
+                                    ),
+                                    child:Lottie.asset('assets/clinical.json') ,
+                                  ),
+                                ),
                               ),
-                              child:Lottie.asset('assets/clinical.json') ,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height:20.0),
-                        Expanded(
-                          flex:3,
-                          child:
-                          ListView.builder(
-                            itemBuilder:(context,i) => record(context , i ,data ) ,
-                            itemCount: data.length,
-                          ),
-                        ),
-                      ]
-                      ))),
+                              const SizedBox(height:20.0),
+                              Expanded(
+                                flex:3,
+                                child:
+                                ListView.builder(
+                                  itemBuilder:(context,i) => record(context , i ,data ) ,
+                                  itemCount: data.length,
+                                ),
+                              ),
+                            ]
+                        ))),
               );
             }));
   }
@@ -179,9 +180,9 @@ class PatientRecord extends StatelessWidget{
                                                   'last visiting time', '${list[i]['hour']} : ${list[i]['minute']}',)
                                               ],),
                                             space(8.0,0.0),
-                                             Row(children: [
-                                               text('date of last visit','${list[i]['date']}'),
-                                             ],),
+                                            Row(children: [
+                                              text('date of last visit','${list[i]['date']}'),
+                                            ],),
                                             space(8.0,0.0),
                                             Row(
                                               children: [

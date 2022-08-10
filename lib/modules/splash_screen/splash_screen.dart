@@ -1,6 +1,6 @@
 import 'package:blue_medical_clinic/modules/chosse_the_user_type/chosse_user.dart';
 import 'package:blue_medical_clinic/layout/home_layout.dart';
-import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/home_screen/home_screen/home_screen.dart';
+
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/login_screen/cubit/cubit.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
   _navigateToHome()async{
     await Future.delayed(const Duration(seconds: 5) , (){});
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ConditionalBuilder(
-        condition: LoginPatientCubit.get(context).fcmToken ==null,
+        condition: '${LoginPatientCubit.get(context).preff}'==null,
         builder:(context){return ChosseUser();},
         fallback: (context){return home_layout();},
         )));

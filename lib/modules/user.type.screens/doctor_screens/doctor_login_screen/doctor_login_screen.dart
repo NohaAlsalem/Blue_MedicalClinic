@@ -1,3 +1,5 @@
+import 'package:blue_medical_clinic/modules/doctor_part/home/home_screen.dart';
+import 'package:blue_medical_clinic/modules/doctor_part/reports/test.dart';
 import 'package:blue_medical_clinic/modules/user.type.screens/doctor_screens/doctor_login_screen/cubit/cubit.dart';
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/home_screen/home_screen/home_screen.dart';
 import 'package:blue_medical_clinic/shared/components/components.dart';
@@ -70,16 +72,16 @@ class DoctorLoginScreen extends StatelessWidget {
                                           isPassword: false,
                                           keyBoardType:
                                               TextInputType.emailAddress,
-                                          validate: (value) {
-                                            if (value!.isEmpty) {
-                                              return 'Empty Field , please enter your email';
-                                            } else if (!value
-                                                .contains('@gmail.com')) {
-                                              return 'Invalid Email , please Enter a valid email';
-                                            } else {
-                                              return null;
-                                            }
-                                          },
+                                          // validate: (value) {
+                                          //   if (value!.isEmpty) {
+                                          //     return 'Empty Field , please enter your email';
+                                          //   } else if (!value
+                                          //       .contains('@gmail.com')) {
+                                          //     return 'Invalid Email , please Enter a valid email';
+                                          //   } else {
+                                          //     return null;
+                                          //   }
+                                          // },
                                           controller: emailController,
                                           prefixIcon: Icons.alternate_email,
                                           textInputAction: TextInputAction.next,
@@ -132,10 +134,11 @@ class DoctorLoginScreen extends StatelessWidget {
                                         defaultMaterialButton(
                                             buttonText: 'LOGIN',
                                             function: () {
-                                              if (formKey.currentState!
-                                                  .validate()) {
+                                              if (formKey.currentState!.validate())
+                                              {
+
                                                 navigateAndFinish(
-                                                     PatientHomeScreen(),
+                                                    Report(),
                                                     context);
                                               }
                                             }),

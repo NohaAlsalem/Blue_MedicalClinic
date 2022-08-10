@@ -5,14 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class home_layout extends StatefulWidget {
 
-
   @override
   _home_layoutState createState() => _home_layoutState();
 }
 
 class _home_layoutState extends State<home_layout> {
   @override
-  var index=0;
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (BuildContext context)=>PatientHomeCubit(),

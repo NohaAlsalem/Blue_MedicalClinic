@@ -1,5 +1,4 @@
 import 'package:blue_medical_clinic/modules/doctor_part/appoentment/cubit/states.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 class appointment extends Cubit<times_states>{

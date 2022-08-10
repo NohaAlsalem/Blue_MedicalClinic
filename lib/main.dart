@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget
                   routes: {
                     //'writeReport': (context) => writeReport(),
                     //'dp': (context) => details_patient(),
-                    //'report':(context)=>my_reports(),
+                   //  'report':(context)=>my_reports(),
                    // 'times':(context)=>page_times(),
                     //'times':(context)=>times(),
                   },
