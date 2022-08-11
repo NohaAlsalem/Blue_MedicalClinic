@@ -117,8 +117,8 @@ class DoctorHome extends StatelessWidget {
                               const SizedBox(
                                 width: 10,
                               ),
-                              Text(
-                                '${dataTime.last['doctorSelected']}',
+                              Text('',
+                                //'${dataTime.last['doctorSelected']}',
                                 style:const TextStyle(
                                   color: Colors.indigo,
                                   fontSize: 30,

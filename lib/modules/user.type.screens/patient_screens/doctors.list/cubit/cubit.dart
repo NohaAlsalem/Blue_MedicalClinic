@@ -81,7 +81,8 @@ class CounterCubit extends Cubit<TimeStates> {
       );
       FirebaseFirestore.instance.collection('appointment').doc('Monday').collection('Reservations').doc().set(model.toMap(context))
           .then((value) {
-            emit(SuccessState());
+        print('success');
+          emit(SuccessState());
             AwesomeDialog(
                 context: context,
                 dialogType: DialogType.SUCCES,
@@ -107,8 +108,8 @@ class CounterCubit extends Cubit<TimeStates> {
             ).show();
       }).catchError((error){
         emit(FailedState(error.toString()));
-
-      });
+        print('error in app , error is ${error.toString()}');
+        });
     }
       if (daySelected.toString() == 'Tuesday') {
         UserModel model = UserModel(

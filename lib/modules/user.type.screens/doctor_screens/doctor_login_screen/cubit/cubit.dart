@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:blue_medical_clinic/modules/user.type.screens/doctor_screens/doctor_login_screen/cubit/states.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -29,4 +30,23 @@ class LoginDoctorCubit extends Cubit<DoctorLoginStates> {
       emit(DoctorLoginAuthErrorState(error));
     });
   }
-}
+  List doctor =[];
+
+ CollectionReference docRefGastroenterology = FirebaseFirestore.instance.collection('Section').doc('Doctors').collection('Gastroenterology ');
+  //nameDoctor(){
+    // CollectionReference docRefGastroenterology = FirebaseFirestore.instance.collection('Section').doc('Doctors').collection('Gastroenterology ');
+    // var names=await docRefGastroenterology.get();
+    // List<QueryDocumentSnapshot> listDoc=names.docs;
+    // return listDoc.forEach((element){
+    //   element.data()['name'];
+    //});
+  myWidget(context ,i) => FutureBuilder(
+          future: docRefGastroenterology.get(),
+          builder: ( BuildContext context, AsyncSnapshot snapshot)
+          {
+            if (snapshot.hasError) print(snapshot.error);
+            if (snapshot.hasData)  {
+            }
+            return snapshot.data.docs[i].data()['Name'];
+          });
+    }

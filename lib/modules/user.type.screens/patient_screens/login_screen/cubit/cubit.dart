@@ -22,21 +22,21 @@ class LoginPatientCubit extends Cubit<PatientLoginStates> {
   }
 
 
- String ?sfcmToken;
+ var sfcmToken;
   //var fcmToken;
   var fcmToken = FirebaseMessaging.instance.getToken();
   void patientLogin({
     required String? email,
     required String? password,
-    required String? FcmToken,
+   // required String? fcmToken,
   }) {
     emit(PatientLoginLoadingState());
-    FirebaseFirestore.instance.collection('fcm_token').doc(FcmToken);
+    //FirebaseFirestore.instance.collection('fcm_token').doc(fcmToken);
     FirebaseAuth.instance.signInWithEmailAndPassword(email: email!, password: password!)
         .then((value) {
       print('Login Success , patient email  is : ${value.user!.email}');
       print('fcm: $fcmToken');
-      sfcmToken=FcmToken;
+     // sfcmToken=fcmToken;
       emit(PatientLoginSuccessState());
     }).catchError((error) {
       print('Login Failed , error is : ${error.toString()}');

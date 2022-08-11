@@ -5,7 +5,6 @@ import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/lo
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/register_screen/register_screen.dart';
 import 'package:blue_medical_clinic/shared/components/components.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -147,12 +146,12 @@ class PatientLoginScreen extends StatelessWidget {
                                                     email: emailController.text,
                                                     password: passwordController.text ,
                                                     // here eror without '${  }'
-                                                    FcmToken: '${cubit.fcmToken}',
+                                                    //fcmToken: '${cubit.fcmToken}',
                                                 );
                                                   SharedPreferences pref=await SharedPreferences.getInstance();
                                                   pref.setString('token','${cubit.sfcmToken}');
                                                 }
-                                                  navigateAndFinish(home_layout(), context);
+                                                 // navigateAndFinish(home_layout(), context);
                                               }
                                             ),
                                     condition:

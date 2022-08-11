@@ -1,5 +1,6 @@
 import 'package:blue_medical_clinic/modules/splash_screen/splash_screen.dart';
-import 'package:blue_medical_clinic/layout/home_layout.dart';
+import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/doctors.list/booking.dart';
+import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/home_screen/home_screen/home_screen.dart';
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/login_screen/cubit/cubit.dart';
 import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/register_screen/cubit/cubit.dart';
 import 'package:blue_medical_clinic/shared/cubit/cubit.dart';
@@ -44,6 +45,8 @@ class MyApp extends StatelessWidget
                 debugShowCheckedModeBanner: false,
                 home:SplashScreen(),
                   routes: {
+                    'booking':(context)=>Booking(),
+                    'home':(context)=>PatientHomeScreen(),
                     //'writeReport': (context) => writeReport(),
                     //'dp': (context) => details_patient(),
                    //  'report':(context)=>my_reports(),

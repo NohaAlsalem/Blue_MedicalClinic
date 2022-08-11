@@ -7,8 +7,6 @@ import 'package:blue_medical_clinic/shared/components/components.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
-
 import '../../paitent_records.dart';
 
 
@@ -18,28 +16,9 @@ class PatientReport extends Cubit<StatestoReport>{
 
   static PatientReport get(context)=>BlocProvider.of(context);
 
-  String dropDownValue='Public State';
-  var items=['Public State','Radiographic image','Prescription',];
-  change(newValue){
-    dropDownValue=newValue;
-    emit(DropdownState());
-  }
 
-  File? imageFile ;
 
-  void imageFromGallery(BuildContext context) async{
-    var image=await ImagePicker().pickImage(source:ImageSource.gallery);
-    imageFile=image as File;
-    emit(ChooseImageState());
-  }
-
-  void imageFromCamera(BuildContext context) async{
-    var imagec=await ImagePicker().pickImage(source:ImageSource.camera);
-    imageFile=imagec as File;
-    emit(ChooseImageState());
-  }
-
-  List info =[];
+  var info =[];
 
   getDataMusallam(context) async {
     CollectionReference appMusallamM = FirebaseFirestore.instance.collection('appointment').doc('Monday').collection('Reservations');
@@ -300,7 +279,7 @@ class PatientReport extends Cubit<StatestoReport>{
 
   List reports=[];
 
-  Future<void> addDataPatient( doctorSelected , nameInput, ageInput,theDate, gender ,hour ,minute ,disease ,diagnosis ,report ,context) async
+  Future<void> addDataPatient( doctorSelected , nameInput, ageInput,theDate, gender ,hour ,minute ,disease ,diagnosis ,report, imageReport,imageRadiographic,imageMedicalTests ,context) async
   {
     if(doctorSelected.toString() =='Dr.Amal AL-Masry'){
       PatientModel model = PatientModel(
@@ -313,6 +292,10 @@ class PatientReport extends Cubit<StatestoReport>{
         disease:disease,
         diagnosis:diagnosis,
         report: report,
+        imageReport: imageReport,
+        imageRadiographic:imageRadiographic ,
+        imageMedicalTests: imageMedicalTests ,
+
       );
       FirebaseFirestore.instance.collection('patient').doc('Report').collection('DR.Amal').doc().set(model.toMap(context))
           .then((value) {
@@ -345,6 +328,9 @@ class PatientReport extends Cubit<StatestoReport>{
         disease:disease,
         diagnosis:diagnosis,
         report: report,
+        imageReport: imageReport,
+        imageRadiographic:imageRadiographic ,
+        imageMedicalTests: imageMedicalTests ,
       );
       FirebaseFirestore.instance.collection('patient').doc('Report').collection('DR.Musallam').doc().set(model.toMap(context))
           .then((value) {
@@ -378,6 +364,9 @@ class PatientReport extends Cubit<StatestoReport>{
         disease:disease,
         diagnosis:diagnosis,
         report: report,
+        imageReport: imageReport,
+        imageRadiographic:imageRadiographic ,
+        imageMedicalTests: imageMedicalTests ,
       );
       FirebaseFirestore.instance.collection('patient').doc('Report').collection('DR.Ahmad').doc().set(model.toMap(context))
           .then((value) {
@@ -410,6 +399,9 @@ class PatientReport extends Cubit<StatestoReport>{
         disease:disease,
         diagnosis:diagnosis,
         report: report,
+        imageReport: imageReport,
+        imageRadiographic:imageRadiographic ,
+        imageMedicalTests: imageMedicalTests ,
       );
       FirebaseFirestore.instance.collection('patient').doc('Report').collection('DR.Hasan').doc().set(model.toMap(context))
           .then((value) {
@@ -442,6 +434,9 @@ class PatientReport extends Cubit<StatestoReport>{
         disease:disease,
         diagnosis:diagnosis,
         report: report,
+        imageReport: imageReport,
+        imageRadiographic:imageRadiographic ,
+        imageMedicalTests: imageMedicalTests ,
       );
       FirebaseFirestore.instance.collection('patient').doc('Report').collection('DR.Fahad').doc().set(model.toMap(context))
           .then((value) {
@@ -475,6 +470,9 @@ class PatientReport extends Cubit<StatestoReport>{
         disease:disease,
         diagnosis:diagnosis,
         report: report,
+        imageReport: imageReport,
+        imageRadiographic:imageRadiographic ,
+        imageMedicalTests: imageMedicalTests ,
       );
       FirebaseFirestore.instance.collection('patient').doc('Report').collection('DR.Ali').doc().set(model.toMap(context))
           .then((value) {
@@ -507,6 +505,9 @@ class PatientReport extends Cubit<StatestoReport>{
         disease:disease,
         diagnosis:diagnosis,
         report: report,
+        imageReport: imageReport,
+        imageRadiographic:imageRadiographic ,
+        imageMedicalTests: imageMedicalTests ,
       );
       FirebaseFirestore.instance.collection('patient').doc('Report').collection('DR.Nedal').doc().set(model.toMap(context))
           .then((value) {
@@ -539,6 +540,9 @@ class PatientReport extends Cubit<StatestoReport>{
         disease:disease,
         diagnosis:diagnosis,
         report: report,
+        imageReport: imageReport,
+        imageRadiographic:imageRadiographic ,
+        imageMedicalTests: imageMedicalTests ,
       );
       FirebaseFirestore.instance.collection('patient').doc('Report').collection('DR.Kassem').doc().set(model.toMap(context))
           .then((value) {
@@ -573,6 +577,9 @@ class PatientReport extends Cubit<StatestoReport>{
         disease:disease,
         diagnosis:diagnosis,
         report: report,
+        imageReport: imageReport,
+        imageRadiographic:imageRadiographic ,
+        imageMedicalTests: imageMedicalTests ,
       );
       FirebaseFirestore.instance.collection('patient').doc('Report').collection('DR.MSaeed').doc().set(model.toMap(context))
           .then((value) {
@@ -606,6 +613,9 @@ class PatientReport extends Cubit<StatestoReport>{
         disease:disease,
         diagnosis:diagnosis,
         report: report,
+        imageReport: imageReport,
+        imageRadiographic:imageRadiographic ,
+        imageMedicalTests: imageMedicalTests ,
       );
       FirebaseFirestore.instance.collection('patient').doc('Report').collection('DR.Naser').doc().set(model.toMap(context))
           .then((value) {
@@ -629,6 +639,8 @@ class PatientReport extends Cubit<StatestoReport>{
       ).show();
     }
   }
+
+
   getData(doctorSelected, context) async {
     if(doctorSelected=='Dr.Amal AL-Masry') {
       CollectionReference amal = FirebaseFirestore.instance.collection('patient').doc('Report').collection('DR.Amal');

@@ -1,9 +1,16 @@
+import 'dart:io';
+import 'dart:math';
+
 import 'package:blue_medical_clinic/modules/doctor_part/reports/write_report/cubit/cubit.dart';
 import 'package:blue_medical_clinic/modules/doctor_part/reports/write_report/cubit/satats.dart';
 import 'package:blue_medical_clinic/shared/components/components.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
+import 'package:path/path.dart';
+
 
 class ReportDoctor extends StatelessWidget{
   List dataReport =[];
@@ -37,13 +44,14 @@ class ReportDoctor extends StatelessWidget{
   space(h,w){
     return SizedBox(height:h,width: w,);
   }
-  String dropDownValue = 'Public State';
-  var items = ['Public State', 'Radiographic image', 'Prescription',];
-  DateTime? selectedTime;
   var formKey = GlobalKey<FormState>();
   var report = TextEditingController();
   var diagnosis = TextEditingController();
 
+  String message='No Input ';
+  String imageUrlReport = 'https://firebasestorage.googleapis.com/v0/b/project1-4f713.appspot.com/o/Screenshot_20220810_122113_com.android.chrome_edit_226346558047753.jpg?alt=media&token=2a6e0e9d-3f8f-49d1-aba7-1abd628b0831';
+  String imageUrlRadiographic='https://firebasestorage.googleapis.com/v0/b/project1-4f713.appspot.com/o/Screenshot_20220810_122113_com.android.chrome_edit_226346558047753.jpg?alt=media&token=2a6e0e9d-3f8f-49d1-aba7-1abd628b0831';
+  String imageUrlTest='https://firebasestorage.googleapis.com/v0/b/project1-4f713.appspot.com/o/Screenshot_20220810_122113_com.android.chrome_edit_226346558047753.jpg?alt=media&token=2a6e0e9d-3f8f-49d1-aba7-1abd628b0831';
 
   @override
   Widget build(BuildContext context) {
@@ -113,147 +121,7 @@ class ReportDoctor extends StatelessWidget{
   }
 
   Widget reportWidget (context ,i ,  List list ) => InkWell(
-    onTap:(){
-      Navigator.push(context, MaterialPageRoute(
-          builder: (context) => BlocProvider(
-              create: (BuildContext context) => PatientReport(),
-              child: BlocConsumer<PatientReport, StatestoReport>(
-                  listener: (context, state) {
-                    if(state is SuccessStates)
-                    {print('its success in test');}
-                  },
-                  builder:  (context, state) {
-                    return Scaffold(
-                      body: Container(
-                        width: double.infinity,
-                        decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topRight,
-                            end: Alignment.bottomRight,
-                            colors: [
-                              Color(0xAA93f0fc),
-                              Color(0xAAf3e5f5),
-                              Color(0xAA93f0fc),
-                              Color(0xAAd1c4e9),
-                              Color(0xAAf3e5f5),
-                            ],
-                          ),
-                        ),
-                        child: Column(
-                            children: [
-                              Expanded(
-                                flex: 1,
-                                child: Container(),
-                              ),
-                              Expanded(
-                                flex: 3,
-                                child: Container(
-                                  width: double.infinity,
-                                  decoration: const BoxDecoration(
-                                      color: Color(0xAAd1c4e9),
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(40),
-                                          topRight: Radius.circular(40))),
-                                  child: Stack(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.only(
-                                            top: 10.0,
-                                            start: 15.0,
-                                            end: 15.0),
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Center(
-                                              child: Container(
-                                                height: 40.0,
-                                                width: double.infinity,
-                                                decoration: BoxDecoration(
-                                                    color: const Color(0xFF326fa5),
-                                                    borderRadius: BorderRadius.circular(20.0)),
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(5.0),
-                                                  child: Center(
-                                                    child: Text('${list[i]['name']}',
-                                                      style: const TextStyle(
-                                                          color: Colors.white,
-                                                          fontSize: 17.0,
-                                                          fontWeight: FontWeight.bold),),
-                                                  ),
-                                                ),
-                                              ),),
-                                            space(20.0,0.0),
-                                            Row(
-                                              children: [
-                                                text('age ' , '${list[i]['age']}' ),
-                                              ],),
-                                            space(8.0,0.0),
-                                            Row(
-                                              children: [
-                                                text(
-                                                    'gender', '${list[i]['gender']}'),
-                                              ],),
-                                            space(8.0,0.0),
-                                            // Row(children: [
-                                            //   text('bloodtype', selcteed.bloodtype),
-                                            // ],),
-                                            // space(8.0,0.0),
-                                            Row(
-                                              children: [
-                                                text(
-                                                  'last visiting time', '${list[i]['hour']} : ${list[i]['minute']}',)
-                                              ],),
-                                            space(8.0,0.0),
-                                            Row(children: [
-                                              text('date of last visit','${list[i]['date']}'),
-                                            ],),
-                                            space(8.0,0.0),
-                                            Row(
-                                              children: [
-                                                text(
-                                                    'Chronic Diseases', '${list[i]['disease']}'),
-                                              ],),
-                                            space(8.0,0.0),
-                                            Row(
-                                              children: [
-                                                text(
-                                                    'Medical Condition', '${list[i]['diagnosis']}'),
-                                              ],),
-                                            space(8.0,0.0),
-                                            Row(children: [
-                                              text('Description','${list[i]['report']}'),
-                                            ],),
-                                            //space(8.0,0.0),
-                                            // Expanded(flex: 1,
-                                            //   child: ListView.separated(
-                                            //     scrollDirection: Axis.horizontal,
-                                            //     itemBuilder:(context,index)
-                                            //     {
-                                            //       return contain(
-                                            //        // id: contain_report[index].id,
-                                            //          discrip:contain_report[index].discrip,
-                                            //        //  Imagename: contain_report[index].Imagename,
-                                            //        // text: contain_report[index].text,
-                                            //       );
-                                            //     },
-                                            //     separatorBuilder: (context,index)=> const SizedBox(),
-                                            //     itemCount: 3,
-                                            //   ),
-                                            // ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ]),
-                      ),
-                    );
-                  }
-              ))));
-    },
+    onTap:(){},
     child: Padding(
       padding: const EdgeInsetsDirectional.only(
           start: 20.0, end: 20.0, top: 0.0, bottom: 20.0),
@@ -314,7 +182,6 @@ class ReportDoctor extends StatelessWidget{
                                 child: BlocConsumer<PatientReport,StatestoReport>(
                                     listener: (context, state) {},
                                     builder: (context, state) {
-                                      PatientReport cubit = PatientReport.get(context);
                                       return Scaffold(
                                         appBar: AppBar(
                                           title: const Text('Write Report'),
@@ -454,48 +321,6 @@ class ReportDoctor extends StatelessWidget{
                                                           ),
                                                         ),
                                                       ),
-                                                      // Expanded(flex: 1,
-                                                      //   child: Padding(
-                                                      //     padding: const EdgeInsets.all(8.0),
-                                                      //     child: Container(
-                                                      //       decoration: BoxDecoration(
-                                                      //         borderRadius: BorderRadius.circular(30.0),
-                                                      //         color: const Color(0xAAd1c4e9),
-                                                      //       ),
-                                                      //       child: defaultTextFormField(
-                                                      //         controller: lastvisit,
-                                                      //         prefixIcon: Icons.date_range_outlined,
-                                                      //         hint: selcteed.date,
-                                                      //         keyBoardType: TextInputType.datetime,
-                                                      //         label: 'visit date',
-                                                      //         isPassword: false,
-                                                      //         onTap: () {
-                                                      //           // showDatePicker(
-                                                      //           //   context: context,
-                                                      //           //   initialDate: DateTime.now(),
-                                                      //           //   firstDate:DateTime(2020),
-                                                      //           //   lastDate: DateTime.parse('2023/2/2'),
-                                                      //           // ).then((value){
-                                                      //           //   if(value==null){return;}
-                                                      //           //   setState((){
-                                                      //           //     slactedTime =value;
-                                                      //           //   });
-                                                      //           // });
-                                                      //           showDatePicker(context: context,
-                                                      //               initialDate: DateTime.now(),
-                                                      //               firstDate: DateTime.now(),
-                                                      //               lastDate: DateTime.parse('2022/7/3')
-                                                      //           ).then((value) {
-                                                      //             lastvisit.text =
-                                                      //                 DateFormat.yMMMd().format(value!);
-                                                      //             print(
-                                                      //                 DateFormat.yMMMd().format(value));
-                                                      //           });
-                                                      //         },
-                                                      //       ),
-                                                      //     ),
-                                                      //   ),
-                                                      // ),
                                                     ],
                                                   ),
                                                   Row(
@@ -537,12 +362,17 @@ class ReportDoctor extends StatelessWidget{
                                                             child: Padding(
                                                               padding: const EdgeInsets.all(12.0),
                                                               child: defaultTextFormField(
-                                                                controller: diagnosis,
-                                                                prefixIcon: Icons.drive_file_rename_outline_outlined,
-                                                                hint: 'Diagnosis',
-                                                                keyBoardType: TextInputType.name,
-                                                                label: 'Diagnosis',
-                                                                isPassword: false,
+                                                                  controller: diagnosis,
+                                                                  prefixIcon: Icons.drive_file_rename_outline_outlined,
+                                                                  hint: 'Diagnosis',
+                                                                  keyBoardType: TextInputType.name,
+                                                                  label: 'Diagnosis',
+                                                                  isPassword: false,
+                                                                  validate: (value){
+                                                                    if(value!.isEmpty){
+                                                                      diagnosis.text = 'No input';
+                                                                    }
+                                                                  }
                                                               ),
                                                             ),
                                                           ),
@@ -552,11 +382,6 @@ class ReportDoctor extends StatelessWidget{
                                                   ),
                                                   Row(
                                                     children: [
-                                                      // imageFile!=null?
-                                                      // Image.file(imageFile!,fit:BoxFit.cover,
-                                                      // ):
-                                                      // Center(
-                                                      //     child: Text('add product image here',style: TextStyle(fontSize: 20.0),)),
                                                       Expanded(flex: 1,
                                                         child: Padding(
                                                           padding: const EdgeInsets.all(8.0),
@@ -579,19 +404,34 @@ class ReportDoctor extends StatelessWidget{
                                                                                 ListTile(
                                                                                     leading: const Icon(Icons.image),
                                                                                     title: const Text('Gallery'),
-                                                                                    onTap: () {
-                                                                                      cubit.imageFromGallery(context);
+                                                                                    onTap: () async {
+                                                                                      var picked = await ImagePicker().pickImage(source: ImageSource.gallery);
+                                                                                      if ( picked != null){
+                                                                                        File  file = File(picked.path);
+                                                                                        var rand = Random().nextInt(10000);
+                                                                                        var imageName = '$rand'+ basename(picked.path);
+                                                                                        var ref = FirebaseStorage.instance.ref('images').child(imageName);
+                                                                                        await  ref.putFile(file);
+                                                                                        imageUrlReport = await ref.getDownloadURL();
+                                                                                        Navigator.of(context).pop();
+                                                                                      }
                                                                                     }
-                                                                                  //}
-                                                                                  //  }
-                                                                                  //imageFromGallery(context),
                                                                                 ),
                                                                                 ListTile(
-                                                                                  leading:const Icon(Icons.camera),
-                                                                                  title: const Text('camera'),
-                                                                                  onTap: (){
-                                                                                    cubit.imageFromCamera(context);
-                                                                                  },
+                                                                                    leading:const Icon(Icons.camera),
+                                                                                    title: const Text('camera'),
+                                                                                    onTap: () async {
+                                                                                      var picked = await ImagePicker().pickImage(source: ImageSource.camera);
+                                                                                      if ( picked != null){
+                                                                                        File  file = File(picked.path);
+                                                                                        var rand = Random().nextInt(10000);
+                                                                                        var imageName = '$rand'+ basename(picked.path);
+                                                                                        var ref = FirebaseStorage.instance.ref('images').child(imageName);
+                                                                                        await  ref.putFile(file);
+                                                                                        imageUrlReport = await ref.getDownloadURL();
+                                                                                        Navigator.of(context).pop();
+                                                                                      }
+                                                                                    }
                                                                                 ),
                                                                               ]
                                                                           ),
@@ -613,28 +453,201 @@ class ReportDoctor extends StatelessWidget{
                                                         ),
                                                       ),
                                                       Expanded(flex: 2,
+                                                        child:  Container(
+                                                          height: 45,
+                                                          decoration:    BoxDecoration(
+                                                            borderRadius: BorderRadius.circular(50),
+                                                            color: const Color(0xFF326fa5),
+                                                          ),
+                                                          child:const Center(child:
+                                                          Text('Report image',
+                                                            style: TextStyle(
+                                                                color: Colors.white,
+                                                                fontWeight: FontWeight.w600,
+                                                                fontSize: 17
+                                                            ),)),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Expanded(flex: 1,
                                                         child: Padding(
                                                           padding: const EdgeInsets.all(8.0),
-                                                          child: Container(
-                                                            width: 10,
-                                                            child: DropdownButton(
-                                                              dropdownColor:const Color(0xFF326fa5),
-                                                              elevation: 2,
-                                                              borderRadius: BorderRadius.circular(30),
-                                                              value:cubit.dropDownValue,
-                                                              icon: const Icon(Icons.arrow_drop_down,
-                                                                color: Color(0xFF326fa5),),
-                                                              items: items.map((String items) {
-                                                                return DropdownMenuItem(value: items,
-                                                                  child: Text(items),);
-                                                              }
-                                                              ).toList(),
-                                                              onChanged:
-                                                                  (newValue) {
-                                                                cubit.change(newValue);
-                                                              },
+                                                          child: InkWell(
+                                                            onTap: () {
+                                                              showDialog(context: context,
+                                                                builder: (context) =>
+                                                                    AlertDialog(
+                                                                      backgroundColor: const Color(0xAAd1c4e9),
+                                                                      title: const Text(
+                                                                        'select image', style: TextStyle(color: Color(0xFF326fa5),),),
+                                                                      content: Container(
+                                                                        decoration: BoxDecoration(
+                                                                          borderRadius: BorderRadius.circular(30.0),
+                                                                          color: const Color(0xFF326fa5),
+                                                                        ),
+                                                                        child: SingleChildScrollView(
+                                                                          child: Column(
+                                                                              children: <Widget>[
+                                                                                ListTile(
+                                                                                    leading: const Icon(Icons.image),
+                                                                                    title: const Text('Gallery'),
+                                                                                    onTap: () async {
+                                                                                      var picked = await ImagePicker().pickImage(source: ImageSource.gallery);
+                                                                                      if ( picked != null){
+                                                                                        File  file = File(picked.path);
+                                                                                        var rand = Random().nextInt(10000);
+                                                                                        var imageName = '$rand'+ basename(picked.path);
+                                                                                        var ref = FirebaseStorage.instance.ref('images').child(imageName);
+                                                                                        await  ref.putFile(file);
+                                                                                        imageUrlRadiographic = await ref.getDownloadURL();
+                                                                                        Navigator.of(context).pop();
+                                                                                      }
+                                                                                    }
+                                                                                ),
+                                                                                ListTile(
+                                                                                    leading:const Icon(Icons.camera),
+                                                                                    title: const Text('camera'),
+                                                                                    onTap: () async {
+                                                                                      var picked = await ImagePicker().pickImage(source: ImageSource.camera);
+                                                                                      if ( picked != null){
+                                                                                        File  file = File(picked.path);
+                                                                                        var rand = Random().nextInt(10000);
+                                                                                        var imageName = '$rand'+ basename(picked.path);
+                                                                                        var ref = FirebaseStorage.instance.ref('images').child(imageName);
+                                                                                        await  ref.putFile(file);
+                                                                                        imageUrlRadiographic = await ref.getDownloadURL();
+                                                                                        Navigator.of(context).pop();
+                                                                                      }
+                                                                                    }
+                                                                                ),
+                                                                              ]
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                              );
+                                                            },
+                                                            child: Container(
+                                                              height: 45.0,
+                                                              decoration: BoxDecoration(
+                                                                borderRadius: BorderRadius.circular(30.0),
+                                                                color:const Color(0xAAd1c4e9),
+                                                              ),
+                                                              child:const Center(child: Icon(Icons.add_a_photo,
+                                                                color: Color(0xFF326fa5),)),
                                                             ),
                                                           ),
+                                                        ),
+                                                      ),
+                                                      Expanded(flex: 2,
+                                                        child:  Container(
+                                                          height: 45,
+                                                          decoration:    BoxDecoration(
+                                                            borderRadius: BorderRadius.circular(50),
+                                                            color: const Color(0xFF326fa5),
+                                                          ),
+                                                          child:const Center(child:
+                                                          Text('Radiographic image',
+                                                            style: TextStyle(
+                                                                color: Colors.white,
+                                                                fontWeight: FontWeight.w600,
+                                                                fontSize: 17
+                                                            ),)),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Expanded(flex: 1,
+                                                        child: Padding(
+                                                          padding: const EdgeInsets.all(8.0),
+                                                          child: InkWell(
+                                                            onTap: () {
+                                                              showDialog(context: context,
+                                                                builder: (context) =>
+                                                                    AlertDialog(
+                                                                      backgroundColor: const Color(0xAAd1c4e9),
+                                                                      title: const Text(
+                                                                        'select image', style: TextStyle(color: Color(0xFF326fa5),),),
+                                                                      content: Container(
+                                                                        decoration: BoxDecoration(
+                                                                          borderRadius: BorderRadius.circular(30.0),
+                                                                          color: const Color(0xFF326fa5),
+                                                                        ),
+                                                                        child: SingleChildScrollView(
+                                                                          child: Column(
+                                                                              children: <Widget>[
+                                                                                ListTile(
+                                                                                    leading: const Icon(Icons.image),
+                                                                                    title: const Text('Gallery'),
+                                                                                    onTap: () async {
+                                                                                      var picked = await ImagePicker().pickImage(source: ImageSource.gallery);
+                                                                                      if ( picked != null){
+                                                                                        File  file = File(picked.path);
+                                                                                        var rand = Random().nextInt(10000);
+                                                                                        var imageName = '$rand'+ basename(picked.path);
+                                                                                        var ref = FirebaseStorage.instance.ref('images').child(imageName);
+                                                                                        await  ref.putFile(file);
+                                                                                        imageUrlTest = await ref.getDownloadURL();
+                                                                                        Navigator.of(context).pop();
+                                                                                      }
+                                                                                    }
+                                                                                ),
+                                                                                ListTile(
+                                                                                    leading:const Icon(Icons.camera),
+                                                                                    title: const Text('camera'),
+                                                                                    onTap: () async {
+                                                                                      var picked = await ImagePicker().pickImage(source: ImageSource.camera);
+                                                                                      if ( picked != null){
+                                                                                        File  file = File(picked.path);
+                                                                                        var rand = Random().nextInt(10000);
+                                                                                        var imageName = '$rand'+ basename(picked.path);
+                                                                                        var ref = FirebaseStorage.instance.ref('images').child(imageName);
+                                                                                        await  ref.putFile(file);
+                                                                                        imageUrlTest = await ref.getDownloadURL();
+                                                                                        Navigator.of(context).pop();
+                                                                                      }
+                                                                                    }
+                                                                                ),
+                                                                              ]
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                              );
+                                                            },
+                                                            child: Container(
+                                                              height: 45.0,
+                                                              decoration: BoxDecoration(
+                                                                borderRadius: BorderRadius.circular(30.0),
+                                                                color:const Color(0xAAd1c4e9),
+                                                              ),
+                                                              child:const Center(child: Icon(Icons.add_a_photo,
+                                                                color: Color(0xFF326fa5),)),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Expanded(flex: 2,
+                                                        child:  Container(
+                                                          //clipBehavior: Clip.antiAliasWithSaveLayer,
+                                                          // width: 90,
+                                                          height: 45,
+                                                          decoration:    BoxDecoration(
+                                                            borderRadius: BorderRadius.circular(50),
+                                                            color: const Color(0xFF326fa5),
+                                                          ),
+                                                          child:const Center(child:
+                                                          Text('Medical Tests image',
+                                                            style: TextStyle(
+                                                                color: Colors.white,
+                                                                fontWeight: FontWeight.w600,
+                                                                fontSize: 17
+                                                            ),)),
                                                         ),
                                                       ),
                                                     ],
@@ -648,12 +661,17 @@ class ReportDoctor extends StatelessWidget{
                                                         color:const Color(0xAAd1c4e9),
                                                       ),
                                                       child: defaultTextFormField(
-                                                        controller: report,
-                                                        prefixIcon: Icons.report,
-                                                        keyBoardType: TextInputType.multiline,
-                                                        label: 'public state patient',
-                                                        isPassword: false,
-                                                        hint: 'Write Report',
+                                                          controller: report,
+                                                          prefixIcon: Icons.report,
+                                                          keyBoardType: TextInputType.multiline,
+                                                          label: 'public state patient',
+                                                          isPassword: false,
+                                                          hint: 'Write Report',
+                                                          validate: (value){
+                                                            if(value!.isEmpty){
+                                                              report.text = 'No input';
+                                                            }
+                                                          }
                                                       ),
                                                     ),
                                                   ),
@@ -666,13 +684,16 @@ class ReportDoctor extends StatelessWidget{
                                                       dataReport.last['doctorSelected'].toString(),
                                                       list[i]['name'],
                                                       list[i]['age'],
-                                                      theDate.toString(),
+                                                      list[i]['date'],
                                                       list[i]['gender'],
                                                       list[i]['hour'],
                                                       list[i]['minute'],
                                                       list[i]['disease'].toString(),
                                                       diagnosis.text,
                                                       report.text,
+                                                      imageUrlReport,
+                                                      imageUrlRadiographic,
+                                                      imageUrlTest,
                                                       context);
                                                 },
                                                 child: Container(
@@ -703,5 +724,7 @@ class ReportDoctor extends StatelessWidget{
       ),
     ),
   );
+
+
 
 }

@@ -3,28 +3,67 @@ import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/do
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
+
+import '../../../../shared/components/components.dart';
 
 
 class Booking extends StatelessWidget {
-
-
   Booking({Key? key}) : super(key: key);
-  var formkey = GlobalKey<FormState>();
+  var formKey = GlobalKey<FormState>();
+  String message='No entry';
 
 
-  TextEditingController nameInput  = TextEditingController();
-  TextEditingController ageInput   = TextEditingController();
-  TextEditingController idInput    = TextEditingController();
-  TextEditingController phoneInput = TextEditingController();
+  TextEditingController nameInput     = TextEditingController();
+  TextEditingController ageInput      = TextEditingController();
+  TextEditingController idInput       = TextEditingController();
+  TextEditingController phoneInput    = TextEditingController();
+  TextEditingController diseasesInput = TextEditingController();
+
+
+  List<DropdownMenuItem<String>> get dropdownItemsGender{
+    List<DropdownMenuItem<String>> menuItems = const [
+      DropdownMenuItem(child: Text("Male"),value: "Male"),
+      DropdownMenuItem(child: Text("Female"),value: "Female"),
+    ];
+    return menuItems;
+  }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<CounterCubit>(
-      create: (BuildContext context) => CounterCubit(),
+      create: (BuildContext context) => CounterCubit()..appointment(context)..start..end,
       child: BlocConsumer<CounterCubit ,TimeStates >(
           listener: (context , state)
           {
-
+            // if( state is InitialTimeState)
+            //     {print('initial');}
+            // if( state is CounterXTimeState)
+            // {print('initial counter${state.x}');}
+            //
+            // if( state is StartTimeHourState)
+            // {print(' st hour${state.startH}');}
+            //
+            // if( state is StartTimeMinuteState)
+            // {print(' st minute${state.startM}');}
+            //
+            // if( state is NameState)
+            // {print(' name ${state.name}');}
+            //
+            // if( state is AgeState)
+            // {print(' age ${state.age}');}
+            //
+            // if( state is IdState)
+            // {print(' id ${state.id}');}
+            //
+            // if( state is PhoneState)
+            // {print(' phone ${state.phone}');}
+            //
+            // if( state is SuccessState)
+            // {print(' success${state.toString()}');}
+            //
+            // if( state is FailedState)
+            // {print(' success${state.error}');}
           },
           builder : (context , state)
           {
@@ -73,7 +112,7 @@ class Booking extends StatelessWidget {
                                     bottom: Radius.elliptical(
                                         MediaQuery.of(context).size.width, 100.0)),
                                 image: const DecorationImage(
-                                  image:  AssetImage('assets/booking.jpg'),
+                                  image:  AssetImage('assets/images/booking.jpg'),
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -90,7 +129,6 @@ class Booking extends StatelessWidget {
                               child: Text('Patient Information' , style: TextStyle(
                                 fontSize: 23.0,
                                 color:  Color(0xFF0876D4),
-                                // color: Color(0xFF01203b),
                                 fontWeight: FontWeight.w800,
                                 fontFamily: 'Allison',
                               ),
@@ -120,14 +158,26 @@ class Booking extends StatelessWidget {
                                     ),
                                   ),
                                   child: Form(
-                                    key: formkey,
+                                    key: formKey,
                                     child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children : [
-                                          const Text('Name', style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14.0,
-                                          ),),
+                                          Row(
+                                            children: const  [
+                                              Text('*', style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14.0,
+                                                color: Colors.red,
+                                              ),),
+                                              SizedBox(
+                                                width: 10,
+                                              ),
+                                              Text('Name', style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14.0,
+                                              ),),
+                                            ],
+                                          ),
                                           Row(
                                             children: [
                                               Expanded(
@@ -145,12 +195,24 @@ class Booking extends StatelessWidget {
                                             ],
                                           ),
                                           const SizedBox(
-                                            height: 25.0,
+                                            height: 27,
                                           ),
-                                          const Text('Age' , style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14.0,
-                                          ),),
+                                          Row(
+                                            children: const  [
+                                              Text('*' , style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14.0,
+                                                color: Colors.red,
+                                              ),),
+                                              SizedBox(
+                                                width: 10,
+                                              ),
+                                              Text('Age' , style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14.0,
+                                              ),),
+                                            ],
+                                          ),
                                           Row(
                                             children: [
                                               Expanded(
@@ -159,63 +221,121 @@ class Booking extends StatelessWidget {
                                                   keyboardType: TextInputType.number,
                                                   validator:(value) {
                                                     if(value!.isEmpty) {
-                                                      return 'age must not be empty ';
-                                                    }else if(!value.contains("[a-zA-Z]")){
-                                                      return 'phone must not have characters';
+                                                      return 'Age must not be empty ';
                                                     }
-                                                    return null;
+                                                    if (value.contains("[a-zA-Z]+") != false) {
+                                                      return 'Age must not have a letters';
+                                                    }
+                                                    else {
+                                                      return null;
+                                                    }
                                                   },
                                                 ),
                                               ),
                                             ],
                                           ),
                                           const SizedBox(
-                                            height: 25.0,
+                                            height: 27,
                                           ),
-                                          const Text('National ID' , style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14.0,
-                                          ),),
+                                          Row(
+                                            children: const[
+                                              Text('*' , style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14.0,
+                                                color: Colors.red,
+                                              ),),
+                                              SizedBox(
+                                                width: 10,
+                                              ),
+
+                                              Text('Phone Number' , style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14.0,
+                                              ),),
+                                            ],
+                                          ),
                                           Row(
                                             children: [
                                               Expanded(
                                                 child: TextFormField(
-                                                  controller: idInput ,
-                                                  keyboardType: TextInputType.number,
-                                                  validator:(value) {
-                                                    if(value!.isEmpty) {
-                                                      return 'ID must not be empty ';
-                                                    }else if(!value.contains("[a-zA-Z]")){
-                                                      return 'phone must not have characters';
+                                                    controller: phoneInput ,
+                                                    keyboardType: TextInputType.number,
+                                                    decoration: const InputDecoration(
+                                                    ),
+                                                    validator:(value) {
+                                                      if (value!.isEmpty) {
+                                                        return 'phone must not be empty ';
+                                                      }
+                                                      if (value.length != 10) {
+                                                        return 'Mobile Number must be of 10 digit';
+                                                      }
+                                                      if (value.contains("[a-zA-Z]+") != false) {
+                                                        return 'Mobile Number must not have a letters';
+                                                      }
+                                                      if (!value.startsWith('09')) {
+                                                        return 'Input with 09';
+                                                      }
+                                                      else {
+                                                        return null;
+                                                      }
                                                     }
-                                                    return null;
-                                                  },
                                                 ),
                                               ),
                                             ],
                                           ),
                                           const SizedBox(
-                                            height: 25.0,
+                                            height: 27,
                                           ),
-                                          const Text('Phone Number' , style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14.0,
-                                          ),),
+                                          Row(
+                                            children: const[
+                                              Text('*' , style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14.0,
+                                                color: Colors.red,
+                                              ),),
+                                              SizedBox(
+                                                width: 10,
+                                              ),
+                                              Text('Gender' , style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14.0,
+                                              ),),
+                                            ],
+                                          ),
+                                          DropdownButtonFormField(
+                                              dropdownColor: Colors.white,
+                                              value: CounterCubit.get(context).selectedValueGender,
+                                              onChanged: (String? newValue) {
+                                                CounterCubit.get(context).selectedValueGender='$newValue';
+                                              },
+                                              items: dropdownItemsGender
+                                          ),
+                                          const SizedBox(
+                                            height: 27,
+                                          ),
+                                          Row(
+                                            children: const[
+                                              Text('Did you have any chronic diseases ?' , style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14.0,
+                                              ),),
+                                            ],
+                                          ),
                                           Row(
                                             children: [
                                               Expanded(
                                                 child: TextFormField(
-                                                  controller: phoneInput ,
-                                                  keyboardType: TextInputType.number,
-                                                  decoration: const InputDecoration(
-                                                  ),
+                                                  controller: diseasesInput ,
                                                   validator:(value) {
+                                                    // if (value!.contains("[0-9]") == false) {
+                                                    //   return 'Write a letters / the number not accept';
+                                                    // }
                                                     if(value!.isEmpty) {
-                                                      return 'phone must not be empty ';
-                                                    }else if(!value.contains("[a-zA-Z]")){
-                                                      return 'phone must not have characters';
+                                                      return 'This Field must not empty, if you Don\'t have say it';
                                                     }
-                                                    return null;
+                                                    else {
+                                                      return null;
+                                                    }
                                                   },
                                                 ),
                                               ),
@@ -244,17 +364,19 @@ class Booking extends StatelessWidget {
                           ),
                           child: TextButton(
                             onPressed: () {
-                              print(daySelected.toString());
-                              if (formkey.currentState!.validate()) {
+                              print(DateFormat.yMMMd().format(theDate as DateTime));
+                              if (formKey.currentState!.validate()) {
                                 CounterCubit.get(context).appointment(context);
-                                // CounterCubit.get(context).addData(
-                                //     nameInput.text,
-                                //     ageInput.text,
-                                //     idInput.text,
-                                //     phoneInput.text,
-                                //     daySelected.toString(),
-                                //     doctorSelected.toString(),
-                                //     context);
+                                CounterCubit.get(context).addData(
+                                    nameInput.text,
+                                    ageInput.text,
+                                    phoneInput.text,
+                                    DateFormat.yMMMd().format(theDate as DateTime),
+                                    CounterCubit.get(context).selectedValueGender,
+                                    diseasesInput.text,
+                                    daySelected.toString(),
+                                    doctorSelected.toString(),
+                                    context);
                               }
                             },
                             child: const Text(

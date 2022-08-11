@@ -1,4 +1,5 @@
 
+
 class PatientModel{
 
   late String name ;
@@ -10,6 +11,9 @@ class PatientModel{
   late int minute ;
   late String diagnosis;
   late String report;
+  String? imageReport;
+  String? imageRadiographic;
+  String? imageMedicalTests;
 
   PatientModel({
     required this.name ,
@@ -21,6 +25,9 @@ class PatientModel{
     required this.diagnosis,
     required this.disease,
     required this.report,
+    required this.imageReport,
+    required this.imageRadiographic,
+    required this.imageMedicalTests,
   });
 
 
@@ -35,6 +42,10 @@ class PatientModel{
     disease = json['disease'];
     diagnosis = json['diagnosis'];
     report = json['report'];
+    imageReport = json['imageReport'];
+    imageRadiographic =json['imageRadiographic'];
+    imageMedicalTests = json['imageMedicalTests'];
+
   }
 
   Map<String , dynamic> toMap(context)
@@ -50,6 +61,10 @@ class PatientModel{
         'disease':disease,
         'diagnosis':diagnosis,
         'report':report,
+        'imageReport': imageReport,
+        'imageRadiographic': imageRadiographic ,
+        'imageMedicalTests': imageMedicalTests ,
+
       };
   }
 

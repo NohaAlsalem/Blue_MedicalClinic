@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState(){
     super.initState();
     _navigateToHome();
-    LoginPatientCubit.get(context).getslectedpref();
+    //LoginPatientCubit.get(context).getslectedpref();
   }
    //String? signed;
   // Widget? _widget;
@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
   _navigateToHome()async{
     await Future.delayed(const Duration(seconds: 5) , (){});
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ConditionalBuilder(
-        condition: '${LoginPatientCubit.get(context).preff}'==null,
+        condition:LoginPatientCubit.get(context).preff ==null,
         builder:(context){return ChosseUser();},
         fallback: (context){return home_layout();},
         )));
