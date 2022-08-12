@@ -80,7 +80,7 @@ class PsychologicalSection extends StatelessWidget {
                                     MediaQuery.of(context).size.width, 100.0 ),
                               ),
                               image: const DecorationImage(
-                                image: AssetImage('assets/images/booking.jpg'),
+                                image: AssetImage('assets/booking.jpg'),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -155,7 +155,7 @@ class PsychologicalSection extends StatelessWidget {
                                             ),
                                             child:  ListTile(
                                               leading:const Icon(Icons.person),
-                                              title: Text('${snapshot.data.docs[i].data()['Name']}' ,
+                                              title: Text('${snapshot.data.docs[i].data()['doctor_Name']}' ,
                                                 style:  const TextStyle(
                                                     color:  Color(0xFF326fa5),
                                                     fontWeight: FontWeight.bold,
@@ -231,7 +231,7 @@ class PsychologicalSection extends StatelessWidget {
                                                                                   decoration: const BoxDecoration(
                                                                                     image: DecorationImage(
                                                                                       fit: BoxFit.cover,
-                                                                                      image: AssetImage('assets/images/background.jpg'),
+                                                                                      image: AssetImage('assets/background.jpg'),
                                                                                     ),
                                                                                     borderRadius: BorderRadius.only(
                                                                                       bottomLeft: Radius.circular(60),
@@ -239,20 +239,22 @@ class PsychologicalSection extends StatelessWidget {
                                                                                     ),
                                                                                   ),
                                                                                 ),
-                                                                                Padding(
-                                                                                  padding: const EdgeInsets.only(left: 100, top: 120,),
-                                                                                  child: Container(
-                                                                                    width: MediaQuery.of(context).size.width * 0.4,
-                                                                                    height: MediaQuery.of(context).size.width * 0.4,
-                                                                                    decoration: BoxDecoration(
-                                                                                        border: Border.all(
-                                                                                            color: const Color(0xFF326fa5),width: 5),
-                                                                                        shape: BoxShape.circle,
-                                                                                        color: Colors.white,
-                                                                                        image: const DecorationImage(
-                                                                                            fit: BoxFit.cover,
-                                                                                            image: CachedNetworkImageProvider(
-                                                                                                'https://i1.wp.com/allmedhealth.ca/wp-content/uploads/2021/01/cropped-Male_Doctor-1.png?fit=500%2C500&ssl=1&is-pending-load=1'))
+                                                                                Center(
+                                                                                  child: Padding(
+                                                                                    padding: const EdgeInsets.only(left: 0.0, top: 120,),
+                                                                                    child: Container(
+                                                                                      width: MediaQuery.of(context).size.width * 0.4,
+                                                                                      height: MediaQuery.of(context).size.width * 0.4,
+                                                                                      decoration: BoxDecoration(
+                                                                                          border: Border.all(
+                                                                                              color: const Color(0xFF326fa5),width: 5),
+                                                                                          shape: BoxShape.circle,
+                                                                                          color: Colors.white,
+                                                                                          image: const DecorationImage(
+                                                                                              fit: BoxFit.cover,
+                                                                                              image: CachedNetworkImageProvider(
+                                                                                                  'https://i1.wp.com/allmedhealth.ca/wp-content/uploads/2021/01/cropped-Male_Doctor-1.png?fit=500%2C500&ssl=1&is-pending-load=1'))
+                                                                                      ),
                                                                                     ),
                                                                                   ),
                                                                                 ),
@@ -266,7 +268,7 @@ class PsychologicalSection extends StatelessWidget {
                                                                               children: [
                                                                                 Center(
                                                                                   child: Text(
-                                                                                    '${snapshot.data.docs[i].data()['Name']}',
+                                                                                    '${snapshot.data.docs[i].data()['doctor_Name']}',
                                                                                     style: const TextStyle(
                                                                                       fontSize: 23.0,
                                                                                       color: Color(0xAA420168),
@@ -280,7 +282,7 @@ class PsychologicalSection extends StatelessWidget {
                                                                                 ),
                                                                                 Center(
                                                                                   child: Text(
-                                                                                    '${snapshot.data.docs[i].data()['specialty']}',
+                                                                                    '${snapshot.data.docs[i].data()['doctor_Specialization']}',
                                                                                     style: const TextStyle(
                                                                                       fontSize: 15.0,
                                                                                       // color: Colors.indigo,
@@ -322,7 +324,7 @@ class PsychologicalSection extends StatelessWidget {
                                                                                     '${snapshot
                                                                                         .data
                                                                                         .docs[i]
-                                                                                        .data()['About']}',
+                                                                                        .data()['about_Doctor']}',
                                                                                     style: const TextStyle(
                                                                                       color: Colors
                                                                                           .black,
@@ -398,9 +400,8 @@ class PsychologicalSection extends StatelessWidget {
                                                                                               child: MaterialButton(
                                                                                                 onPressed: (){
                                                                                                   day('Monday');
-                                                                                                  doctorN(snapshot.data.docs[i].data()['Name']);
-                                                                                                  datePickerMonday(context);
-                                                                                                  Navigator.of(context).pushNamed('booking',);
+                                                                                                  doctorN(snapshot.data.docs[i].data()['doctor_Name']);
+                                                                                                  CounterCubit.get(context).datePickerMonday(context);
                                                                                                 },
                                                                                                 child: const Center(
                                                                                                     child: Text(
@@ -463,9 +464,8 @@ class PsychologicalSection extends StatelessWidget {
                                                                                               child: MaterialButton(
                                                                                                 onPressed: () {
                                                                                                   day('Tuesday');
-                                                                                                  doctorN(snapshot.data.docs[i].data()['Name']);
-                                                                                                  datePickerTuesday(context);
-                                                                                                  Navigator.of(context).pushNamed('booking',);
+                                                                                                  doctorN(snapshot.data.docs[i].data()['doctor_Name']);
+                                                                                                  CounterCubit.get(context).datePickerTuesday(context);
                                                                                                 },
                                                                                                 child: const Center(
                                                                                                     child: Text(
@@ -528,9 +528,8 @@ class PsychologicalSection extends StatelessWidget {
                                                                                               child: MaterialButton(
                                                                                                 onPressed: () {
                                                                                                   day('Wednesday');
-                                                                                                  doctorN(snapshot.data.docs[i].data()['Name']);
-                                                                                                  datePickerWednesday(context);
-                                                                                                  Navigator.of(context).pushNamed('booking',);
+                                                                                                  doctorN(snapshot.data.docs[i].data()['doctor_Name']);
+                                                                                                  CounterCubit.get(context).datePickerWednesday(context);
                                                                                                 },
                                                                                                 child: const Center(
                                                                                                     child: Text(

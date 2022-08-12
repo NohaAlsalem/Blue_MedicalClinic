@@ -49,9 +49,9 @@ class ReportDoctor extends StatelessWidget{
   var diagnosis = TextEditingController();
 
   String message='No Input ';
-  String imageUrlReport = 'https://firebasestorage.googleapis.com/v0/b/project1-4f713.appspot.com/o/Screenshot_20220810_122113_com.android.chrome_edit_226346558047753.jpg?alt=media&token=2a6e0e9d-3f8f-49d1-aba7-1abd628b0831';
-  String imageUrlRadiographic='https://firebasestorage.googleapis.com/v0/b/project1-4f713.appspot.com/o/Screenshot_20220810_122113_com.android.chrome_edit_226346558047753.jpg?alt=media&token=2a6e0e9d-3f8f-49d1-aba7-1abd628b0831';
-  String imageUrlTest='https://firebasestorage.googleapis.com/v0/b/project1-4f713.appspot.com/o/Screenshot_20220810_122113_com.android.chrome_edit_226346558047753.jpg?alt=media&token=2a6e0e9d-3f8f-49d1-aba7-1abd628b0831';
+  String imageUrlReport = 'https://firebasestorage.googleapis.com/v0/b/blue-medical-clinic.appspot.com/o/no_image.jpg?alt=media&token=e717bce3-f085-474d-8e40-862fc51964cd';
+  String imageUrlRadiographic='https://firebasestorage.googleapis.com/v0/b/blue-medical-clinic.appspot.com/o/no_image.jpg?alt=media&token=e717bce3-f085-474d-8e40-862fc51964cd';
+  String imageUrlTest='https://firebasestorage.googleapis.com/v0/b/blue-medical-clinic.appspot.com/o/no_image.jpg?alt=media&token=e717bce3-f085-474d-8e40-862fc51964cd';
 
   @override
   Widget build(BuildContext context) {
@@ -332,6 +332,7 @@ class ReportDoctor extends StatelessWidget{
                                                             decoration: BoxDecoration(
                                                               borderRadius: BorderRadius.circular(30.0),
                                                               color: const Color(0xAAd1c4e9),
+
                                                             ),
                                                             child: Padding(
                                                               padding: const EdgeInsets.all(12.0),

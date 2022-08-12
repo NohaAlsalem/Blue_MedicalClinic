@@ -16,7 +16,6 @@ class PatientLoginScreen extends StatelessWidget {
   final passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -24,7 +23,7 @@ class PatientLoginScreen extends StatelessWidget {
       child: BlocConsumer<LoginPatientCubit, PatientLoginStates>(
         listener: (BuildContext context, state) {
           if (state is PatientLoginSuccessState) {
-            navigateAndFinish( PatientHomeScreen(), context);
+            navigateAndFinish(home_layout(), context);
           }
         },
         builder: (BuildContext context, Object? state) {
@@ -45,7 +44,7 @@ class PatientLoginScreen extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     const SizedBox(height: 90),
-                   // const Header(),
+                    // const Header(),
                     Expanded(
                       child: Container(
                         decoration: const BoxDecoration(
@@ -78,15 +77,12 @@ class PatientLoginScreen extends StatelessWidget {
                                           isPassword: false,
                                           keyBoardType:
                                               TextInputType.emailAddress,
-                                          validate: (value) {
-                                            if (value!.isEmpty) {
-                                              return 'Empty Field , please enter your email';
-                                            } else if (!value.contains('@')) {
-                                              return 'Invalid Email , please Enter a valid email';
-                                            } else if (!value.contains('.')) {
-                                              return 'Invalid Email , please Enter a valid email';
-                                            } else {
-                                              return null;
+                                          validate: (value){
+                                            if(value!.isEmpty){
+                                              return ' Empty Failed , please enter your email';
+                                            }
+                                            if(!value.contains('bluePat.net')){
+                                              return ' Invaild E-mail , please enter a valid email ';
                                             }
                                           },
                                           controller: emailController,
@@ -140,20 +136,24 @@ class PatientLoginScreen extends StatelessWidget {
                                     builder: (BuildContext context) =>
                                         defaultMaterialButton(
                                             buttonText: 'LOGIN',
-                                            function: () async{
-                                              if (formKey.currentState!.validate()) {
+                                            function: () async {
+                                              if (formKey.currentState!
+                                                  .validate()) {
                                                 cubit.patientLogin(
-                                                    email: emailController.text,
-                                                    password: passwordController.text ,
-                                                    // here eror without '${  }'
-                                                    //fcmToken: '${cubit.fcmToken}',
+                                                  email: emailController.text,
+                                                  password:
+                                                      passwordController.text,
+                                                  // here eror without '${  }'
+                                                  //fcmToken: '${cubit.fcmToken}',
                                                 );
-                                                  SharedPreferences pref=await SharedPreferences.getInstance();
-                                                  pref.setString('token','${cubit.sfcmToken}');
-                                                }
-                                                 // navigateAndFinish(home_layout(), context);
+                                                SharedPreferences pref =
+                                                    await SharedPreferences
+                                                        .getInstance();
+                                                pref.setString('token',
+                                                    '${cubit.sfcmToken}');
                                               }
-                                            ),
+                                              // navigateAndFinish(home_layout(), context);
+                                            }),
                                     condition:
                                         state is! PatientLoginLoadingState,
                                     fallback: (BuildContext context) =>
@@ -174,7 +174,6 @@ class PatientLoginScreen extends StatelessWidget {
                                 ),
                                 Row(
                                   children: [
-
                                     const Text('Don\'t have an Account ? '),
                                     const SizedBox(width: 10),
                                     defaultTextButton(

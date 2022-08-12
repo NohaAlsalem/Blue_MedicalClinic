@@ -92,7 +92,7 @@ class DoctorHome extends StatelessWidget {
                                   ),
                                 ),
                                 image:const DecorationImage(
-                                  image:AssetImage('assets/images/homeDoctor.jpg'),
+                                  image:AssetImage('assets/homeDoctor.jpg'),
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -111,7 +111,7 @@ class DoctorHome extends StatelessWidget {
                                 backgroundColor: Colors.indigo,
                                 child: CircleAvatar(
                                   radius: 55.0,
-                                  backgroundImage: AssetImage('assets/images/doctor.jpg'),
+                                  backgroundImage: AssetImage('assets/doctor.jpg'),
                                 ),
                               ),
                               const SizedBox(

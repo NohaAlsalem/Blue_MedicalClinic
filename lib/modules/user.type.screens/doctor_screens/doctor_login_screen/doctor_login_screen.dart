@@ -80,6 +80,14 @@ class DoctorLoginScreen extends StatelessWidget {
                                             isPassword: false,
                                             keyBoardType:
                                                 TextInputType.emailAddress,
+                                            validate: (value){
+                                              if(value!.isEmpty){
+                                                return ' Empty Failed , please enter your email';
+                                              }
+                                              if(!value.contains('bluedoc.net')){
+                                                return ' Invaild E-mail , please enter a valid email ';
+                                              }
+                                            },
                                             // validate: (value) {
                                             //   if (value!.isEmpty) {
                                             //     return 'Empty Field , please enter your email';
@@ -147,54 +155,41 @@ class DoctorLoginScreen extends StatelessWidget {
                                                 if (formKey.currentState!.validate())
                                                 {
 
-                                                  if(emailController=='Dr..Musallam AL-Kayal'){
-                                                    navigateAndFinish(
-                                                        DoctorHome(PatientReport.get(ctx).getDataMusallam(context)),
-                                                        context);}
-                                                  if(name=='Dr.Ahmad AL-jarrah'){
-                                                    navigateAndFinish(
-                                                      DoctorHome(PatientReport.get(ctx).getDataAhmad(context)),
-                                                      context);}
-                                                if(name=='Dr.Amal AL-Masry'){
+                                                  if(emailController.text=='dmusallam@bluedoc.net'){
+                                                    PatientReport.get(ctx).getDataMusallam(context);}
+
+                                                  if(emailController.text=='dahmad@bluedoc.net'){
+                                                    PatientReport.get(ctx).getDataAhmad(context);}
+
+                                                if(emailController.text=='damal@bluedoc.net'){
                                                   PatientReport.get(ctx).getDataAmal(context);
-                                                // navigateAndFinish (
-                                                // DoctorHome(PatientReport.get(ctx).getDataAmal(context) as Future<dynamic>),
-                                                // context);
                                                   }
-                                                  if(name=='Dr.Hassan AL-Maleh'){
-                                                    navigateAndFinish(
-                                                        DoctorHome(PatientReport.get(ctx).getDataHassan(context)),
-                                                        context);
+
+                                                  if(emailController.text=='dhassan@bluedoc.net'){
+                                                    PatientReport.get(ctx).getDataHassan(context);
                                                   }
-                                                  if(name=='Dr.Fahad AL-Ebrahem'){
-                                                    navigateAndFinish(
-                                                        DoctorHome(PatientReport.get(ctx).getDataFahad(context)),
-                                                        context);
+
+                                                  if(emailController.text=='dfahad@bluedoc.net'){
+                                                    PatientReport.get(ctx).getDataFahad(context);
                                                   }
-                                                  if(name=='Dr.Ali Ahmad'){
-                                                    navigateAndFinish(
-                                                        DoctorHome(PatientReport.get(ctx).getDataAli(context)),
-                                                        context);
+
+                                                  if(emailController.text=='dali@bluedoc.net'){
+                                                    PatientReport.get(ctx).getDataAli(context);
                                                   }
-                                                  if(name=='Dr. Nedal Hussain'){
-                                                    navigateAndFinish(
-                                                        DoctorHome(PatientReport.get(ctx).getDataNedal(context) ),
-                                                        context);
+
+                                                  if(emailController.text=='dnedal@bluedoc.net'){
+                                                    PatientReport.get(ctx).getDataNedal(context);
                                                   }
-                                                  if(name=='Dr.Mohammad Kasem'){
-                                                    navigateAndFinish(
-                                                        DoctorHome(PatientReport.get(ctx).getDataMKassem(context)),
-                                                        context);
+
+                                                  if(emailController.text=='dmohammadk@bluedoc.net'){
+                                                    PatientReport.get(ctx).getDataMKassem(context);
                                                   }
-                                                  if(name=='Dr.Mohammad Saeed'){
-                                                    navigateAndFinish(
-                                                        DoctorHome(PatientReport.get(ctx).getDataMSaeed(context)),
-                                                        context);
+
+                                                  if(emailController.text=='dmohammad@bluedoc.net'){
+                                                    PatientReport.get(ctx).getDataMSaeed(context);
                                                   }
-                                                  if(name=='Dr.Naser Mohammad.'){
-                                                    navigateAndFinish(
-                                                        DoctorHome(PatientReport.get(ctx).getDataNaser(context)),
-                                                        context);
+                                                  if(emailController.text=='dnaser@bluedoc.net'){
+                                                    PatientReport.get(ctx).getDataNaser(context);
                                                   }
 
 

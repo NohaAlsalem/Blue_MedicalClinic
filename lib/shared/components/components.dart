@@ -109,7 +109,7 @@ DateTime ?theDate;
 
 datePickerMonday(BuildContext context){
   showDatePicker( context: context,
-    initialDate:DateTime.utc(2022,8,8),
+    initialDate:DateTime.utc(2022,8,15),
     firstDate:DateTime.now(),
     lastDate: DateTime.utc(2024,1,1),
     selectableDayPredicate: (date) {
@@ -133,41 +133,9 @@ datePickerMonday(BuildContext context){
   print(theDate);
   //
 }
-
-
-datePickerWednesday(BuildContext context){
-  showDatePicker( context: context,
-    initialDate:DateTime.utc(2022,8,10),
-    firstDate:DateTime.now(),
-    lastDate: DateTime.utc(2024,1,1),
-    selectableDayPredicate: (date) {
-      if (date.weekday==DateTime.sunday ||
-          date.weekday== DateTime.friday||
-          date.weekday==DateTime.saturday ||
-          date.weekday==DateTime.monday||
-          date.weekday==DateTime.thursday||
-          date.weekday==DateTime.tuesday
-      )
-        //Disable weekend days to select from the calendar
-          {
-        return false;
-      }
-      //if (date.weekday==DateTime.monday || date.weekday == DateTime.tuesday||date.weekday==DateTime.wednesday ){}
-      // return true;
-      return true;
-    },
-  ).then((value){
-    theDate=value;
-    if(value==null){return;}
-  });
-  print(theDate);
-}
-
-
-
 datePickerTuesday(BuildContext context){
   showDatePicker( context: context,
-    initialDate:DateTime.utc(2022,8,9),
+    initialDate:DateTime.utc(2022,8,16),
     firstDate:DateTime.now(),
     lastDate: DateTime.utc(2024,1,1),
     selectableDayPredicate: (date) {
@@ -192,3 +160,33 @@ datePickerTuesday(BuildContext context){
   });
   print(theDate);
 }
+datePickerWednesday(BuildContext context){
+  showDatePicker( context: context,
+    initialDate:DateTime.utc(2022,8,17),
+    firstDate:DateTime.now(),
+    lastDate: DateTime.utc(2024,1,1),
+    selectableDayPredicate: (date) {
+      if (date.weekday==DateTime.sunday ||
+          date.weekday== DateTime.friday||
+          date.weekday==DateTime.saturday ||
+          date.weekday==DateTime.monday||
+          date.weekday==DateTime.thursday||
+          date.weekday==DateTime.tuesday
+      )
+        //Disable weekend days to select from the calendar
+          {
+        return false;
+      }
+      //if (date.weekday==DateTime.monday || date.weekday == DateTime.tuesday||date.weekday==DateTime.wednesday ){}
+      // return true;
+      return true;
+    },
+  ).then((value){
+    theDate=value;
+    if(value==null){return;}
+  });
+  print(theDate);
+}
+
+
+

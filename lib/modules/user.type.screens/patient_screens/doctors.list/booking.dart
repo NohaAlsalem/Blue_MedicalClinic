@@ -16,7 +16,6 @@ class Booking extends StatelessWidget {
 
   TextEditingController nameInput     = TextEditingController();
   TextEditingController ageInput      = TextEditingController();
-  TextEditingController idInput       = TextEditingController();
   TextEditingController phoneInput    = TextEditingController();
   TextEditingController diseasesInput = TextEditingController();
 
@@ -111,10 +110,10 @@ class Booking extends StatelessWidget {
                                 borderRadius: BorderRadius.vertical(
                                     bottom: Radius.elliptical(
                                         MediaQuery.of(context).size.width, 100.0)),
-                                image: const DecorationImage(
-                                  image:  AssetImage('assets/images/booking.jpg'),
-                                  fit: BoxFit.cover,
-                                ),
+                                // image: const DecorationImage(
+                                //   image:  AssetImage('assets/booking.jpg'),
+                                //   fit: BoxFit.cover,
+                                // ),
                               ),
                             ),
                           ],
