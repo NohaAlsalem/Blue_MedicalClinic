@@ -3,6 +3,7 @@ class PatientRegisterModel {
   String? name;
   String? email;
   String? phone;
+  String? fcmToken;
   PatientRegisterModel({
     this.userId,
     this.name,

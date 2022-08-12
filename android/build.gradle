@@ -4,7 +4,12 @@
         google()
         mavenCentral()
     }
-
+        gradle.projectsEvaluated {
+            tasks.withType(JavaCompile) {
+                options.encoding = 'UTF-8'
+                options.compilerArgs << "-Xlint:deprecation"
+            }
+        }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.1.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"

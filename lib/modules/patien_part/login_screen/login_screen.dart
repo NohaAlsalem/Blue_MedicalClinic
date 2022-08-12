@@ -3,16 +3,37 @@ import 'package:blue_medical_clinic/modules/patien_part/login_screen/cubit/cubit
 import 'package:blue_medical_clinic/modules/patien_part/login_screen/cubit/states.dart';
 import 'package:blue_medical_clinic/shared/components/components.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-class PatientLoginScreen extends StatelessWidget {
+class PatientLoginScreen extends StatefulWidget {
   PatientLoginScreen({Key? key}) : super(key: key);
+
+  @override
+  State<PatientLoginScreen> createState() => _PatientLoginScreenState();
+}
+
+class _PatientLoginScreenState extends State<PatientLoginScreen> {
   final emailController = TextEditingController();
+
   final passwordController = TextEditingController();
+
   final formKey = GlobalKey<FormState>();
+
+  var fcmToken = '';
+
+  @override
+  void initState() async {
+    await FirebaseMessaging.instance.getToken().then((value) {
+      fcmToken = value.toString();
+      print('FCM TOKEN IS  : ${fcmToken}');
+    }).catchError((error) {
+      print('error in init state , error is , ${error.toString()}');
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +47,6 @@ class PatientLoginScreen extends StatelessWidget {
         },
         builder: (BuildContext context, Object? state) {
           var cubit = LoginPatientCubit.get(context);
-          print('FCM TOKEN  : ${cubit.fcmToken}');
           return Scaffold(
             body: Container(
               width: double.infinity,
@@ -75,11 +95,12 @@ class PatientLoginScreen extends StatelessWidget {
                                           isPassword: false,
                                           keyBoardType:
                                               TextInputType.emailAddress,
-                                          validate: (value){
-                                            if(value!.isEmpty){
+                                          validate: (value) {
+                                            if (value!.isEmpty) {
                                               return ' Empty Failed , please enter your email';
                                             }
-                                            if(!value.contains('bluePat.net')){
+                                            if (!value
+                                                .contains('bluePat.net')) {
                                               return ' Invaild E-mail , please enter a valid email ';
                                             }
                                           },
@@ -138,17 +159,10 @@ class PatientLoginScreen extends StatelessWidget {
                                               if (formKey.currentState!
                                                   .validate()) {
                                                 cubit.patientLogin(
-                                                  email: emailController.text,
-                                                  password:
-                                                      passwordController.text,
-                                                  // here eror without '${  }'
-                                                  //fcmToken: '${cubit.fcmToken}',
-                                                );
-                                                // SharedPreferences pref =
-                                                //     await SharedPreferences
-                                                //         .getInstance();
-                                                // pref.setString('token',
-                                                //     '${cubit.sfcmToken}');
+                                                    email: emailController.text,
+                                                    password:
+                                                        passwordController.text,
+                                                    fcmToken: fcmToken);
                                               }
                                             }),
                                     condition:

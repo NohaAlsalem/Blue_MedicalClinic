@@ -1,12 +1,12 @@
-import 'package:bloc/bloc.dart';
+import 'package:blue_medical_clinic/models/fcm_token_model/fcm_token_model.dart';
 import 'package:blue_medical_clinic/modules/patien_part/login_screen/cubit/states.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 class LoginPatientCubit extends Cubit<PatientLoginStates> {
   LoginPatientCubit() : super(PatientLoginInitState());
 
@@ -21,33 +21,43 @@ class LoginPatientCubit extends Cubit<PatientLoginStates> {
     emit(PatientLoginChangePasswordVisibility());
   }
 
-
- var sfcmToken;
-  //var fcmToken;
   var fcmToken = FirebaseMessaging.instance.getToken();
   void patientLogin({
     required String? email,
     required String? password,
-   // required String? fcmToken,
+    required String? fcmToken,
   }) {
     emit(PatientLoginLoadingState());
-    //FirebaseFirestore.instance.collection('fcm_token').doc(fcmToken);
-    FirebaseAuth.instance.signInWithEmailAndPassword(email: email!, password: password!)
+    FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: email!, password: password!)
         .then((value) {
       print('Login Success , patient email  is : ${value.user!.email}');
-      print('fcm: $fcmToken');
-     // sfcmToken=fcmToken;
       emit(PatientLoginSuccessState());
+      createPatientToken(fcmToken: fcmToken);
     }).catchError((error) {
       print('Login Failed , error is : ${error.toString()}');
       emit(PatientLoginErrorState(error.toString()));
     });
   }
-   var preff;
-   getslectedpref()async{
-    SharedPreferences pref=await SharedPreferences.getInstance();
-     preff=pref.getString('token');
-      emit(getslectedpreff());
-  }
 
+  void createPatientToken({
+    required String? fcmToken,
+  }) {
+    FcmTokenModel fcmTokenModel = FcmTokenModel(
+      fcmToken: fcmToken,
+    );
+    FirebaseFirestore.instance
+        .collection('Fcm Token')
+        .doc('usersToken')
+        .collection('patient')
+        .doc(fcmToken)
+        .set(fcmTokenModel.toMap())
+        .then((token) {
+      print('CREATE TOKEN COLLECTION *SUCCESS*');
+      emit(CreateTokenSuccess());
+    }).catchError((error) {
+      print('CREATE TOKEN COLLECTION *ERROR* , ERROR IS : ${error.toString()}');
+      emit(CreateTokenError());
+    });
+  }
 }

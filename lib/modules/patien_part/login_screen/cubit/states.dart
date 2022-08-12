@@ -12,5 +12,6 @@ class PatientLoginErrorState extends PatientLoginStates{
 }
 
 class PatientLoginChangePasswordVisibility extends PatientLoginStates{}
-class getslectedpreff extends PatientLoginStates{}
+class CreateTokenSuccess extends PatientLoginStates{}
+class CreateTokenError extends PatientLoginStates{}
 
