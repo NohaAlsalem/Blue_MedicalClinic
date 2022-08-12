@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:blue_medical_clinic/modules/doctor_part/home/home_screen.dart';
-import 'package:blue_medical_clinic/modules/doctor_part/reports/write_report/cubit/patientmodel.dart';
+import 'package:blue_medical_clinic/modules/doctor_part/home_layout/home_screen.dart';
+import 'package:blue_medical_clinic/models/Patient_model_toreport/patientmodel.dart';
 import 'package:blue_medical_clinic/modules/doctor_part/reports/write_report/cubit/satats.dart';
 import 'package:blue_medical_clinic/shared/components/components.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

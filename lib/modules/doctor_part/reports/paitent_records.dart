@@ -4,12 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 
-import 'package:blue_medical_clinic/modules/doctor_part/reports/write_report/cubit/cubit.dart';
-import 'package:blue_medical_clinic/modules/doctor_part/reports/write_report/cubit/satats.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lottie/lottie.dart';
-
 class PatientRecord extends StatelessWidget{
   text(String d,String t) {
     return Row(
