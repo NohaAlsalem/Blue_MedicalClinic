@@ -31,7 +31,7 @@ class PatientHomeCubit extends Cubit<PatientHomeStates>{
   ];
   int currentScreen=0;
   List<Widget> screen=[
-    //DoctorHome(),
+    PatientHomeScreen(),
     setting(),
   ];
   // List<String> mytitle=[

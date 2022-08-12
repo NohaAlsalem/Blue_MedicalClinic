@@ -25,8 +25,8 @@ class _PatientLoginScreenState extends State<PatientLoginScreen> {
   var fcmToken = '';
 
   @override
-  void initState() async {
-    await FirebaseMessaging.instance.getToken().then((value) {
+  void initState()  {
+     FirebaseMessaging.instance.getToken().then((value) {
       fcmToken = value.toString();
       print('FCM TOKEN IS  : ${fcmToken}');
     }).catchError((error) {
@@ -162,7 +162,9 @@ class _PatientLoginScreenState extends State<PatientLoginScreen> {
                                                     email: emailController.text,
                                                     password:
                                                         passwordController.text,
-                                                    fcmToken: fcmToken);
+                                                    //fcmToken: fcmToken
+                                                );
+                                                cubit.createPatientToken(fcmToken: fcmToken);
                                               }
                                             }),
                                     condition:

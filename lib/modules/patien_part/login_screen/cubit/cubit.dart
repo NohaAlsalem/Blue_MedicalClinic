@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPatientCubit extends Cubit<PatientLoginStates> {
   LoginPatientCubit() : super(PatientLoginInitState());
@@ -25,7 +24,7 @@ class LoginPatientCubit extends Cubit<PatientLoginStates> {
   void patientLogin({
     required String? email,
     required String? password,
-    required String? fcmToken,
+    // required String? fcmToken,
   }) {
     emit(PatientLoginLoadingState());
     FirebaseAuth.instance
@@ -33,7 +32,6 @@ class LoginPatientCubit extends Cubit<PatientLoginStates> {
         .then((value) {
       print('Login Success , patient email  is : ${value.user!.email}');
       emit(PatientLoginSuccessState());
-      createPatientToken(fcmToken: fcmToken);
     }).catchError((error) {
       print('Login Failed , error is : ${error.toString()}');
       emit(PatientLoginErrorState(error.toString()));
@@ -49,7 +47,7 @@ class LoginPatientCubit extends Cubit<PatientLoginStates> {
     FirebaseFirestore.instance
         .collection('Fcm Token')
         .doc('usersToken')
-        .collection('patient')
+        .collection('patients')
         .doc(fcmToken)
         .set(fcmTokenModel.toMap())
         .then((token) {

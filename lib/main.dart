@@ -1,16 +1,13 @@
+import 'package:blue_medical_clinic/modules/patien_part/Booking/booking.dart';
 import 'package:blue_medical_clinic/modules/patien_part/home_Layout/Sections.dart';
 import 'package:blue_medical_clinic/modules/patien_part/login_screen/cubit/cubit.dart';
 import 'package:blue_medical_clinic/modules/patien_part/login_screen/login_screen.dart';
-import 'package:blue_medical_clinic/modules/splash_screen/splash_screen.dart';
-import 'package:blue_medical_clinic/modules/patien_part/Booking/booking.dart';
 import 'package:blue_medical_clinic/shared/cubit/cubit.dart';
 import 'package:blue_medical_clinic/shared/cubit/states.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();

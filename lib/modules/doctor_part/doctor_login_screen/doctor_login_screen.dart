@@ -82,7 +82,7 @@ class DoctorLoginScreen extends StatelessWidget {
                                                 return ' Empty Failed , please enter your email';
                                               }
                                               if(!value.contains('bluedoc.net')){
-                                                return ' Invaild E-mail , please enter a valid email ';
+                                                return ' Invalid E-mail , please enter a valid email ';
                                               }
                                             },
                                             // validate: (value) {
