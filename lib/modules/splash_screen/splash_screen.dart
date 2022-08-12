@@ -1,7 +1,6 @@
 import 'package:blue_medical_clinic/modules/chosse_the_user_type/chosse_user.dart';
-import 'package:blue_medical_clinic/layout/home_layout.dart';
-
-import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/login_screen/cubit/cubit.dart';
+import 'package:blue_medical_clinic/modules/patien_part/home_Layout/home_layout.dart';
+import 'package:blue_medical_clinic/modules/patien_part/login_screen/cubit/cubit.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';

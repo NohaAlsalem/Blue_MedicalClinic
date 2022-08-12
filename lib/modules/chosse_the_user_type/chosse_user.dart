@@ -1,5 +1,5 @@
-import 'package:blue_medical_clinic/modules/user.type.screens/doctor_screens/doctor_login_screen/doctor_login_screen.dart';
-import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/login_screen/login_screen.dart';
+import 'package:blue_medical_clinic/modules/doctor_part/doctor_login_screen/doctor_login_screen.dart';
+import 'package:blue_medical_clinic/modules/patien_part/login_screen/login_screen.dart';
 import 'package:blue_medical_clinic/shared/components/components.dart';
 import 'package:flutter/material.dart';
 

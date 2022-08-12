@@ -1,8 +1,7 @@
+import 'package:blue_medical_clinic/modules/patien_part/home_Layout/Sections.dart';
+import 'package:blue_medical_clinic/modules/patien_part/login_screen/cubit/cubit.dart';
 import 'package:blue_medical_clinic/modules/splash_screen/splash_screen.dart';
-import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/doctors.list/booking.dart';
-import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/home_screen/home_screen/home_screen.dart';
-import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/login_screen/cubit/cubit.dart';
-import 'package:blue_medical_clinic/modules/user.type.screens/patient_screens/register_screen/cubit/cubit.dart';
+import 'package:blue_medical_clinic/modules/patien_part/Booking/booking.dart';
 import 'package:blue_medical_clinic/shared/cubit/cubit.dart';
 import 'package:blue_medical_clinic/shared/cubit/states.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -26,7 +25,7 @@ class MyApp extends StatelessWidget
           providers: [
             BlocProvider(create: (context) => AppCubit(),),
             BlocProvider(create: (context) => LoginPatientCubit(),),
-            BlocProvider(create: (context) => RegisterPatientCubit(),),
+            //BlocProvider(create: (context) => RegisterPatientCubit(),),
           ],
           child: BlocProvider(
             create: (BuildContext context) => AppCubit(),
