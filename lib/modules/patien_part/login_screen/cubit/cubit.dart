@@ -39,10 +39,12 @@ class LoginPatientCubit extends Cubit<PatientLoginStates> {
   }
 
   void createPatientToken({
+    required String? email,
     required String? fcmToken,
   }) {
     FcmTokenModel fcmTokenModel = FcmTokenModel(
       fcmToken: fcmToken,
+      email: email,
     );
     FirebaseFirestore.instance
         .collection('Fcm Token')
@@ -51,7 +53,7 @@ class LoginPatientCubit extends Cubit<PatientLoginStates> {
         .doc(fcmToken)
         .set(fcmTokenModel.toMap())
         .then((token) {
-      print('CREATE TOKEN COLLECTION *SUCCESS*');
+      print('CREATE FCM TOKEN COLLECTION *SUCCESS*');
       emit(CreateTokenSuccess());
     }).catchError((error) {
       print('CREATE TOKEN COLLECTION *ERROR* , ERROR IS : ${error.toString()}');

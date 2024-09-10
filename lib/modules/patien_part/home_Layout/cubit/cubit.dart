@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:blue_medical_clinic/modules/doctor_part/home_layout/home_screen.dart';
 import 'package:blue_medical_clinic/modules/patien_part/home_Layout/Sections.dart';
 import 'package:blue_medical_clinic/modules/patien_part/home_Layout/cubit/states.dart';
 import 'package:blue_medical_clinic/modules/patien_part/home_Layout/setting.dart';

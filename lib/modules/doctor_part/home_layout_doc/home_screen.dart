@@ -13,7 +13,6 @@ class DoctorHome extends StatelessWidget {
     this.dataTime= data;
   }
 
-
   text(String d,String t) {
     return Row(
       children: [

@@ -102,6 +102,12 @@ class PatientHomeGastroenterology extends TimeStates
 
 }
 
+class SuccessDate extends TimeStates{
+
+  DateTime date;
+  SuccessDate(this.date);
+
+}
 
 // class DoctorNameState extends TimeStates{
 //   String name;

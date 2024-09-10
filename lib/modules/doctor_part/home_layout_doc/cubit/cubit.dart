@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:blue_medical_clinic/modules/doctor_part/home_layout/cubit/statats.dart';
+import 'package:blue_medical_clinic/modules/doctor_part/home_layout_doc/cubit/statats.dart';
 import 'package:blue_medical_clinic/modules/patien_part/home_Layout/Sections.dart';
 import 'package:blue_medical_clinic/modules/patien_part/home_Layout/setting.dart';
 import 'package:flutter/material.dart';

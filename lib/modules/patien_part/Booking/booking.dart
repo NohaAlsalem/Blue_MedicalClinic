@@ -11,19 +11,19 @@ import '../../../shared/components/components.dart';
 class Booking extends StatelessWidget {
   Booking({Key? key}) : super(key: key);
   var formKey = GlobalKey<FormState>();
-  String message='No entry';
+  String message = 'No entry';
 
 
-  TextEditingController nameInput     = TextEditingController();
-  TextEditingController ageInput      = TextEditingController();
-  TextEditingController phoneInput    = TextEditingController();
+  TextEditingController nameInput = TextEditingController();
+  TextEditingController ageInput = TextEditingController();
+  TextEditingController phoneInput = TextEditingController();
   TextEditingController diseasesInput = TextEditingController();
 
 
-  List<DropdownMenuItem<String>> get dropdownItemsGender{
+  List<DropdownMenuItem<String>> get dropdownItemsGender {
     List<DropdownMenuItem<String>> menuItems = const [
-      DropdownMenuItem(child: Text("Male"),value: "Male"),
-      DropdownMenuItem(child: Text("Female"),value: "Female"),
+      DropdownMenuItem(child: Text("Male"), value: "Male"),
+      DropdownMenuItem(child: Text("Female"), value: "Female"),
     ];
     return menuItems;
   }
@@ -31,10 +31,13 @@ class Booking extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<CounterCubit>(
-      create: (BuildContext context) => CounterCubit()..appointment(context)..start..end,
-      child: BlocConsumer<CounterCubit ,TimeStates >(
-          listener: (context , state)
-          {
+      create: (BuildContext context) =>
+      CounterCubit()
+        ..appointment(context)
+        ..start
+        ..end,
+      child: BlocConsumer<CounterCubit, TimeStates>(
+          listener: (context, state) {
             // if( state is InitialTimeState)
             //     {print('initial');}
             // if( state is CounterXTimeState)
@@ -64,10 +67,9 @@ class Booking extends StatelessWidget {
             // if( state is FailedState)
             // {print(' success${state.error}');}
           },
-          builder : (context , state)
-          {
-            return  Scaffold(
-              body:Stack(
+          builder: (context, state) {
+            return Scaffold(
+              body: Stack(
                 children: [
                   Container(
                     decoration: const BoxDecoration(
@@ -83,7 +85,7 @@ class Booking extends StatelessWidget {
                   ),
                   SingleChildScrollView(
                     child: Column(
-                      children:[
+                      children: [
                         Stack(
                           children: [
                             Container(
@@ -100,16 +102,22 @@ class Booking extends StatelessWidget {
                                 ),
                                 borderRadius: BorderRadius.vertical(
                                   bottom: Radius.elliptical(
-                                      MediaQuery.of(context).size.width, 60.0 ),
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width, 60.0),
                                 ),
                               ),
                             ),
                             Container(
                               height: 180.0,
-                              decoration:  BoxDecoration(
+                              decoration: BoxDecoration(
                                 borderRadius: BorderRadius.vertical(
                                     bottom: Radius.elliptical(
-                                        MediaQuery.of(context).size.width, 100.0)),
+                                        MediaQuery
+                                            .of(context)
+                                            .size
+                                            .width, 100.0)),
                                 // image: const DecorationImage(
                                 //   image:  AssetImage('assets/booking.jpg'),
                                 //   fit: BoxFit.cover,
@@ -119,15 +127,16 @@ class Booking extends StatelessWidget {
                           ],
                         ),
                         Row(
-                          children:const[
+                          children: const[
                             Padding(
                               padding: EdgeInsets.only(
                                 top: 10.0,
                                 left: 20.0,
                               ),
-                              child: Text('Patient Information' , style: TextStyle(
+                              child: Text(
+                                'Patient Information', style: TextStyle(
                                 fontSize: 23.0,
-                                color:  Color(0xFF0876D4),
+                                color: Color(0xFF0876D4),
                                 fontWeight: FontWeight.w800,
                                 fontFamily: 'Allison',
                               ),
@@ -159,10 +168,11 @@ class Booking extends StatelessWidget {
                                   child: Form(
                                     key: formKey,
                                     child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children : [
+                                        crossAxisAlignment: CrossAxisAlignment
+                                            .start,
+                                        children: [
                                           Row(
-                                            children: const  [
+                                            children: const [
                                               Text('*', style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 14.0,
@@ -181,10 +191,11 @@ class Booking extends StatelessWidget {
                                             children: [
                                               Expanded(
                                                 child: TextFormField(
-                                                  controller: nameInput ,
-                                                  keyboardType: TextInputType.text,
-                                                  validator:(value) {
-                                                    if(value!.isEmpty) {
+                                                  controller: nameInput,
+                                                  keyboardType: TextInputType
+                                                      .text,
+                                                  validator: (value) {
+                                                    if (value!.isEmpty) {
                                                       return 'name must not be empty ';
                                                     }
                                                     return null;
@@ -197,8 +208,8 @@ class Booking extends StatelessWidget {
                                             height: 27,
                                           ),
                                           Row(
-                                            children: const  [
-                                              Text('*' , style: TextStyle(
+                                            children: const [
+                                              Text('*', style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 14.0,
                                                 color: Colors.red,
@@ -206,7 +217,7 @@ class Booking extends StatelessWidget {
                                               SizedBox(
                                                 width: 10,
                                               ),
-                                              Text('Age' , style: TextStyle(
+                                              Text('Age', style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 14.0,
                                               ),),
@@ -216,13 +227,15 @@ class Booking extends StatelessWidget {
                                             children: [
                                               Expanded(
                                                 child: TextFormField(
-                                                  controller: ageInput ,
-                                                  keyboardType: TextInputType.number,
-                                                  validator:(value) {
-                                                    if(value!.isEmpty) {
+                                                  controller: ageInput,
+                                                  keyboardType: TextInputType
+                                                      .number,
+                                                  validator: (value) {
+                                                    if (value!.isEmpty) {
                                                       return 'Age must not be empty ';
                                                     }
-                                                    if (value.contains("[a-zA-Z]+") != false) {
+                                                    if (value.contains(
+                                                        "[a-zA-Z]+") != false) {
                                                       return 'Age must not have a letters';
                                                     }
                                                     else {
@@ -238,7 +251,7 @@ class Booking extends StatelessWidget {
                                           ),
                                           Row(
                                             children: const[
-                                              Text('*' , style: TextStyle(
+                                              Text('*', style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 14.0,
                                                 color: Colors.red,
@@ -247,31 +260,36 @@ class Booking extends StatelessWidget {
                                                 width: 10,
                                               ),
 
-                                              Text('Phone Number' , style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14.0,
-                                              ),),
+                                              Text('Phone Number',
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 14.0,
+                                                ),),
                                             ],
                                           ),
                                           Row(
                                             children: [
                                               Expanded(
                                                 child: TextFormField(
-                                                    controller: phoneInput ,
-                                                    keyboardType: TextInputType.number,
+                                                    controller: phoneInput,
+                                                    keyboardType: TextInputType
+                                                        .number,
                                                     decoration: const InputDecoration(
                                                     ),
-                                                    validator:(value) {
+                                                    validator: (value) {
                                                       if (value!.isEmpty) {
                                                         return 'phone must not be empty ';
                                                       }
                                                       if (value.length != 10) {
                                                         return 'Mobile Number must be of 10 digit';
                                                       }
-                                                      if (value.contains("[a-zA-Z]+") != false) {
+                                                      if (value.contains(
+                                                          "[a-zA-Z]+") !=
+                                                          false) {
                                                         return 'Mobile Number must not have a letters';
                                                       }
-                                                      if (!value.startsWith('09')) {
+                                                      if (!value.startsWith(
+                                                          '09')) {
                                                         return 'Input with 09';
                                                       }
                                                       else {
@@ -287,7 +305,7 @@ class Booking extends StatelessWidget {
                                           ),
                                           Row(
                                             children: const[
-                                              Text('*' , style: TextStyle(
+                                              Text('*', style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 14.0,
                                                 color: Colors.red,
@@ -295,7 +313,7 @@ class Booking extends StatelessWidget {
                                               SizedBox(
                                                 width: 10,
                                               ),
-                                              Text('Gender' , style: TextStyle(
+                                              Text('Gender', style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 14.0,
                                               ),),
@@ -303,9 +321,14 @@ class Booking extends StatelessWidget {
                                           ),
                                           DropdownButtonFormField(
                                               dropdownColor: Colors.white,
-                                              value: CounterCubit.get(context).selectedValueGender,
+                                              value: CounterCubit
+                                                  .get(context)
+                                                  .selectedValueGender,
                                               onChanged: (String? newValue) {
-                                                CounterCubit.get(context).selectedValueGender='$newValue';
+                                                CounterCubit
+                                                    .get(context)
+                                                    .selectedValueGender =
+                                                '$newValue';
                                               },
                                               items: dropdownItemsGender
                                           ),
@@ -314,22 +337,24 @@ class Booking extends StatelessWidget {
                                           ),
                                           Row(
                                             children: const[
-                                              Text('Did you have any chronic diseases ?' , style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14.0,
-                                              ),),
+                                              Text(
+                                                'Did you have any chronic diseases ?',
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 14.0,
+                                                ),),
                                             ],
                                           ),
                                           Row(
                                             children: [
                                               Expanded(
                                                 child: TextFormField(
-                                                  controller: diseasesInput ,
-                                                  validator:(value) {
+                                                  controller: diseasesInput,
+                                                  validator: (value) {
                                                     // if (value!.contains("[0-9]") == false) {
                                                     //   return 'Write a letters / the number not accept';
                                                     // }
-                                                    if(value!.isEmpty) {
+                                                    if (value!.isEmpty) {
                                                       return 'This Field must not empty, if you Don\'t have say it';
                                                     }
                                                     else {
@@ -363,15 +388,19 @@ class Booking extends StatelessWidget {
                           ),
                           child: TextButton(
                             onPressed: () {
-                              print(DateFormat.yMMMd().format(theDate as DateTime));
+                              print(CounterCubit.get(context).theDate,);
+                              print(DateFormat.yMMMd().format(theDate!));
                               if (formKey.currentState!.validate()) {
                                 CounterCubit.get(context).appointment(context);
                                 CounterCubit.get(context).addData(
                                     nameInput.text,
                                     ageInput.text,
                                     phoneInput.text,
+                                   // CounterCubit.get(context).theDate,
                                     DateFormat.yMMMd().format(theDate as DateTime),
-                                    CounterCubit.get(context).selectedValueGender,
+                                    CounterCubit
+                                        .get(context)
+                                        .selectedValueGender,
                                     diseasesInput.text,
                                     daySelected.toString(),
                                     doctorSelected.toString(),
@@ -385,6 +414,23 @@ class Booking extends StatelessWidget {
                             ),
                           ),
                         ),
+                        // TextButton(child: Text('deelet'), onPressed: () {
+                        //   CounterCubit.get(context).deletData(
+                        //     nameInput.text,
+                        //     ageInput.text,
+                        //     phoneInput.text,
+                        //     theDate,
+                        //     CounterCubit
+                        //         .get(context)
+                        //         .selectedValueGender,
+                        //     diseasesInput.text,
+                        //     daySelected.toString(),
+                        //     doctorSelected.toString(),
+                        //     context,);
+                        // }
+                        //
+                        //
+                        // ),
                       ],
                     ),
                   ),
@@ -401,13 +447,11 @@ class Booking extends StatelessWidget {
 String? daySelected;
 String? doctorSelected;
 
-void day(currentDay)
-{
+void day(currentDay) {
   daySelected = currentDay;
 }
 
-void doctorN(currentDoctorName)
-{
+void doctorN(currentDoctorName) {
   doctorSelected = currentDoctorName;
 }
 

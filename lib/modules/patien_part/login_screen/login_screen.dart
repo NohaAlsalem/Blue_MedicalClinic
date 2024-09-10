@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:blue_medical_clinic/modules/patien_part/home_Layout/home_layout.dart';
 import 'package:blue_medical_clinic/modules/patien_part/login_screen/cubit/cubit.dart';
 import 'package:blue_medical_clinic/modules/patien_part/login_screen/cubit/states.dart';
@@ -25,10 +26,10 @@ class _PatientLoginScreenState extends State<PatientLoginScreen> {
   var fcmToken = '';
 
   @override
-  void initState()  {
-     FirebaseMessaging.instance.getToken().then((value) {
+  void initState() {
+    FirebaseMessaging.instance.getToken().then((value) {
       fcmToken = value.toString();
-      print('FCM TOKEN IS  : ${fcmToken}');
+      print('FCM TOKEN IS : ${fcmToken}');
     }).catchError((error) {
       print('error in init state , error is , ${error.toString()}');
     });
@@ -162,9 +163,13 @@ class _PatientLoginScreenState extends State<PatientLoginScreen> {
                                                     email: emailController.text,
                                                     password:
                                                         passwordController.text,
-                                                    //fcmToken: fcmToken
+                                                  //  fcmToken: fcmToken
                                                 );
-                                                cubit.createPatientToken(fcmToken: fcmToken);
+                                                cubit.createPatientToken(
+                                                    fcmToken: fcmToken,
+                                                    email:
+                                                    emailController.text);
+                                                await FirebaseMessaging.instance.subscribeToTopic('all');
                                               }
                                             }),
                                     condition:
@@ -183,28 +188,56 @@ class _PatientLoginScreenState extends State<PatientLoginScreen> {
                                           },
                                         )),
                                 const SizedBox(
-                                  height: 90,
+                                  height: 20,
                                 ),
-                                Row(
-                                  children: [
-                                    const Text('Don\'t have an Account ? '),
-                                    const SizedBox(width: 10),
-                                    defaultTextButton(
-                                      function: () {
-                                        // navigateTo(
-                                        //     PatientRegisterScreen(), context);
-                                      },
-                                      buttonText: 'Register Now',
-                                      fontSize: 17,
-                                    )
-                                  ],
-                                ),
+                                // Row(
+                                //     crossAxisAlignment: CrossAxisAlignment.start,
+                                //     children:[
+                                //       Material(
+                                //         color: Colors.white,
+                                //         shadowColor: const Color(0xFF326fa5),
+                                //         elevation: 20,
+                                //         borderRadius: BorderRadius.circular(30.0),
+                                //         child: MaterialButton(
+                                //           onPressed: (){
+                                //             AwesomeDialog(
+                                //                 context: context,
+                                //                 dialogType: DialogType.QUESTION,
+                                //                 body: Column(
+                                //                   children: [
+                                //                     TextButton(
+                                //                       child: const Text('Admin Account' , style: TextStyle(
+                                //                         fontSize: 16.0,
+                                //                         fontWeight: FontWeight.bold,
+                                //                       )),
+                                //                       onPressed: () {
+                                //                         Navigator.pushReplacementNamed(context, 'home');
+                                //                       },
+                                //                     ),
+                                //                     TextButton(
+                                //                       child: const Text('Doctor Account' , style: TextStyle(
+                                //                         fontSize: 16.0,
+                                //                         fontWeight: FontWeight.bold,
+                                //                       )),
+                                //                       onPressed: () {
+                                //                         Navigator.pushReplacementNamed(context, 'home');
+                                //                       },
+                                //                     ),
+                                //                   ],
+                                //                 ))..show();
+                                //           },
+                                //           child:Text('Others Users'),
+                                //         ),
+                                //       ),
+                                //     ]
+                                //
+                                // )
                               ],
+                            ),
                             ),
                           ),
                         ),
                       ),
-                    ),
                   ],
                 ),
               ),

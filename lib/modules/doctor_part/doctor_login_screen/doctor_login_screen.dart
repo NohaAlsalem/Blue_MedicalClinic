@@ -153,40 +153,55 @@ class DoctorLoginScreen extends StatelessWidget {
                                                 {
 
                                                   if(emailController.text=='dmusallam@bluedoc.net'){
-                                                    PatientReport.get(ctx).getDataMusallam(context);}
+                                                    PatientReport.get(context).getData('DR.Musallam',context);
+                                                    PatientReport.get(ctx).getDataMusallam(context);
+                                                  }
 
                                                   if(emailController.text=='dahmad@bluedoc.net'){
+                                                    PatientReport.get(context).getData('DR.Ahmad',context);
                                                     PatientReport.get(ctx).getDataAhmad(context);}
 
                                                 if(emailController.text=='damal@bluedoc.net'){
+                                                  PatientReport.get(context).getData('DR.Amal',context);
                                                   PatientReport.get(ctx).getDataAmal(context);
                                                   }
 
                                                   if(emailController.text=='dhassan@bluedoc.net'){
+                                                    PatientReport.get(context).getData('DR.Hassan',context);
                                                     PatientReport.get(ctx).getDataHassan(context);
                                                   }
 
                                                   if(emailController.text=='dfahad@bluedoc.net'){
+                                                    PatientReport.get(context).getData('DR.Fahad',context);
                                                     PatientReport.get(ctx).getDataFahad(context);
                                                   }
 
                                                   if(emailController.text=='dali@bluedoc.net'){
+                                                    PatientReport.get(context).getData('DR.Ali',context);
                                                     PatientReport.get(ctx).getDataAli(context);
                                                   }
 
                                                   if(emailController.text=='dnedal@bluedoc.net'){
+                                                    PatientReport.get(context).getData('DR.Nedal',context);
                                                     PatientReport.get(ctx).getDataNedal(context);
                                                   }
 
                                                   if(emailController.text=='dmohammadk@bluedoc.net'){
+                                                    PatientReport.get(context).getData('DR.Mohamad k',context);
                                                     PatientReport.get(ctx).getDataMKassem(context);
                                                   }
 
                                                   if(emailController.text=='dmohammad@bluedoc.net'){
+                                                    PatientReport.get(context).getData('DR.Mohammad',context);
                                                     PatientReport.get(ctx).getDataMSaeed(context);
                                                   }
                                                   if(emailController.text=='dnaser@bluedoc.net'){
+                                                    PatientReport.get(context).getData('DR.Naser',context);
                                                     PatientReport.get(ctx).getDataNaser(context);
+                                                  }
+                                                  else{
+                                                    PatientReport.get(context).getData('DR.hh',context);
+                                                    PatientReport.get(ctx).getDataDoctor(context);
                                                   }
 
 

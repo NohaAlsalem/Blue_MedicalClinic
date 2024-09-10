@@ -1,15 +1,16 @@
 
 class UserModel{
 
-  late String name ;
+   String? name ;
   late String age ;
   late String phone ;
   late String gender;
   late String disease;
-  late String date;
+   String? date;
   late int hour ;
   late int minute ;
   late String doctorSelected;
+  late String daySelected;
 
   UserModel({
     required this.name ,
@@ -21,6 +22,7 @@ class UserModel{
     required this.minute,
     required this.doctorSelected,
     required this.disease,
+    required this.daySelected
   });
 
 
@@ -35,6 +37,7 @@ class UserModel{
     hour = json['hour'];
     minute  = json['minute'];
     doctorSelected = json['doctorSelected'];
+    daySelected=json['daySelected'];
   }
 
   Map<String , dynamic> toMap(context)
@@ -50,6 +53,8 @@ class UserModel{
         'hour': hour,
         'minute':minute,
         'doctorSelected':doctorSelected,
+        'daySelected':daySelected,
+
       };
   }
 

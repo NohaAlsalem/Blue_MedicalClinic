@@ -706,7 +706,11 @@ class ReportDoctor extends StatelessWidget{
                                                   ),
                                                   child:const Center(
                                                       child: Text('Save',
-                                                        style: TextStyle(color: Color(0xAA93f0fc),),)),
+                                                        style: TextStyle(
+                                                            color: Colors.white,
+                                                            fontWeight: FontWeight.w600,
+                                                            fontSize: 17
+                                                        ),)),
                                                 ),
                                               )
                                             ]),

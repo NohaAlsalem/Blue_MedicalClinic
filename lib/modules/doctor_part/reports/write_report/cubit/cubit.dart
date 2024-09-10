@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:blue_medical_clinic/modules/doctor_part/home_layout/home_screen.dart';
+import 'package:blue_medical_clinic/modules/doctor_part/home_layout_doc/home_screen.dart';
 import 'package:blue_medical_clinic/models/Patient_model_toreport/patientmodel.dart';
 import 'package:blue_medical_clinic/modules/doctor_part/reports/write_report/cubit/satats.dart';
 import 'package:blue_medical_clinic/shared/components/components.dart';
@@ -18,7 +18,7 @@ class PatientReport extends Cubit<StatestoReport>{
 
   Future<void> addDataPatient( doctorSelected , nameInput, ageInput,theDate, gender ,hour ,minute ,disease ,diagnosis ,report, imageReport,imageRadiographic,imageMedicalTests ,context) async
   {
-    if(doctorSelected.toString() =='Dr.Amal AL-Masry'){
+    if(doctorSelected.toString() =='DR.Amal'){
       PatientModel model = PatientModel(
         name: nameInput,
         age: ageInput,
@@ -54,7 +54,7 @@ class PatientReport extends Cubit<StatestoReport>{
             ],
           )
       ).show();    }
-    if(doctorSelected.toString() =='Dr..Musallam AL-Kayal'){
+    if(doctorSelected.toString() =='DR.Musallam'){
       PatientModel model = PatientModel(
         name: nameInput,
         age: ageInput,
@@ -90,7 +90,7 @@ class PatientReport extends Cubit<StatestoReport>{
           )
       ).show();
     }
-    if(doctorSelected.toString() =='Dr.Ahmad AL-jarrah'){
+    if(doctorSelected.toString() =='DR.Ahmad'){
       PatientModel model = PatientModel(
         name: nameInput,
         age: ageInput,
@@ -125,7 +125,7 @@ class PatientReport extends Cubit<StatestoReport>{
             ],
           )
       ).show();    }
-    if(doctorSelected.toString() =='Dr.Hassan AL-Maleh'){
+    if(doctorSelected.toString() =='DR.Hassan'){
       PatientModel model = PatientModel(
         name: nameInput,
         age: ageInput,
@@ -160,7 +160,7 @@ class PatientReport extends Cubit<StatestoReport>{
             ],
           )
       ).show();    }
-    if(doctorSelected.toString() =='Dr.Fahad AL-Ebrahem'){
+    if(doctorSelected.toString() =='DR.Fahad'){
       PatientModel model = PatientModel(
         name: nameInput,
         age: ageInput,
@@ -196,7 +196,7 @@ class PatientReport extends Cubit<StatestoReport>{
           )
       ).show();
     }
-    if(doctorSelected.toString() =='Dr.Ali Ahmad'){
+    if(doctorSelected.toString() =='DR.Ali'){
       PatientModel model = PatientModel(
         name: nameInput,
         age: ageInput,
@@ -231,7 +231,7 @@ class PatientReport extends Cubit<StatestoReport>{
             ],
           )
       ).show();    }
-    if(doctorSelected.toString() =='Dr. Nedal Hussain'){
+    if(doctorSelected.toString() =='DR.Nedal'){
       PatientModel model = PatientModel(
         name: nameInput,
         age: ageInput,
@@ -266,7 +266,7 @@ class PatientReport extends Cubit<StatestoReport>{
             ],
           )
       ).show();    }
-    if(doctorSelected.toString() =='Dr.Mohammad Kasem'){
+    if(doctorSelected.toString() =='DR.Mohammad K'){
       PatientModel model = PatientModel(
         name: nameInput,
         age: ageInput,
@@ -281,7 +281,7 @@ class PatientReport extends Cubit<StatestoReport>{
         imageRadiographic:imageRadiographic ,
         imageMedicalTests: imageMedicalTests ,
       );
-      FirebaseFirestore.instance.collection('patient').doc('Report').collection('DR.Kassem').doc().set(model.toMap(context))
+      FirebaseFirestore.instance.collection('patient').doc('Report').collection('DR.Mohammad k').doc().set(model.toMap(context))
           .then((value) {
         emit(SuccessStates());
       }).catchError((error) {
@@ -303,7 +303,7 @@ class PatientReport extends Cubit<StatestoReport>{
       ).show();
       // navigateTo(PatientRecord(), context);
     }
-    if(doctorSelected.toString() =='DR.Dr.Mohammad Saeed'){
+    if(doctorSelected.toString() =='DR.Mohammad'){
       PatientModel model = PatientModel(
         name: nameInput,
         age: ageInput,
@@ -318,7 +318,7 @@ class PatientReport extends Cubit<StatestoReport>{
         imageRadiographic:imageRadiographic ,
         imageMedicalTests: imageMedicalTests ,
       );
-      FirebaseFirestore.instance.collection('patient').doc('Report').collection('DR.MSaeed').doc().set(model.toMap(context))
+      FirebaseFirestore.instance.collection('patient').doc('Report').collection('DR.Mohammad').doc().set(model.toMap(context))
           .then((value) {
         emit(SuccessStates());
       }).catchError((error) {
@@ -339,7 +339,7 @@ class PatientReport extends Cubit<StatestoReport>{
           )
       ).show();
     }
-    if(doctorSelected.toString() =='Dr.Naser Mohammad.'){
+    if(doctorSelected.toString() =='DR.Naser'){
       PatientModel model = PatientModel(
         name: nameInput,
         age: ageInput,
@@ -378,24 +378,25 @@ class PatientReport extends Cubit<StatestoReport>{
   }
 
   var info =[];
+  var name_doc;
   getDataMusallam(context) async {
     CollectionReference appMusallamM = FirebaseFirestore.instance.collection('appointment').doc('Monday').collection('Reservations');
     CollectionReference appMusallamT = FirebaseFirestore.instance.collection('appointment').doc('Tuesday').collection('Reservations');
     CollectionReference appMusallamW = FirebaseFirestore.instance.collection('appointment').doc('Wednesday').collection('Reservations');
 
-    await appMusallamM.where('doctorSelected', isEqualTo: 'Dr.Musallam').get().then((value) {
+    await appMusallamM.where('doctorSelected', isEqualTo: 'DR.Musallam').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
       }
     });
-    await appMusallamT.where('doctorSelected', isEqualTo: 'Dr.Musallam').get().then((value) {
+    await appMusallamT.where('doctorSelected', isEqualTo: 'DR.Musallam').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
       }
     });
-    await appMusallamW.where('doctorSelected', isEqualTo: 'Dr.Musallam').get().then((value) {
+    await appMusallamW.where('doctorSelected', isEqualTo: 'DR.Musallam').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
@@ -409,21 +410,21 @@ class PatientReport extends Cubit<StatestoReport>{
     CollectionReference appAliT = FirebaseFirestore.instance.collection('appointment').doc('Tuesday').collection('Reservations');
     CollectionReference appAliW = FirebaseFirestore.instance.collection('appointment').doc('Wednesday').collection('Reservations');
 
-    await appAliM.where('doctorSelected', isEqualTo: 'Dr.Ali').get().then((value) {
+    await appAliM.where('doctorSelected', isEqualTo: 'DR.Ali').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
 
       }
     });
-    await appAliT.where('doctorSelected', isEqualTo: 'Dr.Ali').get().then((value) {
+    await appAliT.where('doctorSelected', isEqualTo: 'DR.Ali').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
 
       }
     });
-    await appAliW.where('doctorSelected', isEqualTo: 'Dr.Ali').get().then((value) {
+    await appAliW.where('doctorSelected', isEqualTo: 'DR.Ali').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
@@ -436,19 +437,19 @@ class PatientReport extends Cubit<StatestoReport>{
     CollectionReference appNedalT = FirebaseFirestore.instance.collection('appointment').doc('Tuesday').collection('Reservations');
     CollectionReference appNedalW = FirebaseFirestore.instance.collection('appointment').doc('Wednesday').collection('Reservations');
 
-    await appNedalM.where('doctorSelected', isEqualTo: 'Dr.Nedal').get().then((value) {
+    await appNedalM.where('doctorSelected', isEqualTo: 'DR.Nedal').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
       }
     });
-    await appNedalT.where('doctorSelected', isEqualTo: 'Dr.Nedal').get().then((value) {
+    await appNedalT.where('doctorSelected', isEqualTo: 'DR.Nedal').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
       }
     });
-    await appNedalW.where('doctorSelected', isEqualTo: 'Dr.Nedal').get().then((value) {
+    await appNedalW.where('doctorSelected', isEqualTo: 'DR.Nedal').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
@@ -461,19 +462,19 @@ class PatientReport extends Cubit<StatestoReport>{
     CollectionReference appHassanT = FirebaseFirestore.instance.collection('appointment').doc('Tuesday').collection('Reservations');
     CollectionReference appHassanW = FirebaseFirestore.instance.collection('appointment').doc('Wednesday').collection('Reservations');
 
-    await appHassanM.where('doctorSelected', isEqualTo: 'Dr.Hassan').get().then((value) {
+    await appHassanM.where('doctorSelected', isEqualTo: 'DR.Hassan').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
       }
     });
-    await appHassanT.where('doctorSelected', isEqualTo: 'Dr.Hassan').get().then((value) {
+    await appHassanT.where('doctorSelected', isEqualTo: 'DR.Hassan').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
       }
     });
-    await appHassanW.where('doctorSelected', isEqualTo: 'Dr.Hassan').get().then((value) {
+    await appHassanW.where('doctorSelected', isEqualTo: 'DR.Hassan').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
@@ -486,19 +487,19 @@ class PatientReport extends Cubit<StatestoReport>{
     CollectionReference appMKassemT = FirebaseFirestore.instance.collection('appointment').doc('Tuesday').collection('Reservations');
     CollectionReference appMKassemW = FirebaseFirestore.instance.collection('appointment').doc('Wednesday').collection('Reservations');
 
-    await appMKassemM.where('doctorSelected', isEqualTo:'Dr.Mohammad k').get().then((value) {
+    await appMKassemM.where('doctorSelected', isEqualTo:'DR.Mohammad k').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
       }
     });
-    await appMKassemT.where('doctorSelected', isEqualTo:'Dr.Mohammad k').get().then((value) {
+    await appMKassemT.where('doctorSelected', isEqualTo:'DR.Mohammad k').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
       }
     });
-    await appMKassemW.where('doctorSelected', isEqualTo:'Dr.Mohammad k').get().then((value) {
+    await appMKassemW.where('doctorSelected', isEqualTo:'DR.Mohammad k').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
@@ -512,20 +513,20 @@ class PatientReport extends Cubit<StatestoReport>{
     CollectionReference appAmalT = FirebaseFirestore.instance.collection('appointment').doc('Tuesday').collection('Reservations');
     CollectionReference appAmalW = FirebaseFirestore.instance.collection('appointment').doc('Wednesday').collection('Reservations');
 
-    await appAmalM.where('doctorSelected', isEqualTo: 'Dr.Amal').get().then((value) {
+    await appAmalM.where('doctorSelected', isEqualTo: 'DR.Amal').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
       }
     });
-    await appAmalT.where('doctorSelected', isEqualTo: 'Dr.Amal').get().then((value) {
+    await appAmalT.where('doctorSelected', isEqualTo: 'DR.Amal').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
       }
     });
 
-    await appAmalW.where('doctorSelected', isEqualTo: 'Dr.Amal').get().then((value) {
+    await appAmalW.where('doctorSelected', isEqualTo: 'DR.Amal').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
@@ -538,19 +539,19 @@ class PatientReport extends Cubit<StatestoReport>{
     CollectionReference appMSaeedT = FirebaseFirestore.instance.collection('appointment').doc('Tuesday').collection('Reservations');
     CollectionReference appMSaeedW = FirebaseFirestore.instance.collection('appointment').doc('Wednesday').collection('Reservations');
 
-    await appMSaeedM.where('doctorSelected', isEqualTo: 'Dr.Mohammad').get().then((value) {
+    await appMSaeedM.where('doctorSelected', isEqualTo: 'DR.Mohammad').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
       }
     });
-    await appMSaeedT.where('doctorSelected', isEqualTo: 'Dr.Mohammad').get().then((value) {
+    await appMSaeedT.where('doctorSelected', isEqualTo: 'DR.Mohammad').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
       }
     });
-    await appMSaeedW.where('doctorSelected', isEqualTo: 'Dr.Mohammad').get().then((value) {
+    await appMSaeedW.where('doctorSelected', isEqualTo: 'DR.Mohammad').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
@@ -563,19 +564,19 @@ class PatientReport extends Cubit<StatestoReport>{
     CollectionReference appAhmadT = FirebaseFirestore.instance.collection('appointment').doc('Tuesday').collection('Reservations');
     CollectionReference appAhmadW = FirebaseFirestore.instance.collection('appointment').doc('Wednesday').collection('Reservations');
 
-    await appAhmadM.where('doctorSelected', isEqualTo: 'Dr.Ahmad').get().then((value) {
+    await appAhmadM.where('doctorSelected', isEqualTo: 'DR.Ahmad').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
       }
     });
-    await appAhmadT.where('doctorSelected', isEqualTo: 'Dr.Ahmad').get().then((value) {
+    await appAhmadT.where('doctorSelected', isEqualTo: 'DR.Ahmad').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
       }
     });
-    await appAhmadW.where('doctorSelected', isEqualTo: 'Dr.Ahmad').get().then((value) {
+    await appAhmadW.where('doctorSelected', isEqualTo: 'DR.Ahmad').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
@@ -588,19 +589,19 @@ class PatientReport extends Cubit<StatestoReport>{
     CollectionReference appNaserT = FirebaseFirestore.instance.collection('appointment').doc('Tuesday').collection('Reservations');
     CollectionReference appNaserW = FirebaseFirestore.instance.collection('appointment').doc('Wednesday').collection('Reservations');
 
-    await appNaserM.where('doctorSelected', isEqualTo: 'Dr.Naser').get().then((value) {
+    await appNaserM.where('doctorSelected', isEqualTo: 'DR.Naser').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
       }
     });
-    await appNaserT.where('doctorSelected', isEqualTo: 'Dr.Naser').get().then((value) {
+    await appNaserT.where('doctorSelected', isEqualTo: 'DR.Naser').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
       }
     });
-    await appNaserW.where('doctorSelected', isEqualTo: 'Dr.Naser').get().then((value) {
+    await appNaserW.where('doctorSelected', isEqualTo: 'DR.Naser').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
@@ -613,19 +614,19 @@ class PatientReport extends Cubit<StatestoReport>{
     CollectionReference appGFahadT = FirebaseFirestore.instance.collection('appointment').doc('Tuesday').collection('Reservations');
     CollectionReference appGFahadW = FirebaseFirestore.instance.collection('appointment').doc('Wednesday').collection('Reservations');
 
-    await appGFahadM.where('doctorSelected', isEqualTo: 'Dr.Fahad').get().then((value) {
+    await appGFahadM.where('doctorSelected', isEqualTo: 'DR.Fahad').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
       }
     });
-    await appGFahadT.where('doctorSelected', isEqualTo: 'Dr.Fahad').get().then((value) {
+    await appGFahadT.where('doctorSelected', isEqualTo: 'DR.Fahad').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
       }
     });
-    await appGFahadW.where('doctorSelected', isEqualTo: 'Dr.Fahad').get().then((value) {
+    await appGFahadW.where('doctorSelected', isEqualTo: 'DR.Fahad').get().then((value) {
       for (var element in value.docs) {
         info.add(element.data());
         emit(SuccessState(info));
@@ -634,10 +635,36 @@ class PatientReport extends Cubit<StatestoReport>{
     navigateTo(DoctorHome(info), context);
   }
 
+  getDataDoctor(context) async {
+    CollectionReference docM = FirebaseFirestore.instance.collection('appointment').doc('Monday').collection('Reservations');
+    CollectionReference docT = FirebaseFirestore.instance.collection('appointment').doc('Tuesday').collection('Reservations');
+    CollectionReference docW = FirebaseFirestore.instance.collection('appointment').doc('Wednesday').collection('Reservations');
+
+    await docM.where('doctorSelected', isEqualTo:'DR.hh').get().then((value) {
+      for (var element in value.docs) {
+        info.add(element.data());
+        emit(SuccessState(info));
+      }
+    });
+    await docT.where('doctorSelected', isEqualTo: 'DR.hh').get().then((value) {
+      for (var element in value.docs) {
+        info.add(element.data());
+        emit(SuccessState(info));
+      }
+    });
+    await docW.where('doctorSelected', isEqualTo:'DR.hh').get().then((value) {
+      for (var element in value.docs) {
+        info.add(element.data());
+        emit(SuccessState(info));
+      }
+    });
+
+    navigateTo(DoctorHome(info), context);
+  }
 
   List reports=[];
   getData(doctorSelected, context) async {
-    if(doctorSelected=='Dr.Amal') {
+    if(doctorSelected=='DR.Amal') {
       CollectionReference amal = FirebaseFirestore.instance.collection('patient').doc('Report').collection('DR.Amal');
       await amal.get().then((value) {
         for(var element in value.docs){
@@ -648,7 +675,7 @@ class PatientReport extends Cubit<StatestoReport>{
       navigateTo(PatientRecord(reports), context);
       //Navigator.pushNamed(context,'report');
     }
-    if(doctorSelected=='Dr.Musallam') {
+    if(doctorSelected=='DR.Musallam') {
       CollectionReference musallam = FirebaseFirestore.instance.collection('patient').doc('Report').collection('DR.Musallam');
       await musallam.get().then((value) {
         for(var element in value.docs){
@@ -658,7 +685,7 @@ class PatientReport extends Cubit<StatestoReport>{
       });
       navigateTo(PatientRecord(reports), context);
     }
-    if(doctorSelected=='Dr.Ahmad') {
+    if(doctorSelected=='DR.Ahmad') {
       CollectionReference ahmad = FirebaseFirestore.instance.collection('patient').doc('Report').collection('DR.Ahmad');
       await ahmad.get().then((value) {
         for(var element in value.docs){
@@ -669,7 +696,7 @@ class PatientReport extends Cubit<StatestoReport>{
 
       navigateTo(PatientRecord(reports), context);
     }
-    if(doctorSelected=='Dr.Hassan') {
+    if(doctorSelected=='DR.Hassan') {
       CollectionReference hasan = FirebaseFirestore.instance.collection('patient').doc('Report').collection('DR.Hasan');
       await hasan.get().then((value) {
         for(var element in value.docs){
@@ -679,7 +706,7 @@ class PatientReport extends Cubit<StatestoReport>{
       });
       navigateTo(PatientRecord(reports), context);
     }
-    if(doctorSelected=='Dr.Fahad') {
+    if(doctorSelected=='DR.Fahad') {
       CollectionReference fahad = FirebaseFirestore.instance.collection('patient').doc('Report').collection('DR.Fahad');
       await fahad.get().then((value) {
         for(var element in value.docs){
@@ -699,7 +726,7 @@ class PatientReport extends Cubit<StatestoReport>{
       });
       navigateTo(PatientRecord(reports), context);
     }
-    if(doctorSelected=='Dr.Nedal') {
+    if(doctorSelected=='DR.Nedal') {
       CollectionReference nedal = FirebaseFirestore.instance.collection('patient').doc('Report').collection('DR.Nedal');
       await nedal.get().then((value) {
         for(var element in value.docs){
@@ -709,8 +736,8 @@ class PatientReport extends Cubit<StatestoReport>{
       });
       navigateTo(PatientRecord(reports), context);
     }
-    if(doctorSelected=='Dr.Mohammad k') {
-      CollectionReference kassem = FirebaseFirestore.instance.collection('patient').doc('Report').collection('DR.Kassem');
+    if(doctorSelected=='DR.Mohammad k') {
+      CollectionReference kassem = FirebaseFirestore.instance.collection('patient').doc('Report').collection('DR.Mohammad k');
       await kassem.get().then((value) {
         for(var element in value.docs){
           reports.add(element.data());
@@ -719,8 +746,8 @@ class PatientReport extends Cubit<StatestoReport>{
       });
       navigateTo(PatientRecord(reports), context);
     }
-    if(doctorSelected=='Dr.Mohammad') {
-      CollectionReference saeed = FirebaseFirestore.instance.collection('patient').doc('Report').collection('DR.MSaeed');
+    if(doctorSelected=='DR.Mohammad') {
+      CollectionReference saeed = FirebaseFirestore.instance.collection('patient').doc('Report').collection('DR.Mohammad');
       await saeed.get().then((value) {
         for(var element in value.docs){
           reports.add(element.data());
@@ -729,7 +756,7 @@ class PatientReport extends Cubit<StatestoReport>{
       });
       navigateTo(PatientRecord(reports), context);
     }
-    if(doctorSelected=='Dr.Naser') {
+    if(doctorSelected=='DR.Naser') {
       CollectionReference naser = FirebaseFirestore.instance.collection('patient').doc('Report').collection('DR.Naser');
       await naser.get().then((value) {
         for(var element in value.docs){
@@ -742,6 +769,18 @@ class PatientReport extends Cubit<StatestoReport>{
     if(reports.isNotEmpty){
       navigateTo(PatientRecord(reports), context);
     }
+    if(doctorSelected=='DR.hh'){
+      CollectionReference doctor = FirebaseFirestore.instance.collection('patient').doc('Report').collection('DR.hh');
+      await doctor.get().then((value) {
+        for(var element in value.docs){
+          reports.add(element.data());
+          emit(RecepDataSuccess(reports));
+        }});
+      navigateTo(PatientRecord(reports), context);
+      //Navigator.pushNamed(context,'report');
+    }
+    }
+
   }
 
-}
+

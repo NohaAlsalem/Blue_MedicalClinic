@@ -9,16 +9,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
-
 class DentalSection extends StatelessWidget {
-
-  List doctor =[];
-  CollectionReference docRefDental  = FirebaseFirestore.instance.collection('Section').doc('Doctors').collection('dental');
-
+  List doctor = [];
+  CollectionReference docRefDental = FirebaseFirestore.instance
+      .collection('Section')
+      .doc('Doctors')
+      .collection('dental');
 
   DateTime _dateTime = DateTime.now();
-
-
 
   DentalSection({Key? key}) : super(key: key);
   @override
@@ -27,7 +25,7 @@ class DentalSection extends StatelessWidget {
       create: (BuildContext context) => CounterCubit(),
       child: BlocConsumer<CounterCubit, TimeStates>(
           listener: (context, state) {},
-          builder:  (context, state) {
+          builder: (context, state) {
             return Scaffold(
               body: Stack(
                 children: [
@@ -64,7 +62,7 @@ class DentalSection extends StatelessWidget {
                               ),
                               borderRadius: BorderRadius.vertical(
                                 bottom: Radius.elliptical(
-                                    MediaQuery.of(context).size.width, 60.0 ),
+                                    MediaQuery.of(context).size.width, 60.0),
                               ),
                             ),
                           ),
@@ -73,7 +71,7 @@ class DentalSection extends StatelessWidget {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.vertical(
                                 bottom: Radius.elliptical(
-                                    MediaQuery.of(context).size.width, 100.0 ),
+                                    MediaQuery.of(context).size.width, 100.0),
                               ),
                               image: const DecorationImage(
                                 image: AssetImage('assets/booking.jpg'),
@@ -83,27 +81,33 @@ class DentalSection extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 15.0,),
+                      const SizedBox(
+                        height: 15.0,
+                      ),
                       Row(
-                        children: const[
+                        children: const [
                           Padding(
                             padding: EdgeInsets.only(
                               top: 10.0,
                               left: 20.0,
                             ),
-                            child: Text('Department Doctor', style: TextStyle(
-                              fontSize: 23.0,
-                              color:  Color(0xFF0876D4),
-                              // color:  Color(0xFF326fa5),
-                              // Color(0xFF01203b),
-                              fontWeight: FontWeight.w800,
-                              fontFamily: 'Allison',
-                            ),
+                            child: Text(
+                              'Department Doctor',
+                              style: TextStyle(
+                                fontSize: 23.0,
+                                color: Color(0xFF0876D4),
+                                // color:  Color(0xFF326fa5),
+                                // Color(0xFF01203b),
+                                fontWeight: FontWeight.w800,
+                                fontFamily: 'Allison',
+                              ),
                             ),
                           ),
                         ],
                       ),
-                      const SizedBox(height: 15.0,),
+                      const SizedBox(
+                        height: 15.0,
+                      ),
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.all(12.0),
@@ -122,23 +126,25 @@ class DentalSection extends StatelessWidget {
                               ),
                               child: FutureBuilder(
                                 future: docRefDental.get(),
-                                builder: ( BuildContext context, AsyncSnapshot snapshot)
-                                {
+                                builder: (BuildContext context,
+                                    AsyncSnapshot snapshot) {
                                   if (snapshot.hasError) print(snapshot.error);
-                                  if (snapshot.hasData)  {
+                                  if (snapshot.hasData) {
                                     return ListView.separated(
                                       itemCount: snapshot.data.docs.length,
                                       shrinkWrap: true,
                                       itemBuilder: (context, i) {
                                         return Material(
                                           color: Colors.white70,
-                                          shadowColor:  Colors.black,
+                                          shadowColor: Colors.black,
                                           elevation: 8,
-                                          borderRadius: BorderRadius.circular(40.0),
+                                          borderRadius:
+                                              BorderRadius.circular(40.0),
                                           child: Container(
                                             padding: const EdgeInsets.all(19.0),
                                             decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(40.0),
+                                              borderRadius:
+                                                  BorderRadius.circular(40.0),
                                               gradient: const LinearGradient(
                                                 begin: Alignment.topRight,
                                                 end: Alignment.topLeft,
@@ -149,33 +155,46 @@ class DentalSection extends StatelessWidget {
                                                 ],
                                               ),
                                             ),
-                                            child:  ListTile(
-                                              leading:const Icon(Icons.person),
-                                              title: Text('${snapshot.data.docs[i].data()['doctor_Name']}' ,
-                                                style:  const TextStyle(
-                                                    color:  Color(0xFF326fa5),
+                                            child: ListTile(
+                                              leading: const Icon(Icons.person),
+                                              title: Text(
+                                                '${snapshot.data.docs[i].data()['doctor_Name']}',
+                                                style: const TextStyle(
+                                                    color: Color(0xFF326fa5),
                                                     fontWeight: FontWeight.bold,
-                                                    fontSize: 15.0
-                                                ),),
+                                                    fontSize: 15.0),
+                                              ),
                                               dense: true,
-                                              onTap: (){
+                                              onTap: () {
                                                 Navigator.push(
-                                                  context, MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      BlocProvider(
-                                                        create: (BuildContext context) => CounterCubit(),
-                                                        child: BlocConsumer<CounterCubit, TimeStates>(
-                                                            listener: (context, state) {},
-                                                            builder:  (context, state) {
-                                                              return
-                                                                Scaffold(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        BlocProvider(
+                                                      create: (BuildContext
+                                                              context) =>
+                                                          CounterCubit(),
+                                                      child:
+                                                          BlocConsumer<
+                                                                  CounterCubit,
+                                                                  TimeStates>(
+                                                              listener:
+                                                                  (context,
+                                                                      state) {},
+                                                              builder: (context,
+                                                                  state) {
+                                                                return Scaffold(
                                                                   body: Stack(
                                                                     children: [
                                                                       Container(
-                                                                        decoration: const BoxDecoration(
-                                                                          gradient: LinearGradient(
-                                                                            begin: Alignment.topRight,
-                                                                            end: Alignment.bottomRight,
+                                                                        decoration:
+                                                                            const BoxDecoration(
+                                                                          gradient:
+                                                                              LinearGradient(
+                                                                            begin:
+                                                                                Alignment.topRight,
+                                                                            end:
+                                                                                Alignment.bottomRight,
                                                                             colors: [
                                                                               Color(0xAA93f0fc),
                                                                               Color(0xAAf3e5f5),
@@ -189,14 +208,15 @@ class DentalSection extends StatelessWidget {
                                                                         ),
                                                                       ),
                                                                       SingleChildScrollView(
-                                                                        child: Column(
+                                                                        child:
+                                                                            Column(
                                                                           children: [
                                                                             Stack(
                                                                               children: [
                                                                                 Container(
                                                                                   height: MediaQuery.of(context).size.height * 0.33,
                                                                                   decoration: const BoxDecoration(
-                                                                                    gradient:  LinearGradient(
+                                                                                    gradient: LinearGradient(
                                                                                       begin: Alignment.topRight,
                                                                                       end: Alignment.bottomLeft,
                                                                                       colors: [
@@ -237,20 +257,14 @@ class DentalSection extends StatelessWidget {
                                                                                 ),
                                                                                 Center(
                                                                                   child: Padding(
-                                                                                    padding: const EdgeInsets.only(left: 0.0, top: 120,),
+                                                                                    padding: const EdgeInsets.only(
+                                                                                      left: 0.0,
+                                                                                      top: 120,
+                                                                                    ),
                                                                                     child: Container(
                                                                                       width: MediaQuery.of(context).size.width * 0.4,
                                                                                       height: MediaQuery.of(context).size.width * 0.4,
-                                                                                      decoration: BoxDecoration(
-                                                                                          border: Border.all(
-                                                                                              color: const Color(0xFF326fa5),width: 5),
-                                                                                          shape: BoxShape.circle,
-                                                                                          color: Colors.white,
-                                                                                          image: const DecorationImage(
-                                                                                              fit: BoxFit.cover,
-                                                                                              image: CachedNetworkImageProvider(
-                                                                                                  'https://i1.wp.com/allmedhealth.ca/wp-content/uploads/2021/01/cropped-Male_Doctor-1.png?fit=500%2C500&ssl=1&is-pending-load=1'))
-                                                                                      ),
+                                                                                      decoration: BoxDecoration(border: Border.all(color: const Color(0xFF326fa5), width: 5), shape: BoxShape.circle, color: Colors.white, image: const DecorationImage(fit: BoxFit.cover, image: CachedNetworkImageProvider('https://i1.wp.com/allmedhealth.ca/wp-content/uploads/2021/01/cropped-Male_Doctor-1.png?fit=500%2C500&ssl=1&is-pending-load=1'))),
                                                                                     ),
                                                                                   ),
                                                                                 ),
@@ -294,14 +308,13 @@ class DentalSection extends StatelessWidget {
                                                                                   height: 12.0,
                                                                                 ),
                                                                                 const Padding(
-                                                                                  padding: EdgeInsets
-                                                                                      .only(
+                                                                                  padding: EdgeInsets.only(
                                                                                     left: 20.0,
                                                                                   ),
                                                                                   child: Text(
                                                                                     'About',
                                                                                     style: TextStyle(
-                                                                                      color:  Color(0xFF0876D4),
+                                                                                      color: Color(0xFF0876D4),
                                                                                       fontSize: 20.0,
                                                                                       fontWeight: FontWeight.bold,
                                                                                       fontFamily: 'RobotoMono',
@@ -312,21 +325,15 @@ class DentalSection extends StatelessWidget {
                                                                                   height: 9.0,
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsets
-                                                                                      .only(
+                                                                                  padding: const EdgeInsets.only(
                                                                                     left: 20.0,
                                                                                   ),
                                                                                   child: Text(
-                                                                                    '${snapshot
-                                                                                        .data
-                                                                                        .docs[i]
-                                                                                        .data()['about_Doctor']}',
+                                                                                    '${snapshot.data.docs[i].data()['about_Doctor']}',
                                                                                     style: const TextStyle(
-                                                                                      color: Colors
-                                                                                          .black,
+                                                                                      color: Colors.black,
                                                                                       fontSize: 15.0,
-                                                                                      fontWeight: FontWeight
-                                                                                          .w500,
+                                                                                      fontWeight: FontWeight.w500,
                                                                                     ),
                                                                                   ),
                                                                                 ),
@@ -334,39 +341,34 @@ class DentalSection extends StatelessWidget {
                                                                                   height: 20.0,
                                                                                 ),
                                                                                 const Padding(
-                                                                                  padding: EdgeInsets
-                                                                                      .only(
+                                                                                  padding: EdgeInsets.only(
                                                                                     left: 20.0,
                                                                                   ),
                                                                                   child: Text(
                                                                                     'Appointments',
                                                                                     style: TextStyle(
-                                                                                      color:  Color(0xFF0876D4),
+                                                                                      color: Color(0xFF0876D4),
                                                                                       fontSize: 20.0,
-                                                                                      fontWeight: FontWeight
-                                                                                          .w800,
+                                                                                      fontWeight: FontWeight.w800,
                                                                                       fontFamily: 'Monospace',
                                                                                     ),
                                                                                   ),
                                                                                 ),
-                                                                                Padding(padding: const EdgeInsets.all(12.0),
+                                                                                Padding(
+                                                                                  padding: const EdgeInsets.all(12.0),
                                                                                   child: Column(
                                                                                     children: [
                                                                                       TimelineTile(
                                                                                         indicatorStyle: const IndicatorStyle(
-                                                                                          color: Colors
-                                                                                              .indigo,
+                                                                                          color: Colors.indigo,
                                                                                           height: 50,
                                                                                           width: 50,
                                                                                           indicator: CircleAvatar(
-                                                                                            backgroundColor: Color(
-                                                                                                0xFF326fa5),
-                                                                                            child: Text('1',
-                                                                                              style: TextStyle(
-                                                                                                  color: Colors.white,
-                                                                                                  fontSize: 20,
-                                                                                                  fontWeight: FontWeight.w900
-                                                                                              ),),
+                                                                                            backgroundColor: Color(0xFF326fa5),
+                                                                                            child: Text(
+                                                                                              '1',
+                                                                                              style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w900),
+                                                                                            ),
                                                                                           ),
                                                                                         ),
                                                                                         isFirst: true,
@@ -397,20 +399,25 @@ class DentalSection extends StatelessWidget {
                                                                                                 ),
                                                                                               ),
                                                                                               child: MaterialButton(
-                                                                                                onPressed: (){
+                                                                                                onPressed: () {
                                                                                                   day('Monday');
                                                                                                   doctorN(snapshot.data.docs[i].data()['doctor_Name']);
-                                                                                                  CounterCubit.get(context).datePickerMonday(context);
-                                                                                                  //datePickerMonday(context);
+                                                                                                  datePickerMonday(context);
+                                                                                                  Future.delayed(Duration(seconds: 15), () {
+                                                                                                    Navigator.of(context).pushNamed(
+                                                                                                      'booking',
+                                                                                                    );
+                                                                                                  });
                                                                                                 },
                                                                                                 child: const Center(
                                                                                                     child: Text(
-                                                                                                      '2 - 4 pm Monday',
-                                                                                                      style: TextStyle(
-                                                                                                        color: Colors.indigo,
-                                                                                                        fontWeight: FontWeight.w500,
-                                                                                                        fontSize: 15.0,
-                                                                                                      ),)),
+                                                                                                  '2 - 4 pm Monday',
+                                                                                                  style: TextStyle(
+                                                                                                    color: Colors.indigo,
+                                                                                                    fontWeight: FontWeight.w500,
+                                                                                                    fontSize: 15.0,
+                                                                                                  ),
+                                                                                                )),
                                                                                               ),
                                                                                             ),
                                                                                           ),
@@ -424,17 +431,11 @@ class DentalSection extends StatelessWidget {
                                                                                           height: 50,
                                                                                           width: 50,
                                                                                           indicator: CircleAvatar(
-                                                                                            backgroundColor: Color(
-                                                                                                0xFF326fa5),
+                                                                                            backgroundColor: Color(0xFF326fa5),
                                                                                             child: Text(
                                                                                               '2',
-                                                                                              style: TextStyle(
-                                                                                                  color: Colors
-                                                                                                      .white,
-                                                                                                  fontSize: 20,
-                                                                                                  fontWeight: FontWeight
-                                                                                                      .w900
-                                                                                              ),),
+                                                                                              style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w900),
+                                                                                            ),
                                                                                           ),
                                                                                         ),
                                                                                         //isFirst: true,
@@ -465,16 +466,22 @@ class DentalSection extends StatelessWidget {
                                                                                                 onPressed: () {
                                                                                                   day('Tuesday');
                                                                                                   doctorN(snapshot.data.docs[i].data()['doctor_Name']);
-                                                                                                  CounterCubit.get(context).datePickerTuesday(context);
+                                                                                                  datePickerTuesday(context);
+                                                                                                  Future.delayed(Duration(seconds: 15), () {
+                                                                                                    Navigator.of(context).pushNamed(
+                                                                                                      'booking',
+                                                                                                    );
+                                                                                                  });
                                                                                                 },
                                                                                                 child: const Center(
                                                                                                     child: Text(
-                                                                                                      '2 - 4 pm Tuesday',
-                                                                                                      style: TextStyle(
-                                                                                                        color: Colors.indigo,
-                                                                                                        fontWeight: FontWeight.w500,
-                                                                                                        fontSize: 15.0,
-                                                                                                      ),)),
+                                                                                                  '2 - 4 pm Tuesday',
+                                                                                                  style: TextStyle(
+                                                                                                    color: Colors.indigo,
+                                                                                                    fontWeight: FontWeight.w500,
+                                                                                                    fontSize: 15.0,
+                                                                                                  ),
+                                                                                                )),
                                                                                               ),
                                                                                             ),
                                                                                           ),
@@ -489,27 +496,21 @@ class DentalSection extends StatelessWidget {
                                                                                           width: 50,
                                                                                           indicator: CircleAvatar(
                                                                                             backgroundColor: Color(0xFF326fa5),
-                                                                                            child: Text('3',
-                                                                                              style: TextStyle(
-                                                                                                  color: Colors.white,
-                                                                                                  fontSize: 20,
-                                                                                                  fontWeight: FontWeight.w900
-                                                                                              ),),
+                                                                                            child: Text(
+                                                                                              '3',
+                                                                                              style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w900),
+                                                                                            ),
                                                                                           ),
                                                                                         ),
                                                                                         isLast: true,
                                                                                         endChild: Padding(
-                                                                                          padding: const EdgeInsets
-                                                                                              .only(
+                                                                                          padding: const EdgeInsets.only(
                                                                                             left: 10.0,
                                                                                           ),
                                                                                           child: Material(
-                                                                                            shadowColor: const Color(
-                                                                                                0xFF326fa5),
+                                                                                            shadowColor: const Color(0xFF326fa5),
                                                                                             elevation: 20,
-                                                                                            borderRadius: BorderRadius
-                                                                                                .circular(
-                                                                                                30.0),
+                                                                                            borderRadius: BorderRadius.circular(30.0),
                                                                                             child: Container(
                                                                                               height: 60,
                                                                                               padding: const EdgeInsets.all(19.0),
@@ -528,17 +529,22 @@ class DentalSection extends StatelessWidget {
                                                                                               child: MaterialButton(
                                                                                                 onPressed: () {
                                                                                                   day('Wednesday');
-                                                                                                  doctorN(snapshot.data.docs[i].data()['doctor_Name']);
-                                                                                                 CounterCubit.get(context).datePickerWednesday(context);
+                                                                                                  datePickerWednesday(context);
+                                                                                                  Future.delayed(Duration(seconds: 15), () {
+                                                                                                    Navigator.of(context).pushNamed(
+                                                                                                      'booking',
+                                                                                                    );
+                                                                                                  });
                                                                                                 },
                                                                                                 child: const Center(
                                                                                                     child: Text(
-                                                                                                      '2 - 4 pm Wednesday',
-                                                                                                      style: TextStyle(
-                                                                                                        color: Colors.indigo,
-                                                                                                        fontWeight: FontWeight.w500,
-                                                                                                        fontSize: 15.0,
-                                                                                                      ),)),
+                                                                                                  '2 - 4 pm Wednesday',
+                                                                                                  style: TextStyle(
+                                                                                                    color: Colors.indigo,
+                                                                                                    fontWeight: FontWeight.w500,
+                                                                                                    fontSize: 15.0,
+                                                                                                  ),
+                                                                                                )),
                                                                                               ),
                                                                                             ),
                                                                                           ),
@@ -555,19 +561,24 @@ class DentalSection extends StatelessWidget {
                                                                     ],
                                                                   ),
                                                                 );
-                                                            }),
-                                                      ),
-                                                ),
+                                                              }),
+                                                    ),
+                                                  ),
                                                 );
                                               },
                                             ),
                                           ),
                                         );
-                                      } ,
-                                      separatorBuilder: (context, index) {return Container(height: 15.0,);},
+                                      },
+                                      separatorBuilder: (context, index) {
+                                        return Container(
+                                          height: 15.0,
+                                        );
+                                      },
                                     );
                                   } else {
-                                    return const Center(child: CircularProgressIndicator());
+                                    return const Center(
+                                        child: CircularProgressIndicator());
                                   }
                                 },
                               ),
@@ -580,6 +591,7 @@ class DentalSection extends StatelessWidget {
                 ],
               ),
             );
-          }
-      ),);
-  }}
+          }),
+    );
+  }
+}

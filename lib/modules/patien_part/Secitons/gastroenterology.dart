@@ -389,12 +389,11 @@ class GastroenterologySection extends StatelessWidget {
                                                                                                 onPressed: (){
                                                                                                   day('Monday');
                                                                                                    doctorN(snapshot.data.docs[i].data()['doctor_Name']);
-                                                                                                  CounterCubit.get(context).datePickerMonday(context);
-                                                                                                  // CounterCubit.get(context).datePickerTuesday(context);
-                                                                                                  // datePickerMonday(context);
-                                                                                                  // if(datePickerMonday(context) ==null){
-                                                                                                  // Navigator.of(context).pushNamed('booking',);}
-                                                                                                },
+                                                                                                  datePickerMonday(context);
+                                                                                                  Future.delayed(Duration(seconds: 15) , (){
+                                                                                                    Navigator.of(context).pushNamed('booking',);
+                                                                                                  });
+                                                                                                    },
                                                                                                 child: const Center(
                                                                                                     child: Text(
                                                                                                       '2 - 4 pm Monday',
@@ -454,10 +453,14 @@ class GastroenterologySection extends StatelessWidget {
                                                                                                 ),
                                                                                               ),
                                                                                               child: MaterialButton(
-                                                                                                onPressed: () {
+                                                                                                onPressed: () async {
                                                                                                   day('Tuesday');
                                                                                                   doctorN(snapshot.data.docs[i].data()['doctor_Name']);
-                                                                                                  CounterCubit.get(context).datePickerTuesday(context);
+                                                                                                  datePickerTuesday(context);
+                                                                                                  Future.delayed(Duration(seconds: 15) , (){
+                                                                                                    Navigator.of(context).pushNamed('booking',);
+                                                                                                  });
+
                                                                                                 },
                                                                                                 child: const Center(
                                                                                                     child: Text(
@@ -521,7 +524,10 @@ class GastroenterologySection extends StatelessWidget {
                                                                                                 onPressed: () {
                                                                                                   day('Wednesday');
                                                                                                   doctorN(snapshot.data.docs[i].data()['doctor_Name']);
-                                                                                                  CounterCubit.get(context).datePickerWednesday(context);
+                                                                                                  datePickerWednesday(context);
+                                                                                                  Future.delayed(Duration(seconds: 15) , (){
+                                                                                                    Navigator.of(context).pushNamed('booking',);
+                                                                                                  });
                                                                                                 },
                                                                                                 child: const Center(
                                                                                                     child: Text(

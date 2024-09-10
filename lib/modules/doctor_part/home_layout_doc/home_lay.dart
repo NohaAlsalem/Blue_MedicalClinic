@@ -1,3 +1,4 @@
+import 'package:blue_medical_clinic/modules/doctor_part/home_layout_doc/cubit/cubit.dart';
 import 'package:blue_medical_clinic/modules/patien_part/home_Layout/cubit/cubit.dart';
 import 'package:blue_medical_clinic/modules/patien_part/home_Layout/cubit/states.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class _home_layoutState extends State<home_layout> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context)=>PatientHomeCubit(),
+      create: (BuildContext context)=>DoctorHomeCubit(),
 
       child: BlocConsumer<PatientHomeCubit,PatientHomeStates>(
           listener: (context,state){},

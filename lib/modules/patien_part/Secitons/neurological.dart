@@ -400,7 +400,12 @@ class NeurologicalSection extends StatelessWidget {
                                                                                                 onPressed: (){
                                                                                                   day('Monday');
                                                                                                   doctorN(snapshot.data.docs[i].data()['doctor_Name']);
-                                                                                                  CounterCubit.get(context).datePickerMonday(context);
+                                                                                                  datePickerMonday(context);
+                                                                                                  Future.delayed(Duration(seconds: 15), () {
+                                                                                                    Navigator.of(context).pushNamed(
+                                                                                                      'booking',
+                                                                                                    );
+                                                                                                  });
                                                                                                 },
                                                                                                 child: const Center(
                                                                                                     child: Text(
@@ -464,7 +469,12 @@ class NeurologicalSection extends StatelessWidget {
                                                                                                 onPressed: () {
                                                                                                   day('Tuesday');
                                                                                                   doctorN(snapshot.data.docs[i].data()['doctor_Name']);
-                                                                                                  CounterCubit.get(context).datePickerTuesday(context);
+                                                                                                  datePickerTuesday(context);
+                                                                                                  Future.delayed(Duration(seconds: 15), () {
+                                                                                                    Navigator.of(context).pushNamed(
+                                                                                                      'booking',
+                                                                                                    );
+                                                                                                  });
                                                                                                 },
                                                                                                 child: const Center(
                                                                                                     child: Text(
@@ -527,8 +537,12 @@ class NeurologicalSection extends StatelessWidget {
                                                                                               child: MaterialButton(
                                                                                                 onPressed: () {
                                                                                                   day('Wednesday');
-                                                                                                  doctorN(snapshot.data.docs[i].data()['doctor_Name']);
-                                                                                                  CounterCubit.get(context).datePickerWednesday(context);
+                                                                                                  datePickerWednesday(context);
+                                                                                                  Future.delayed(Duration(seconds: 15), () {
+                                                                                                    Navigator.of(context).pushNamed(
+                                                                                                      'booking',
+                                                                                                    );
+                                                                                                  });
                                                                                                 },
                                                                                                 child: const Center(
                                                                                                     child: Text(

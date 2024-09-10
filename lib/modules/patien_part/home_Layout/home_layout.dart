@@ -14,10 +14,11 @@ class home_layout extends StatefulWidget {
 class _home_layoutState extends State<home_layout> {
  var fcmToken = FirebaseMessaging.instance;
   @override
-  void initState(){
+  void initState() {
     fcmToken.getToken().then((value) {
-      print('token in home *_*');
+      print('token in home *_____*');
     });
+    FirebaseMessaging.instance.subscribeToTopic('all');
     FirebaseMessaging.onMessage.listen((event) {
       print('notification title : ${event.notification!.title}');
       print('notification body : ${event.notification!.body}');
